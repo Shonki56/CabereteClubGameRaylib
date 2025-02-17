@@ -50,33 +50,22 @@ void Sofa::ChangeToActive()
 
 void Sofa::isSofaBeingUsed()
 {
-	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && isMouseOnSofa())
+	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 	{
-		if (!m_isBeingUsed)
+		Vector2 mousePosition = GetMousePosition();
+		if (CheckCollisionPointRec(mousePosition, m_area))
 		{
-			m_isBeingUsed = true;
-			std::cout << "Now true!\n";
+			if (!m_isBeingUsed)
+			{
+				ChangeToActive();
+				std::cout << "Now True!\n";
+			}
+			else
+			{
+				m_isBeingUsed = false;
+				std::cout << "Now False!\n";
+			}
 		}
-		else
-		{
-			m_isBeingUsed = false;
-			std::cout << "Now false!\n";
-		}
-
 	}
-
-}
-
-bool Sofa::isMouseOnSofa()
-{
-	int mouseX = GetMouseX();
-	int mouseY = GetMouseY();
-
-	if (mouseX >= m_area.x && mouseX <= m_area.x + m_area.width &&
-		mouseY >= m_area.y && mouseY <= m_area.y + m_area.height)
-	{
-		return true;
-	}
-	return false;
 }
 
