@@ -29,7 +29,10 @@ void Game::HandleInputs()
 
 void Game::placeHostess(Hostess& hostess, Sofa& sofa)
 {
-	DrawTexture(hostess.m_image, sofa.m_position.x, sofa.m_position.y, WHITE);
+	//DrawTexture(hostess.m_image, sofa.m_position.x, sofa.m_position.y, WHITE);
+	hostess.m_position = sofa.m_position;
+	hostess.m_position.y -= 50;
+	hostess.Draw();
 }
 
 void Game::InitGame()

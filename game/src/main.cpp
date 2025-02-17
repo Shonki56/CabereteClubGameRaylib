@@ -57,9 +57,8 @@ int main()
         game.Update();
         BeginDrawing();
         ClearBackground(BLACK);
-        game.placeHostess(test, game.m_sofas[3]);
         game.Draw();
-        //DrawTexture(woman, 100, 100, WHITE);
+        game.placeHostess(test, game.m_sofas[0]);
         EndDrawing();
 
     }

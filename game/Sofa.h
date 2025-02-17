@@ -14,9 +14,7 @@ public:
 	Rectangle getRect();
 	Rectangle m_area;
 private:
-	bool isMouseOnSofa();
 	void ChangeToActive();
 	float m_sofaSize = 0.35;
 	void isSofaBeingUsed();
-	void isSofaBeingUsed2();
 };
