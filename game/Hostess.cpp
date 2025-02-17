@@ -7,7 +7,10 @@ Hostess::Hostess()
 
 void Hostess::Draw()
 {
-	DrawTextureEx(m_image, m_position, 0, 0.6, WHITE);
+	if (m_isBeingUsed)
+	{
+		DrawTextureEx(m_image, m_position, 0, 0.6, WHITE);
+	}
 
 }
 

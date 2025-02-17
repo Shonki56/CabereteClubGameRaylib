@@ -17,5 +17,6 @@ private:
 	void InitGame();
 	std::vector<Sofa> CreateSofas();
 	std::vector<Hostess> m_hostesses;
+	void CreateHostesses();
 
 };

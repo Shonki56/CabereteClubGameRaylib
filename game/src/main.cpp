@@ -43,13 +43,6 @@ int main()
     SetTargetFPS(60);
 
     Game game;
-    Hostess test;
-    Traits testTraits = { 10,10,10,10 };
-    Stats testStats = { 100, 10,10,10,10 };
-    test.stats = testStats;
-    test.traits = testTraits;
-    Texture2D woman = LoadTexture("resources/Images/Angel/Angelica-Human4_B.png");
-    test.m_image = woman;
 
     while (!WindowShouldClose())
     {
@@ -58,7 +51,6 @@ int main()
         BeginDrawing();
         ClearBackground(BLACK);
         game.Draw();
-        game.placeHostess(test, game.m_sofas[0]);
         EndDrawing();
 
     }

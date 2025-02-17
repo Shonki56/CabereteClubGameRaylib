@@ -13,8 +13,8 @@ public:
 	Texture m_image;
 	Rectangle getRect();
 	Rectangle m_area;
-private:
 	void ChangeToActive();
+private:
 	float m_sofaSize = 0.35;
 	void isSofaBeingUsed();
 };

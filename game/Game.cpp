@@ -12,6 +12,11 @@ void Game::Draw()
 	{
 		sofa.Draw();
 	}
+
+	for (auto& hostess : m_hostesses)
+	{
+		hostess.Draw();
+	}
 }
 
 void Game::Update()
@@ -20,19 +25,45 @@ void Game::Update()
 	{
 		sofa.Update();
 	}
+
+	HandleInputs();
+
 }
 
 void Game::HandleInputs()
 {
-	//Something
+	// Place hostess thing in here???
+	// Holy shit, it works!!! Halfly...
+	for (auto& sofa : m_sofas)
+	{
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+			Vector2 mousePosition = GetMousePosition();
+			if (CheckCollisionPointRec(mousePosition, sofa.m_area))
+			{
+				if (!sofa.m_isBeingUsed)
+				{
+					sofa.ChangeToActive();
+					std::cout << "Now True!\n";
+					// Need to make a selected hostess thing
+					placeHostess(m_hostesses[0], sofa);
+					m_hostesses[0].m_isBeingUsed = true;
+				}
+				else
+				{
+					sofa.m_isBeingUsed = false;
+					std::cout << "Now False!\n";
+					m_hostesses[0].m_isBeingUsed = false;
+				}
+			}
+		}
+	}
 }
 
 void Game::placeHostess(Hostess& hostess, Sofa& sofa)
 {
-	//DrawTexture(hostess.m_image, sofa.m_position.x, sofa.m_position.y, WHITE);
 	hostess.m_position = sofa.m_position;
 	hostess.m_position.y -= 50;
-	hostess.Draw();
 }
 
 void Game::InitGame()
@@ -40,6 +71,7 @@ void Game::InitGame()
 	std::cout << "GAME STARTED!\n";
 	m_sofas = CreateSofas();
 	std::cout << m_sofas.size();
+	CreateHostesses();
 }
 
 std::vector<Sofa> Game::CreateSofas()
@@ -57,6 +89,18 @@ std::vector<Sofa> Game::CreateSofas()
 		}
 	}
 	return sofas;
+}
+
+void Game::CreateHostesses()
+{
+    Hostess test;
+    Traits testTraits = { 10,10,10,10 };
+    Stats testStats = { 100, 10,10,10,10 };
+    test.stats = testStats;
+    test.traits = testTraits;
+    Texture2D woman = LoadTexture("resources/Images/Angel/Angelica-Human4_B.png");
+    test.m_image = woman;
+	m_hostesses.push_back(test);
 }
 
 

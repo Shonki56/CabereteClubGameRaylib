@@ -29,7 +29,7 @@ void Sofa::Draw()
 
 void Sofa::Update()
 {
-	isSofaBeingUsed();
+	//isSofaBeingUsed();
 }
 
 Rectangle Sofa::getRect()
