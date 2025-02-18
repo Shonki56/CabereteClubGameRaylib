@@ -30,15 +30,13 @@ Use this as a starting point or replace it with your code.
 #include "Game.hpp";
 //TEST
 
-#include "Hostess.hpp"
-
 
 
 
 int main()
 {
-	const int screenWidth = 800;
-	const int screenHeight = 800;
+	const int screenWidth = 1500;
+	const int screenHeight = 1000;
     InitWindow(screenWidth, screenHeight, "Caberet Madness");
     SetTargetFPS(60);
 

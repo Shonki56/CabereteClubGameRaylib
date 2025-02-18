@@ -27,6 +27,7 @@ void Game::Update()
 	}
 
 	HandleInputs();
+	displayHostessesFaces();
 
 }
 
@@ -36,26 +37,56 @@ void Game::HandleInputs()
 	// Holy shit, it works!!! Halfly...
 	for (auto& sofa : m_sofas)
 	{
-		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		for (int i = 0; i < m_hostesses.size(); i++)
 		{
-			Vector2 mousePosition = GetMousePosition();
-			if (CheckCollisionPointRec(mousePosition, sofa.m_area))
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			{
-				if (!sofa.m_isBeingUsed)
+				Vector2 mousePosition = GetMousePosition();
+				if (CheckCollisionPointRec(mousePosition, sofa.m_area))
 				{
-					sofa.ChangeToActive();
-					std::cout << "Now True!\n";
-					// Need to make a selected hostess thing
-					placeHostess(m_hostesses[0], sofa);
-					m_hostesses[0].m_isBeingUsed = true;
-				}
-				else
-				{
-					sofa.m_isBeingUsed = false;
-					std::cout << "Now False!\n";
-					m_hostesses[0].m_isBeingUsed = false;
+					if (!sofa.m_isBeingUsed && m_hostesses[i].m_isCurrentlySelected == true)
+					{
+						sofa.ChangeToActive();
+						std::cout << "Now True!\n";
+						// Need to make a selected hostess thing
+						placeHostess(m_hostesses[i], sofa);
+						m_hostesses[i].m_isBeingUsed = true;
+					}
+					else
+					{
+						sofa.m_isBeingUsed = false;
+						std::cout << "Now False!\n";
+						m_hostesses[i].m_isBeingUsed = false;
+						m_hostesses[i].m_isCurrentlySelected = false;
+					}
 				}
 			}
+
+		}
+	}
+
+	for (auto& hostess : m_hostesses)
+	{
+		if (hostess.m_isBeingUsed == false)
+		{
+			Vector2 mousePosition = GetMousePosition();
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				if (CheckCollisionPointRec(mousePosition, hostess.m_faceImageRectangle))
+				{
+					if (hostess.m_isCurrentlySelected == false)
+					{
+						hostess.m_isCurrentlySelected = true;
+						std::cout << hostess.m_isCurrentlySelected << std::endl;
+					}
+					else
+					{
+						hostess.m_isCurrentlySelected = false;
+						std::cout << hostess.m_isCurrentlySelected << std::endl;
+					}
+				}
+			}
+
 		}
 	}
 }
@@ -76,7 +107,7 @@ void Game::InitGame()
 
 std::vector<Sofa> Game::CreateSofas()
 {
-	int offsetX = 150;
+	int offsetX = 400;
 	int offsetY = 150;
 	std::vector<Sofa> sofas;
 	for (int row = 0; row < 2; ++row)
@@ -98,9 +129,33 @@ void Game::CreateHostesses()
     Stats testStats = { 100, 10,10,10,10 };
     test.stats = testStats;
     test.traits = testTraits;
-    Texture2D woman = LoadTexture("resources/Images/Angel/Angelica-Human4_B.png");
-    test.m_image = woman;
+    Texture2D HostessFullBody = LoadTexture("resources/Images/Angel/Angelica-Human4_B.png");
+	Texture2D hostessHead = LoadTexture("resources/Images/Angel/Angelica-Human4_B-Head.png");
+	test.m_faceImage = hostessHead;
+    test.m_image = HostessFullBody;
 	m_hostesses.push_back(test);
+}
+
+void Game::displayHostessesFaces()
+{
+	int count = 1;
+	for (auto& hostess : m_hostesses)
+	{
+		if (hostess.m_isBeingUsed == false)
+		{
+			hostess.m_faceImagePosition = { float(count * 100), float(count * 50) };
+			hostess.m_faceImageRectangle = hostess.getRect();
+			DrawTexture(hostess.m_faceImage, count * 100, count * 50, WHITE);
+			if (hostess.m_isCurrentlySelected == false)
+			{
+				DrawRectangleLines(count * 100, count * 50, hostess.m_faceImage.width, hostess.m_faceImage.height, WHITE);
+			}
+			else
+				DrawRectangleLines(count * 100, count * 50, hostess.m_faceImage.width, hostess.m_faceImage.height, GREEN);
+		}
+
+		count++;
+	}
 }
 
 

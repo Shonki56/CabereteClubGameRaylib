@@ -3,6 +3,7 @@
 Hostess::Hostess()
 {
 	m_isBeingUsed = false;
+	m_isCurrentlySelected = false;
 }
 
 void Hostess::Draw()
@@ -17,4 +18,14 @@ void Hostess::Draw()
 void Hostess::changeToUsed()
 {
 	m_isBeingUsed = true;
+}
+
+Rectangle Hostess::getRect()
+{
+	Rectangle rect;
+	rect.x = m_faceImagePosition.x;
+	rect.y = m_faceImagePosition.y;
+	rect.width = m_faceImage.width;
+	rect.height = m_faceImage.height;
+	return rect;
 }

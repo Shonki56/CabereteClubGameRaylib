@@ -31,4 +31,9 @@ public:
 	Vector2 m_position;
 	bool m_isBeingUsed;
 	void changeToUsed();
+	Texture2D m_faceImage;
+	bool m_isCurrentlySelected;
+	Rectangle m_faceImageRectangle;
+	Vector2 m_faceImagePosition;
+	Rectangle getRect();
 };
