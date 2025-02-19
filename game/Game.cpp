@@ -36,6 +36,7 @@ void Game::HandleInputs()
 	// Place hostess thing in here???
 	// Holy shit, it works!!! Halfly...
 	// Update 19/02/25 - Fix this. Kind of works
+	// Also need to add function where player can remove hostess from a sofa, putting her back on the left side
 	for (auto& sofa : m_sofas)
 	{
 		for (int i = 0; i < 2; i++)
