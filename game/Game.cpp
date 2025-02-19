@@ -35,9 +35,10 @@ void Game::HandleInputs()
 {
 	// Place hostess thing in here???
 	// Holy shit, it works!!! Halfly...
+	// Update 19/02/25 - Fix this. Kind of works
 	for (auto& sofa : m_sofas)
 	{
-		for (int i = 0; i < m_hostesses.size(); i++)
+		for (int i = 0; i < 2; i++)
 		{
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			{
@@ -51,12 +52,13 @@ void Game::HandleInputs()
 						// Need to make a selected hostess thing
 						placeHostess(m_hostesses[i], sofa);
 						m_hostesses[i].m_isBeingUsed = true;
+						m_hostesses[i].m_isCurrentlySelected = false;
 					}
 					else
 					{
 						sofa.m_isBeingUsed = false;
 						std::cout << "Now False!\n";
-						m_hostesses[i].m_isBeingUsed = false;
+						//m_hostesses[i].m_isBeingUsed = false;
 						m_hostesses[i].m_isCurrentlySelected = false;
 					}
 				}
@@ -102,7 +104,8 @@ void Game::InitGame()
 	std::cout << "GAME STARTED!\n";
 	m_sofas = CreateSofas();
 	std::cout << m_sofas.size();
-	CreateHostesses();
+	//CreateHostesses();
+	initHostesses();
 }
 
 std::vector<Sofa> Game::CreateSofas()
@@ -133,7 +136,7 @@ void Game::CreateHostesses()
 	Texture2D hostessHead = LoadTexture("resources/Images/Angel/Angelica-Human4_B-Head.png");
 	test.m_faceImage = hostessHead;
     test.m_image = HostessFullBody;
-	m_hostesses.push_back(test);
+//	m_hostesses.push_back(test);
 }
 
 void Game::displayHostessesFaces()
@@ -156,6 +159,35 @@ void Game::displayHostessesFaces()
 
 		count++;
 	}
+}
+
+void Game::initHostesses()
+{
+	//for (auto& hostess : m_hostesses)
+	//{
+	//	hostess = Hostess();
+	//}
+
+	m_hostesses[0].m_image = LoadTexture("resources/Images/fullBodyGirls/Angelica.png");
+	m_hostesses[0].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Angelica-Head.png");
+	m_hostesses[0].stats = { 100,10,10,10,10 };
+	m_hostesses[0].traits = { 10,10,10,10 };
+
+	m_hostesses[1].m_image = LoadTexture("resources/Images/fullBodyGirls/Clara.png");
+	m_hostesses[1].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Clara-Head.png");
+	m_hostesses[1].stats = { 100,10,10,10,10 };
+	m_hostesses[1].traits = { 10,10,10,10 };
+}
+
+bool Game::isAHostessCurrentlySelected()
+{
+	for (auto& hostess : m_hostesses)
+	{
+		if (hostess.m_isCurrentlySelected == true)
+			return true;
+	}
+
+	return false;
 }
 
 

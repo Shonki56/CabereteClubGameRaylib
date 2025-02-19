@@ -16,8 +16,11 @@ public:
 private:
 	void InitGame();
 	std::vector<Sofa> CreateSofas();
-	std::vector<Hostess> m_hostesses;
+	//std::vector<Hostess> m_hostesses;
+	Hostess m_hostesses[2];
 	void CreateHostesses();
 	void displayHostessesFaces();
+	void initHostesses();
+	bool isAHostessCurrentlySelected();
 
 };
