@@ -19,6 +19,7 @@ private:
 	//std::vector<Hostess> m_hostesses;
 	Hostess m_hostesses[2];
 	void displayHostessesFaces();
+	void handleSelectingHostesses();
 	void initHostesses();
 	bool isAHostessCurrentlySelected();
 	void handlePlacingHostess();

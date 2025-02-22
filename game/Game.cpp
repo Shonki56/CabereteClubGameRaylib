@@ -37,38 +37,9 @@ void Game::Update()
 
 void Game::HandleInputs()
 {
-	// Place hostess thing in here???
-	// Holy shit, it works!!! Halfly...
-	// Update 19/02/25 - Fix this. Kind of works
-	// Also need to add function where player can remove hostess from a sofa, putting her back on the left side
-
 	handlePlacingHostess();
 
-
-	for (auto& hostess : m_hostesses)
-	{
-		if (hostess.m_isBeingUsed == false)
-		{
-			Vector2 mousePosition = GetMousePosition();
-			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-			{
-				if (CheckCollisionPointRec(mousePosition, hostess.m_faceImageRectangle))
-				{
-					if (hostess.m_isCurrentlySelected == false)
-					{
-						hostess.m_isCurrentlySelected = true;
-						std::cout << hostess.m_isCurrentlySelected << std::endl;
-					}
-					else
-					{
-						hostess.m_isCurrentlySelected = false;
-						std::cout << hostess.m_isCurrentlySelected << std::endl;
-					}
-				}
-			}
-
-		}
-	}
+	handleSelectingHostesses();
 }
 
 void Game::placeHostess(Hostess& hostess, Sofa& sofa)
@@ -78,6 +49,7 @@ void Game::placeHostess(Hostess& hostess, Sofa& sofa)
 	sofa.m_isBeingUsed = true;
 	hostess.m_isBeingUsed = true;
 	hostess.m_isCurrentlySelected = false;
+	sofa.m_currentHostess = &hostess;
 }
 
 void Game::InitGame()
@@ -130,6 +102,24 @@ void Game::displayHostessesFaces()
 	}
 }
 
+void Game::handleSelectingHostesses()
+{
+	for (auto& hostess : m_hostesses)
+	{
+		if (!hostess.m_isBeingUsed)
+		{
+			Vector2 mousePosition = GetMousePosition();
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePosition, hostess.m_faceImageRectangle))
+			{
+				hostess.m_isCurrentlySelected = !hostess.m_isCurrentlySelected;
+				std::cout << hostess.name << " is currently " << (hostess.m_isCurrentlySelected ? "" : "NOT ") << "selected\n";
+			}
+				
+
+		}
+	}
+}
+
 void Game::initHostesses()
 {
 	m_hostesses[0].m_image = LoadTexture("resources/Images/fullBodyGirls/Angelica.png");
@@ -173,10 +163,11 @@ void Game::handlePlacingHostess()
 						std::cout << m_hostesses[j].name << " is sitting on sofa number " << i << std::endl;
 						placeHostess(m_hostesses[j], m_sofas[i]);
 					}
-					else if (m_sofas[i].m_isBeingUsed && m_hostesses[j].m_isBeingUsed)
+					else if (m_sofas[i].m_isBeingUsed && m_sofas[i].m_currentHostess == &m_hostesses[j])
 					{
 						m_sofas[i].m_isBeingUsed = false;
 						m_hostesses[j].m_isBeingUsed = false;
+						m_sofas[i].m_currentHostess = nullptr;
 						std::cout << m_hostesses[j].name << " has been taken off sofa number " << i << std::endl;
 					}
 				}
