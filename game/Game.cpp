@@ -88,13 +88,13 @@ void Game::displayHostessesFaces()
 			hostess.m_faceImagePosition = { 100.0f, float(count * 100) };
 			hostess.m_faceImageRectangle = hostess.getRect();
 			DrawTexture(hostess.m_faceImage, 100, count * 100, WHITE);
-			if (hostess.m_isCurrentlySelected == false)
+			if (hostess.m_isCurrentlySelected == true)
 			{
-				DrawRectangleLines(100, count * 100, hostess.m_faceImage.width, hostess.m_faceImage.height, WHITE);
+				DrawRectangleLines(100, count * 100, hostess.m_faceImage.width, hostess.m_faceImage.height, GREEN);
 			}
 			else
 			{
-				DrawRectangleLines(100, count * 100, hostess.m_faceImage.width, hostess.m_faceImage.height, GREEN);
+				DrawRectangleLines(100, count * 100, hostess.m_faceImage.width, hostess.m_faceImage.height, WHITE);
 			}
 		}
 
@@ -111,6 +111,7 @@ void Game::handleSelectingHostesses()
 			Vector2 mousePosition = GetMousePosition();
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePosition, hostess.m_faceImageRectangle))
 			{
+				unselectAllHostesses();
 				hostess.m_isCurrentlySelected = !hostess.m_isCurrentlySelected;
 				std::cout << hostess.name << " is currently " << (hostess.m_isCurrentlySelected ? "" : "NOT ") << "selected\n";
 			}
@@ -173,6 +174,14 @@ void Game::handlePlacingHostess()
 				}
 			}
 		}
+	}
+}
+
+void Game::unselectAllHostesses()
+{
+	for (auto& hostess : m_hostesses)
+	{
+		hostess.m_isCurrentlySelected = false;
 	}
 }
 

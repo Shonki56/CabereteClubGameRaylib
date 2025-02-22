@@ -23,5 +23,6 @@ private:
 	void initHostesses();
 	bool isAHostessCurrentlySelected();
 	void handlePlacingHostess();
+	void unselectAllHostesses();
 
 };
