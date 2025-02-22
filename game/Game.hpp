@@ -3,6 +3,9 @@
 #include <Sofa.h>
 #include <vector>
 #include <Hostess.hpp>
+#include "raymath.h"
+#include "lib.h"
+#include "Gui.hpp"
 
 class Game
 {
@@ -24,5 +27,6 @@ private:
 	bool isAHostessCurrentlySelected();
 	void handlePlacingHostess();
 	void unselectAllHostesses();
+	void showHostessStats(const Hostess& hostess);
 
 };

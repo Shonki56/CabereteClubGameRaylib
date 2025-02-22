@@ -1,0 +1,38 @@
+#include "Gui.hpp"
+
+
+
+void GUI::showHostessStats(const Hostess& hostess)
+{
+	Rectangle statsRec = { 50, 800, 300, 250 };
+	int xOffSetStats = 10;
+	int xOffsetTraits = 170;
+	DrawRectangleRec(statsRec, WHITE);
+	DrawLineEx({ 190, 800 }, { 190, 1100 }, 8.0f, BLACK);
+
+	// Stats
+	std::string healthText = "HP: " + std::to_string(hostess.stats.m_healthPoints);
+	std::string talkText = "Talk: " + std::to_string(hostess.stats.m_Talk);
+	std::string loveText = "Love: " + std::to_string(hostess.stats.m_Love);
+	std::string partyText = "Party: " + std::to_string(hostess.stats.m_Party);
+	std::string skillText = "Skill: " + std::to_string(hostess.stats.m_Skill);
+	DrawText(healthText.c_str(), statsRec.x + xOffSetStats, statsRec.y + 20, 20, DARKGRAY);
+	DrawText(talkText.c_str(), statsRec.x + xOffSetStats, statsRec.y + 50, 20, DARKGRAY);
+	DrawText(loveText.c_str(), statsRec.x + xOffSetStats, statsRec.y + 80, 20, DARKGRAY);
+	DrawText(partyText.c_str(), statsRec.x + xOffSetStats, statsRec.y + 110, 20, DARKGRAY);
+	DrawText(skillText.c_str(), statsRec.x + xOffSetStats, statsRec.y + 140, 20, DARKGRAY);
+
+	// Traits
+
+	std::string sexyText = "Sexy: " + std::to_string(hostess.traits.m_Sexy);
+	std::string beautyText = "Beauty: " + std::to_string(hostess.traits.m_Beauty);
+	std::string cuteText = "Cute: " + std::to_string(hostess.traits.m_Cute);
+	std::string funnyText = "Funny: " + std::to_string(hostess.traits.m_Funny);
+
+	DrawText(sexyText.c_str(), statsRec.x + xOffsetTraits, statsRec.y + 20, 20, DARKGRAY);
+	DrawText(beautyText.c_str(), statsRec.x + xOffsetTraits, statsRec.y + 50, 20, DARKGRAY);
+	DrawText(cuteText.c_str(), statsRec.x + xOffsetTraits, statsRec.y + 80, 20, DARKGRAY);
+	DrawText(funnyText.c_str(), statsRec.x + xOffsetTraits, statsRec.y + 110, 20, DARKGRAY);
+
+
+}

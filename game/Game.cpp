@@ -20,6 +20,12 @@ void Game::Draw()
 	for (auto& hostess : m_hostesses)
 	{
 		hostess.Draw();
+		if (hostess.m_isCurrentlySelected)
+		{
+			GUI::showHostessStats(hostess);
+
+		}
+
 	}
 }
 
@@ -32,6 +38,11 @@ void Game::Update()
 
 	HandleInputs();
 	displayHostessesFaces();
+	if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
+	{
+		std::cout << "Mouse X Pos:" << GetMousePosition().x << std::endl;
+		std::cout << "Mouse Y Pos:" << GetMousePosition().y << std::endl;
+	}
 
 }
 
@@ -57,7 +68,6 @@ void Game::InitGame()
 	std::cout << "GAME STARTED!\n";
 	m_sofas = CreateSofas();
 	std::cout << m_sofas.size();
-	//CreateHostesses();
 	initHostesses();
 }
 
@@ -125,14 +135,14 @@ void Game::initHostesses()
 {
 	m_hostesses[0].m_image = LoadTexture("resources/Images/fullBodyGirls/Angelica.png");
 	m_hostesses[0].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Angelica-Head.png");
-	m_hostesses[0].stats = { 100,10,10,10,10 };
+	m_hostesses[0].stats = { 100,40,23,11,51 };
 	m_hostesses[0].traits = { 10,10,10,10 };
 	m_hostesses[0].name = "Angel";
 
 	m_hostesses[1].m_image = LoadTexture("resources/Images/fullBodyGirls/Clara.png");
 	m_hostesses[1].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Clara-Head.png");
-	m_hostesses[1].stats = { 100,10,10,10,10 };
-	m_hostesses[1].traits = { 10,10,10,10 };
+	m_hostesses[1].stats = { 200,10,10,10,10 };
+	m_hostesses[1].traits = { 30,33,70,62 };
 	m_hostesses[1].name = "Clara";
 }
 
