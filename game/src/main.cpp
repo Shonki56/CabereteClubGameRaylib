@@ -28,9 +28,9 @@ Use this as a starting point or replace it with your code.
 #include "game.h"   // an external header in this project
 #include "lib.h"	// an external header in the static lib project
 #include "Game.hpp";
+#include <iostream>
+#include "include/json.hpp"
 //TEST
-
-
 
 
 int main()

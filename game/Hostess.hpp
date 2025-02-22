@@ -1,5 +1,6 @@
 #pragma once
 #include <raylib.h>
+#include <iostream>
 
 struct Stats
 {
@@ -24,16 +25,15 @@ public:
 	Hostess();
 	Stats stats;
 	Traits traits;
-	enum Type type;
 	Texture2D m_image;
 	void Draw();
-	void Update();
 	Vector2 m_position;
 	bool m_isBeingUsed;
-	void changeToUsed();
 	Texture2D m_faceImage;
 	bool m_isCurrentlySelected;
 	Rectangle m_faceImageRectangle;
 	Vector2 m_faceImagePosition;
 	Rectangle getRect();
+	int m_sofaCurrentlyOn;
+	std::string name;
 };

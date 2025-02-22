@@ -15,11 +15,6 @@ void Hostess::Draw()
 
 }
 
-void Hostess::changeToUsed()
-{
-	m_isBeingUsed = true;
-}
-
 Rectangle Hostess::getRect()
 {
 	Rectangle rect;

@@ -1,0 +1,52 @@
+{
+    "software": {
+        "name": "rTexPacker v4.0",
+        "url": "https://raylibtech.itch.io/rtexpacker"
+    },
+    "atlas": {
+        "imagePath": "atlas.png",
+        "width": 1024,
+        "height": 1024,
+        "spriteCount": 4,
+        "isFont": false,
+        "fontSize": 32
+    },
+    "sprites": [
+        {
+            "nameId": "Clara",
+            "origin": { "x": 0, "y": 0 },
+            "position": { "x": 231, "y": 0 },
+            "sourceSize": { "width": 161, "height": 235 },
+            "padding": 0,
+            "trimmed": false,
+            "trimRec": { "x": 1, "y": 1, "width": 158, "height": 234 }
+        },
+        {
+            "nameId": "Angelica",
+            "origin": { "x": 0, "y": 0 },
+            "position": { "x": 0, "y": 0 },
+            "sourceSize": { "width": 231, "height": 248 },
+            "padding": 0,
+            "trimmed": false,
+            "trimRec": { "x": 40, "y": 24, "width": 133, "height": 224 }
+        },
+        {
+            "nameId": "Clara-Head",
+            "origin": { "x": 0, "y": 0 },
+            "position": { "x": 392, "y": 0 },
+            "sourceSize": { "width": 65, "height": 74 },
+            "padding": 0,
+            "trimmed": false,
+            "trimRec": { "x": 0, "y": 1, "width": 65, "height": 73 }
+        },
+        {
+            "nameId": "Angelica-Head",
+            "origin": { "x": 0, "y": 0 },
+            "position": { "x": 457, "y": 0 },
+            "sourceSize": { "width": 82, "height": 74 },
+            "padding": 0,
+            "trimmed": false,
+            "trimRec": { "x": 10, "y": 1, "width": 72, "height": 73 }
+        }
+    ]
+}
