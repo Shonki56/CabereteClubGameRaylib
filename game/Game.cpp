@@ -49,7 +49,10 @@ void Game::Update()
 		std::cout << "Mouse Y Pos:" << GetMousePosition().y << std::endl;
 	}
 
-	generateClient();
+	if (m_clients.size() < 4)
+	{
+		generateClient();
+	}
 
 }
 
@@ -205,7 +208,7 @@ void Game::unselectAllHostesses()
 
 void Game::generateClient()
 {
-	const float spawnTime = 10.0f;
+	const float spawnTime = 2.0f;
 	float currentTime = GetTime();
 	if (currentTime - m_lastSpawnTime >= spawnTime)
 	{
@@ -217,16 +220,16 @@ void Game::generateClient()
 void Game::spawnClient()
 {
 	Client client = Client(POOR);
+	placeClient(client);
 	m_clients.push_back(client);
-
 }
 
-int Game::checkIfSofaIsFree()
+int Game::checkIfSofaIsFree() 
 {
 	int sofaNotBeingUsed = 0;
 	for (int i = 0; i < m_sofas.size(); i++)
 	{
-		if (m_sofas[i].m_isBeingUsed == false)
+		if (m_sofas[i].m_currentClient == nullptr)
 		{
 			sofaNotBeingUsed = i;
 			break;
@@ -243,6 +246,8 @@ void Game::placeClient(Client& client)
 
 	client.m_position.y = m_sofas[sofaNotBeingUsed].m_position.y;
 	client.m_position.x = m_sofas[sofaNotBeingUsed].m_position.x + 100;
+	client.m_isSeated = true;
+	m_sofas[sofaNotBeingUsed].m_currentClient = &client;
 
 }
 

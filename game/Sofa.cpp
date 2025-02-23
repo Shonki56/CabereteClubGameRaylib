@@ -7,6 +7,7 @@ Sofa::Sofa(Vector2 position)
 	m_image = LoadTexture("resources/Images/sofa.png");
 	this->m_position = position;
 	m_area = getRect();
+	m_currentClient = nullptr;
 }
 
 Sofa::~Sofa()

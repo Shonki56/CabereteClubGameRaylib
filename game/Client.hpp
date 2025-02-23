@@ -17,6 +17,7 @@ public:
 	void getCorrectType();
 	Vector2 m_position;
 	const float spawnChance = 0.2f;
+	bool m_isSeated;
 private:
 
 };
