@@ -4,17 +4,18 @@
 Client::Client(clientType clientType) : m_type(clientType)
 {
 	getCorrectType();
+	m_position = { 298, 67 };
 }
 
 Client::~Client()
 {
-	if (m_type == POOR)
-		UnloadTexture(m_clientImage);
+	//if (m_type == POOR)
+	//	UnloadTexture(m_clientImage);
 }
 
 void Client::Draw()
 {
-	DrawTextureEx(m_clientImage, {100, 100}, 0.0f, 3.0f, WHITE);
+	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, WHITE);
 }
 
 void Client::getCorrectType()

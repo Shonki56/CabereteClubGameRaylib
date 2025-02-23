@@ -6,6 +6,7 @@
 #include "raymath.h"
 #include "lib.h"
 #include "Gui.hpp"
+#include "Client.hpp"
 
 class Game
 {
@@ -16,6 +17,8 @@ public:
 	void HandleInputs();
 	void placeHostess(Hostess& hostess, Sofa& sofa);
 	std::vector<Sofa> m_sofas;
+	void placeClient(Client& client);
+	float m_lastSpawnTime;
 private:
 	void InitGame();
 	std::vector<Sofa> CreateSofas();
@@ -27,6 +30,9 @@ private:
 	bool isAHostessCurrentlySelected();
 	void handlePlacingHostess();
 	void unselectAllHostesses();
-	void showHostessStats(const Hostess& hostess);
+	void generateClient();
+	void spawnClient();
+	std::vector<Client> m_clients;
+	int checkIfSofaIsFree();
 
 };

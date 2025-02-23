@@ -15,6 +15,8 @@ public:
 	clientHappiness howMuchDoesClientLikeHostess(Hostess& hostess);
 	clientType m_type;
 	void getCorrectType();
+	Vector2 m_position;
+	const float spawnChance = 0.2f;
 private:
 
 };

@@ -41,7 +41,6 @@ int main()
     InitWindow(screenWidth, screenHeight, "Caberet Madness");
     SetTargetFPS(60);
 
-    Client poor(POOR);
 
     Game game;
 
@@ -52,7 +51,6 @@ int main()
         BeginDrawing();
         ClearBackground(BLACK);
         game.Draw();
-        poor.Draw();
         EndDrawing();
 
     }

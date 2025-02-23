@@ -1,6 +1,7 @@
 #pragma once
 #include <raylib.h>
 #include "Hostess.hpp";
+#include "Client.hpp";
 
 class Sofa
 {
@@ -16,6 +17,7 @@ public:
 	Rectangle m_area;
 	void ChangeToActive();
 	Hostess* m_currentHostess;
+	Client* m_currentClient;
 private:
 	float m_sofaSize = 0.35;
 	void isSofaBeingUsed();
