@@ -31,6 +31,7 @@ Use this as a starting point or replace it with your code.
 #include <iostream>
 #include "include/json.hpp"
 //TEST
+#include "Client.hpp"
 
 
 int main()
@@ -39,6 +40,8 @@ int main()
 	const int screenHeight = 1000;
     InitWindow(screenWidth, screenHeight, "Caberet Madness");
     SetTargetFPS(60);
+
+    Client poor(POOR);
 
     Game game;
 
@@ -49,6 +52,7 @@ int main()
         BeginDrawing();
         ClearBackground(BLACK);
         game.Draw();
+        poor.Draw();
         EndDrawing();
 
     }
