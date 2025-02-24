@@ -187,7 +187,7 @@ void Game::handlePlacingHostess()
 				if (CheckCollisionPointRec(GetMousePosition(), m_sofas[i].m_area))
 				{
 					std::cout << "Sofa number " << i << " has been pressed\n";
-					if (!m_sofas[i].m_isBeingUsed && m_hostesses[j].m_isCurrentlySelected && m_hostesses[j].m_isBeingUsed == false)
+					if (!m_sofas[i].m_isBeingUsed && m_hostesses[j].m_isCurrentlySelected && m_hostesses[j].m_isBeingUsed == false && m_sofas[i].m_currentClient != nullptr)
 					{
 						std::cout << m_hostesses[j].m_name << " is sitting on sofa number " << i << std::endl;
 						placeHostess(m_hostesses[j], m_sofas[i]);
