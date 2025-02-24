@@ -30,7 +30,7 @@ void Game::Draw()
 
 	for (auto& client : m_clients)
 	{
-		client.Draw();
+		client->Draw();
 	}
 }
 
@@ -51,7 +51,12 @@ void Game::Update()
 
 	if (m_clients.size() < 4)
 	{
-		generateClient();
+		//generateClient();
+	}
+
+	if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE))
+	{
+		spawnClient();
 	}
 
 	removeClient();
@@ -208,9 +213,15 @@ void Game::unselectAllHostesses()
 	}
 }
 
+
+
+
+
+// CLIENT STUFF
+
 void Game::generateClient()
 {
-	const float spawnTime = 2.0f;
+	const float spawnTime = 8.0f;
 	float currentTime = GetTime();
 	if (currentTime - m_lastSpawnTime >= spawnTime)
 	{
@@ -221,24 +232,33 @@ void Game::generateClient()
 
 void Game::spawnClient()
 {
-	Client client = Client(POOR);
-	placeClient(client);
-	m_clients.push_back(client);
+	auto client = std::make_unique<Client>(POOR);
+
+	placeClient(*client);
+	m_clients.push_back(std::move(client));
+
+
 }
 
 int Game::checkIfSofaIsFree() 
 {
-	int sofaNotBeingUsed = 0;
 	for (int i = 0; i < m_sofas.size(); i++)
 	{
 		if (m_sofas[i].m_currentClient == nullptr)
 		{
-			sofaNotBeingUsed = i;
+			return i;
 			break;
 		}
+		else
+		{
+			std::cout << "Sofa " << i << " is currently being used\n";
+		}
+
 	}
 
-	return sofaNotBeingUsed;
+	std::cout << "No free sofa found!\n";
+	return -1;
+
 
 }
 
@@ -255,10 +275,19 @@ bool Game::clientTimeout(const Client& client)
 
 void Game::removeClient()
 {
-	for (int i = 0; i < m_clients.size(); i++)
+	for (int i = m_clients.size() - 1; i >= 0; i--)
 	{
-		if (clientTimeout(m_clients[i]))
-		{	
+		if (clientTimeout(*m_clients[i]))
+		{
+			Client* clientPtr = m_clients[i].get();
+			auto it = m_clientSofaMap.find(clientPtr);
+			if (it != m_clientSofaMap.end())
+			{
+				int sofaIndex = it->second;
+				m_sofas[sofaIndex].m_currentClient = nullptr;
+				m_clientSofaMap.erase(it);
+				std::cout << "Client removed. Sofa " << sofaIndex << " is now free!\n";
+			}
 			m_clients.erase(m_clients.begin() + i);
 		}
 	}
@@ -266,12 +295,25 @@ void Game::removeClient()
 
 void Game::placeClient(Client& client)
 {
-	int sofaNotBeingUsed = checkIfSofaIsFree();
+	if (checkIfSofaIsFree() != -1)
+	{
+		int sofaNotBeingUsed = checkIfSofaIsFree();
 
-	client.m_position.y = m_sofas[sofaNotBeingUsed].m_position.y;
-	client.m_position.x = m_sofas[sofaNotBeingUsed].m_position.x + 100;
-	client.m_isSeated = true;
-	m_sofas[sofaNotBeingUsed].m_currentClient = &client;
+		client.m_position.y = m_sofas[sofaNotBeingUsed].m_position.y;
+		client.m_position.x = m_sofas[sofaNotBeingUsed].m_position.x + 100;
+		client.m_isSeated = true;
+
+
+		m_sofas[sofaNotBeingUsed].m_currentClient = &client;
+
+		m_clientSofaMap[&client] = sofaNotBeingUsed;
+
+		std::cout << "Client pointer " << &client << " added to map with sofa index " << sofaNotBeingUsed << std::endl;
+
+
+		std::cout << "Client placed on sofa: " << sofaNotBeingUsed << std::endl;
+
+	}
 
 }
 

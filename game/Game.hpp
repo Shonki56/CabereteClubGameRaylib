@@ -7,6 +7,10 @@
 #include "lib.h"
 #include "Gui.hpp"
 #include "Client.hpp"
+#include <map>
+#include <iterator>
+
+
 
 class Game
 {
@@ -32,9 +36,10 @@ private:
 	void unselectAllHostesses();
 	void generateClient();
 	void spawnClient();
-	std::vector<Client> m_clients;
+	std::vector<std::unique_ptr<Client>> m_clients;
 	int checkIfSofaIsFree();
 	bool clientTimeout(const Client& client);
 	void removeClient();
+	std::map<Client*, int> m_clientSofaMap;
 
 };
