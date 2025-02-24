@@ -35,5 +35,5 @@ public:
 	Vector2 m_faceImagePosition;
 	Rectangle getRect();
 	int m_sofaCurrentlyOn;
-	std::string name;
+	std::string m_name;
 };

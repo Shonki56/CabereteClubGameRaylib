@@ -51,7 +51,7 @@ void Game::Update()
 
 	if (m_clients.size() < 4)
 	{
-		//generateClient();
+		generateClient();
 	}
 
 	if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE))
@@ -141,7 +141,7 @@ void Game::handleSelectingHostesses()
 			{
 				unselectAllHostesses();
 				hostess.m_isCurrentlySelected = !hostess.m_isCurrentlySelected;
-				std::cout << hostess.name << " is currently " << (hostess.m_isCurrentlySelected ? "" : "NOT ") << "selected\n";
+				std::cout << hostess.m_name << " is currently " << (hostess.m_isCurrentlySelected ? "" : "NOT ") << "selected\n";
 			}
 				
 
@@ -155,13 +155,13 @@ void Game::initHostesses()
 	m_hostesses[0].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Angelica-Head.png");
 	m_hostesses[0].stats = { 100,40,23,11,51 };
 	m_hostesses[0].traits = { 10,10,10,10 };
-	m_hostesses[0].name = "Angel";
+	m_hostesses[0].m_name = "Angel";
 
 	m_hostesses[1].m_image = LoadTexture("resources/Images/fullBodyGirls/Clara.png");
 	m_hostesses[1].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Clara-Head.png");
 	m_hostesses[1].stats = { 200,10,10,10,10 };
 	m_hostesses[1].traits = { 30,33,70,62 };
-	m_hostesses[1].name = "Clara";
+	m_hostesses[1].m_name = "Clara";
 }
 
 bool Game::isAHostessCurrentlySelected()
@@ -189,7 +189,7 @@ void Game::handlePlacingHostess()
 					std::cout << "Sofa number " << i << " has been pressed\n";
 					if (!m_sofas[i].m_isBeingUsed && m_hostesses[j].m_isCurrentlySelected && m_hostesses[j].m_isBeingUsed == false)
 					{
-						std::cout << m_hostesses[j].name << " is sitting on sofa number " << i << std::endl;
+						std::cout << m_hostesses[j].m_name << " is sitting on sofa number " << i << std::endl;
 						placeHostess(m_hostesses[j], m_sofas[i]);
 					}
 					else if (m_sofas[i].m_isBeingUsed && m_sofas[i].m_currentHostess == &m_hostesses[j])
@@ -197,7 +197,7 @@ void Game::handlePlacingHostess()
 						m_sofas[i].m_isBeingUsed = false;
 						m_hostesses[j].m_isBeingUsed = false;
 						m_sofas[i].m_currentHostess = nullptr;
-						std::cout << m_hostesses[j].name << " has been taken off sofa number " << i << std::endl;
+						std::cout << m_hostesses[j].m_name << " has been taken off sofa number " << i << std::endl;
 					}
 				}
 			}
