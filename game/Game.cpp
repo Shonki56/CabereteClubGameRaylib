@@ -54,6 +54,8 @@ void Game::Update()
 		generateClient();
 	}
 
+	removeClient();
+
 }
 
 void Game::HandleInputs()
@@ -238,6 +240,28 @@ int Game::checkIfSofaIsFree()
 
 	return sofaNotBeingUsed;
 
+}
+
+bool Game::clientTimeout(const Client& client)
+{
+	float currentTime = GetTime();
+	if (currentTime - client.m_timeSpawnedIn >= client.m_timeout)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+void Game::removeClient()
+{
+	for (int i = 0; i < m_clients.size(); i++)
+	{
+		if (clientTimeout(m_clients[i]))
+		{	
+			m_clients.erase(m_clients.begin() + i);
+		}
+	}
 }
 
 void Game::placeClient(Client& client)

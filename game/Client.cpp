@@ -6,6 +6,8 @@ Client::Client(clientType clientType) : m_type(clientType)
 	getCorrectType();
 	m_position = { 298, 67 };
 	m_isSeated = false;
+	m_timeout = 10.0f;
+	m_timeSpawnedIn = GetTime();
 }
 
 Client::~Client()

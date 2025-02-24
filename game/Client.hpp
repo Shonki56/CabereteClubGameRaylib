@@ -16,8 +16,9 @@ public:
 	clientType m_type;
 	void getCorrectType();
 	Vector2 m_position;
-	const float spawnChance = 0.2f;
 	bool m_isSeated;
+	float m_timeout;
+	float m_timeSpawnedIn;
 private:
 
 };

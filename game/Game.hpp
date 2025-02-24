@@ -34,5 +34,7 @@ private:
 	void spawnClient();
 	std::vector<Client> m_clients;
 	int checkIfSofaIsFree();
+	bool clientTimeout(const Client& client);
+	void removeClient();
 
 };
