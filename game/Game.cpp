@@ -51,7 +51,7 @@ void Game::Update()
 
 	if (m_clients.size() < 4)
 	{
-		generateClient();
+		//generateClient();
 	}
 
 	if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE))

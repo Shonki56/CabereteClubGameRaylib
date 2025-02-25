@@ -1,6 +1,9 @@
 #pragma once
 #include <raylib.h>
 #include "Hostess.hpp"
+#include <map>
+#include<string>
+#include "StatsAndTraits.h"
 
 enum clientHappiness{ NOT, LITTLE, MEDIUM, MUCH, VERYMUCH }; 
 enum clientType{POOR, AVERAGE, RICH, MEGARICH};
@@ -19,6 +22,12 @@ public:
 	bool m_isSeated;
 	float m_timeout;
 	float m_timeSpawnedIn;
+	stuff::Stats m_statsStruct;
+	stuff::Traits m_traitsStruct;
+	std::map<std::string, int> stats;
 private:
+	void createStatsAndTraits();
+	void InitClient();
+	void printStats();
 
 };
