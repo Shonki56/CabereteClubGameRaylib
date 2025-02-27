@@ -25,6 +25,10 @@ public:
 	stuff::Stats m_statsStruct;
 	stuff::Traits m_traitsStruct;
 	std::map<std::string, int> stats;
+	std::vector<int> m_stats;
+	std::vector<int> m_traits;
+	std::vector<std::string> statNames = { "Talk", "Love", "Party", "Skill" };
+	std::vector<std::string> traitNames = { "Sexy", "Beauty", "Cute", "Funny" };
 private:
 	void createStatsAndTraits();
 	void InitClient();

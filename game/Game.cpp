@@ -15,6 +15,11 @@ void Game::Draw()
 	for (auto& sofa : m_sofas)
 	{
 		sofa.Draw();
+		
+		if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && sofa.m_isBeingUsedByClient == true)
+		{
+			GUI::showClientStats(sofa.m_currentClient);
+		}
 	}
 
 	for (auto& hostess : m_hostesses)
@@ -286,9 +291,11 @@ void Game::removeClient()
 				int sofaIndex = it->second;
 				m_sofas[sofaIndex].m_currentClient = nullptr;
 				m_clientSofaMap.erase(it);
+				m_sofas[sofaIndex].m_isBeingUsedByClient = false;
 				std::cout << "Client removed. Sofa " << sofaIndex << " is now free!\n";
 			}
 			m_clients.erase(m_clients.begin() + i);
+			
 		}
 	}
 }
@@ -305,6 +312,7 @@ void Game::placeClient(Client& client)
 
 
 		m_sofas[sofaNotBeingUsed].m_currentClient = &client;
+		m_sofas[sofaNotBeingUsed].m_isBeingUsedByClient = true;
 
 		m_clientSofaMap[&client] = sofaNotBeingUsed;
 

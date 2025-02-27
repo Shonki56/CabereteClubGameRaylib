@@ -1,6 +1,7 @@
 #pragma once
 #include <raylib.h>
 #include <iostream>
+#include <vector>
 
 struct Stats
 {
@@ -36,4 +37,6 @@ public:
 	Rectangle getRect();
 	int m_sofaCurrentlyOn;
 	std::string m_name;
+	std::vector<int> m_traits;
+	std::vector<int> m_stats;
 };

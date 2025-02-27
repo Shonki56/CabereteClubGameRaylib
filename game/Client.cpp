@@ -29,6 +29,16 @@ void Client::getCorrectType()
 
 void Client::createStatsAndTraits()
 {
+	// USING VECTORS INSTEAD
+
+	for (int i = 0; i < 4; i++)
+	{
+		m_stats.push_back(GetRandomValue(1, 30));
+		m_traits.push_back(GetRandomValue(1, 30));
+	}
+
+
+
 	// Using only one stat and trait for now
 	int randomNumberForTraits = GetRandomValue(0, 3);
 	int randomNumberForStats = GetRandomValue(0, 3);
