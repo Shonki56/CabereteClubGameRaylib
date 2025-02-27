@@ -58,10 +58,20 @@ void GUI::showClientStats(const Client* client)
 	for (int i = 0; i < 4; i++)
 	{
 		std::string statsText = client->statNames[i] + ": " + std::to_string(client->m_stats[i]);
-		DrawText(statsText.c_str(), statsRec.x + xOffSetStats, statsRec.y + startX, 20, DARKGRAY);
+		if (i == client->selectedStat)
+		{
+			DrawText(statsText.c_str(), statsRec.x + xOffSetStats, statsRec.y + startX, 20, GREEN);
+		}
+		else
+			DrawText(statsText.c_str(), statsRec.x + xOffSetStats, statsRec.y + startX, 20, DARKGRAY);
+
 
 		std::string traitsText = client->traitNames[i] + ": " + std::to_string(client->m_traits[i]);
-		DrawText(traitsText.c_str(), statsRec.x + xOffsetTraits, statsRec.y + startX, 20, DARKGRAY);
+		if (i == client->selectedTrait)
+			DrawText(traitsText.c_str(), statsRec.x + xOffsetTraits, statsRec.y + startX, 20, GREEN);
+		else
+			DrawText(traitsText.c_str(), statsRec.x + xOffsetTraits, statsRec.y + startX, 20, DARKGRAY);
+
 		startX += 30;
 	}
 

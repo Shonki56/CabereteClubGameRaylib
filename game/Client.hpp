@@ -29,6 +29,8 @@ public:
 	std::vector<int> m_traits;
 	std::vector<std::string> statNames = { "Talk", "Love", "Party", "Skill" };
 	std::vector<std::string> traitNames = { "Sexy", "Beauty", "Cute", "Funny" };
+	int selectedTrait = GetRandomValue(0, 3);
+	int selectedStat = GetRandomValue(0, 3);
 private:
 	void createStatsAndTraits();
 	void InitClient();
