@@ -24,7 +24,7 @@ public:
 	float m_timeSpawnedIn;
 	stuff::Stats m_statsStruct;
 	stuff::Traits m_traitsStruct;
-	std::map<std::string, int> stats;
+	std::map<std::string, int> statsMap;
 	std::vector<int> m_stats;
 	std::vector<int> m_traits;
 	std::vector<std::string> statNames = { "Talk", "Love", "Party", "Skill" };

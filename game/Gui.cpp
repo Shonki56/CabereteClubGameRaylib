@@ -10,6 +10,8 @@ void GUI::showHostessStats(const Hostess& hostess)
 	DrawRectangleRec(statsRec, WHITE);
 	DrawLineEx({ 190, 800 }, { 190, 1100 }, 8.0f, BLACK);
 
+	// TODO Change this to be the same as showClientStats
+
 	// Stats
 	std::string healthText = "HP: " + std::to_string(hostess.stats.m_healthPoints);
 	std::string talkText = "Talk: " + std::to_string(hostess.stats.m_Talk);
@@ -54,6 +56,22 @@ void GUI::showClientStats(const Client* client)
 	DrawRectangleRec(statsRec, WHITE);
 	DrawLineEx({ lineXPosition, 800 }, { lineXPosition, 1100 }, 8.0f, BLACK);
 	int startX = 20;
+
+	int testInt = 20;
+
+
+	// USING MAP 
+	for (const auto& stat : client->statsMap)
+	{
+		std::string text = stat.first + ": " + std::to_string(stat.second);
+		if (client->statNames[client->selectedStat] == stat.first)
+			DrawText(text.c_str(), 300, testInt, 20, GREEN);
+		else
+			DrawText(text.c_str(), 300, testInt, 20, WHITE);
+		testInt += 30;
+	}
+
+	// USING VECTOR
 
 	for (int i = 0; i < 4; i++)
 	{

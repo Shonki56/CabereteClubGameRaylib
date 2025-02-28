@@ -37,47 +37,14 @@ void Client::createStatsAndTraits()
 		m_traits.push_back(GetRandomValue(1, 30));
 	}
 
+	statsMap = {
+		{"Talk", GetRandomValue(1, 30)},
+		{"Love", GetRandomValue(1, 30)},
+		{"Party", GetRandomValue(1, 30)},
+		{"Skill", GetRandomValue(1, 30)},
+	};
 
 
-	// Using only one stat and trait for now
-	int randomNumberForTraits = GetRandomValue(0, 3);
-	int randomNumberForStats = GetRandomValue(0, 3);
-	int randomNumberForActualTraitPoor = GetRandomValue(1, 30);
-	int randomNumberForActualStatPoor = GetRandomValue(1, 30);
-	switch (randomNumberForTraits)
-	{
-	case 0:
-		m_traitsStruct.m_Sexy = GetRandomValue(1, 30);
-		break;
-	case 1:
-		m_traitsStruct.m_Beauty = GetRandomValue(1, 30);
-		break;
-	case 2:
-		m_traitsStruct.m_Cute = GetRandomValue(1, 30);
-		break;
-	case 3:
-		m_traitsStruct.m_Funny = GetRandomValue(1, 30);
-		break;
-	}
-
-
-	switch (randomNumberForStats)
-	{
-	case 0:
-		m_statsStruct.m_Talk = GetRandomValue(1, 30);
-		break;
-	case 1:
-		m_statsStruct.m_Love = GetRandomValue(1, 30);
-		break;
-	case 2:
-		m_statsStruct.m_Party = GetRandomValue(1, 30);
-		break;
-	case 3:
-		m_statsStruct.m_Skill = GetRandomValue(1, 30);
-		break;
-	default:
-		std::cout << "Random number for Stats is: " << randomNumberForStats << std::endl;
-	}
 }
 
 void Client::InitClient()
