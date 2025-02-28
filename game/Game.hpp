@@ -28,6 +28,7 @@ private:
 	std::vector<Sofa> CreateSofas();
 	//std::vector<Hostess> m_hostesses;
 	Hostess m_hostesses[2];
+	Hostess selectedHostess;
 	void displayHostessesFaces();
 	void handleSelectingHostesses();
 	void initHostesses();

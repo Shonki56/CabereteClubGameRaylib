@@ -16,9 +16,10 @@ void Game::Draw()
 	{
 		sofa.Draw();
 		
-		if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && sofa.m_isBeingUsedByClient == true)
+		if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && sofa.m_isBeingUsedByClient == true && isAHostessCurrentlySelected() == true)
 		{
-			GUI::showClientStats(sofa.m_currentClient);
+			GUI::showHostessAndClientStats(selectedHostess, sofa.m_currentClient);
+			GUI::showComparison(selectedHostess, sofa.m_currentClient);
 		}
 	}
 
@@ -27,7 +28,7 @@ void Game::Draw()
 		hostess.Draw();
 		if (hostess.m_isCurrentlySelected)
 		{
-			GUI::showHostessStats(hostess);
+			//GUI::showHostessStats(hostess);
 
 		}
 
@@ -158,14 +159,14 @@ void Game::initHostesses()
 {
 	m_hostesses[0].m_image = LoadTexture("resources/Images/fullBodyGirls/Angelica.png");
 	m_hostesses[0].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Angelica-Head.png");
-	m_hostesses[0].stats = { 100,40,23,11,51 };
-	m_hostesses[0].traits = { 10,10,10,10 };
+	m_hostesses[0].m_stats = { 100,40,23,11,51 };
+	m_hostesses[0].m_traits = { 10,10,10,10 };
 	m_hostesses[0].m_name = "Angel";
 
 	m_hostesses[1].m_image = LoadTexture("resources/Images/fullBodyGirls/Clara.png");
 	m_hostesses[1].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Clara-Head.png");
-	m_hostesses[1].stats = { 200,10,10,10,10 };
-	m_hostesses[1].traits = { 30,33,70,62 };
+	m_hostesses[1].m_stats = { 200,10,10,10,10 };
+	m_hostesses[1].m_traits = { 30,33,70,62 };
 	m_hostesses[1].m_name = "Clara";
 }
 
@@ -174,7 +175,11 @@ bool Game::isAHostessCurrentlySelected()
 	for (auto& hostess : m_hostesses)
 	{
 		if (hostess.m_isCurrentlySelected == true)
+		{
+			selectedHostess = hostess;
 			return true;
+
+		}
 	}
 
 	return false;

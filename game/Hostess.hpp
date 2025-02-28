@@ -39,4 +39,6 @@ public:
 	std::string m_name;
 	std::vector<int> m_traits;
 	std::vector<int> m_stats;
+	std::vector<std::string> statNames = { "Talk", "Love", "Party", "Skill" };
+	std::vector<std::string> traitNames = { "Sexy", "Beauty", "Cute", "Funny" };
 };
