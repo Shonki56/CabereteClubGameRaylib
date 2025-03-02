@@ -26,12 +26,6 @@ void Game::Draw()
 	for (auto& hostess : m_hostesses)
 	{
 		hostess.Draw();
-		if (hostess.m_isCurrentlySelected)
-		{
-			//GUI::showHostessStats(hostess);
-
-		}
-
 	}
 
 	for (auto& client : m_clients)

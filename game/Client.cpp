@@ -19,10 +19,22 @@ void Client::Draw()
 
 void Client::getCorrectType()
 {
-	// Placeholder for now;
-	if (m_type == POOR)
+	switch (m_type)
 	{
-		m_clientImage = LoadTexture("resources/Images/client_poor.png");
+	case POOR:
+	m_clientImage = LoadTexture("resources/Images/client_poor.png");
+	break;
+	case AVERAGE:
+	m_clientImage = LoadTexture("resources/Images/client_poor.png");
+	break;
+	case RICH:
+	m_clientImage = LoadTexture("resources/Images/client_poor.png");
+	break;
+	case MEGARICH:
+	m_clientImage = LoadTexture("resources/Images/client_poor.png");
+	break;
+	default:
+		std::cout << "Something went wrong loading client texture!\n";
 	}
 
 }
@@ -37,8 +49,20 @@ void Client::createStatsAndTraits()
 		minStat = 1;
 		maxStat = 20;
 		break;
+	case AVERAGE:
+		minStat = 10;
+		maxStat = 30;
+		break;
+	case RICH:
+		minStat = 20;
+		maxStat = 60;
+		break;
+	case MEGARICH:
+		minStat = 40;
+		maxStat = 80;
+		break;
 	default:
-		std::cout << "Something has went wrong!\n";
+		std::cout << "Something has went wrong getting client stats\n";
 	}
 
 
@@ -55,7 +79,7 @@ void Client::InitClient()
 	createStatsAndTraits();
 	m_position = { 298, 67 };
 	m_isSeated = false;
-	m_timeout = 10.0f;
+	m_timeout = 100.0f;
 	m_timeSpawnedIn = GetTime();
 }
 

@@ -36,16 +36,16 @@ void GUI::showHostessAndClientStats(const Hostess& hostess, const Client* client
 
 void GUI::showComparison(const Hostess& hostess, const Client* client)
 {
-	int selectedTraitClient = client->m_stats[client->selectedTrait];
-	int selectedStatClient = client->m_traits[client->selectedStat];
-	int selectedTraitHostess = hostess.m_stats[client->selectedStat];
-	int selectedStatHostess = hostess.m_traits[client->selectedTrait];
+	int selectedTraitClient = client->m_traits[client->selectedTrait];
+	int selectedStatClient = client->m_stats[client->selectedStat];
+	int selectedTraitHostess = hostess.m_traits[client->selectedTrait];
+	int selectedStatHostess = hostess.m_stats[client->selectedStat];
 
 	Vector2 recPosition = { 380, 850 };
 	Vector2 recSize = { 100, 100 };
 	
 	
-	if (selectedTraitHostess >= selectedTraitClient && selectedStatHostess >= selectedStatClient)
+	if (selectedTraitHostess > selectedTraitClient && selectedStatHostess > selectedStatClient)
 	{
 		DrawRectangleV(recPosition, recSize, GREEN);
 	}

@@ -4,9 +4,9 @@
 #include <map>
 #include<string>
 #include "StatsAndTraits.h"
-
 enum clientHappiness{ NOT, MEDIUM, MUCH }; 
 enum clientType{POOR, AVERAGE, RICH, MEGARICH};
+
 class Client
 {
 public:
