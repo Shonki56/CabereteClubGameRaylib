@@ -44,18 +44,18 @@ void GUI::showComparison(const Hostess& hostess, const Client* client)
 	Vector2 recPosition = { 380, 850 };
 	Vector2 recSize = { 100, 100 };
 	
-
-	if (selectedTraitHostess < selectedTraitClient && selectedStatHostess < selectedTraitClient)
+	
+	if (selectedTraitHostess >= selectedTraitClient && selectedStatHostess >= selectedStatClient)
 	{
-		DrawRectangleV(recPosition, recSize, RED);
+		DrawRectangleV(recPosition, recSize, GREEN);
 	}
-	else if (selectedTraitHostess >= selectedTraitClient || selectedStatHostess >= selectedTraitClient)
+	else if (selectedTraitHostess >= selectedTraitClient || selectedStatHostess >= selectedStatClient)
 	{
 		DrawRectangleV(recPosition, recSize, YELLOW);
 	}
-	else if (selectedTraitHostess >= selectedTraitClient && selectedStatHostess >= selectedTraitClient)
+	else
 	{
-		DrawRectangleV(recPosition, recSize, GREEN);
+		DrawRectangleV(recPosition, recSize, RED);
 	}
 
 
