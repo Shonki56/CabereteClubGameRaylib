@@ -95,3 +95,15 @@ void GUI::showClientStats(const Client* client)
 	}
 
 }
+
+void GUI::showMoneyEarnedByHostesses(Hostess hostesses[])
+{
+	Vector2 startingPosition = { 1100, 100 };
+	float yIncrease = 30;
+	for (int i = 0; i < 2; i++)
+	{
+		std::string text = hostesses[i].m_name + " has made: " + std::to_string(hostesses[i].m_moneyMade);
+		DrawText(text.c_str(), startingPosition.x, startingPosition.y + yIncrease, 30, WHITE);
+		yIncrease += 30;
+	}
+}

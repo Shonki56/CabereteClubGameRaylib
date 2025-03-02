@@ -7,6 +7,7 @@
 #include "lib.h"
 #include "Gui.hpp"
 #include "Client.hpp"
+#include "GameLogic.hpp"
 #include <map>
 #include <iterator>
 
@@ -42,5 +43,6 @@ private:
 	bool clientTimeout(const Client& client);
 	void removeClient();
 	std::map<Client*, int> m_clientSofaMap;
+	void clientGiveMoney(Hostess* hostess, Client* client);
 
 };

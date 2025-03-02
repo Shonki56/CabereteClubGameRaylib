@@ -6,5 +6,6 @@
 
 namespace GameLogic
 {
-	void clientSpendMoney(Hostess& hostess, const Client* client, const Sofa sofa);
+	void clientSpendMoney(Hostess* hostess, const Client* client);
+	void howOftenToGiveMoney(Client* client);
 }

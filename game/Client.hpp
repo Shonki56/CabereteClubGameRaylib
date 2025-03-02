@@ -22,6 +22,8 @@ public:
 	bool m_isSeated;
 	float m_timeout;
 	float m_timeSpawnedIn;
+	float m_timeSinceLastSpentMoney;
+	float m_howOftenToSpendMoney;
 	std::vector<int> m_stats;
 	std::vector<int> m_traits;
 	std::vector<std::string> statNames = { "Talk", "Love", "Party", "Skill" };

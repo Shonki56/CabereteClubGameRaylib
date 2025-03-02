@@ -22,6 +22,14 @@ void Game::Draw()
 			GUI::showComparison(selectedHostess, sofa.m_currentClient);
 			//std::cout << sofa.m_currentClient->m_happiness << std::endl;
 		}
+
+		if (sofa.m_isBeingUsed && sofa.m_isBeingUsedByClient)
+		{
+			clientGiveMoney(sofa.m_currentHostess, sofa.m_currentClient);
+		}
+
+		GUI::showMoneyEarnedByHostesses(m_hostesses);
+
 	}
 
 	for (auto& hostess : m_hostesses)
@@ -196,6 +204,7 @@ void Game::handlePlacingHostess()
 					{
 						std::cout << m_hostesses[j].m_name << " is sitting on sofa number " << i << std::endl;
 						placeHostess(m_hostesses[j], m_sofas[i]);
+						GameLogic::howOftenToGiveMoney(m_sofas[i].m_currentClient);
 					}
 					else if (m_sofas[i].m_isBeingUsed && m_sofas[i].m_currentHostess == &m_hostesses[j])
 					{
@@ -298,6 +307,7 @@ void Game::removeClient()
 	}
 }
 
+
 void Game::placeClient(Client& client)
 {
 	if (checkIfSofaIsFree() != -1)
@@ -322,7 +332,15 @@ void Game::placeClient(Client& client)
 	}
 }
 
+// MAIN GAME LOGIC STUFF
 
+void Game::clientGiveMoney(Hostess* hostess, Client* client)
+{
+	float currentTime = GetTime();
+	if (currentTime - client->m_timeSinceLastSpentMoney >= client->m_howOftenToSpendMoney)
+	{
+		GameLogic::clientSpendMoney(hostess, client);
+		client->m_timeSinceLastSpentMoney = currentTime;
+	}
 
-
-
+}
