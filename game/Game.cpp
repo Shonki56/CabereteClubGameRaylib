@@ -240,8 +240,6 @@ void Game::spawnClient()
 
 	placeClient(*client);
 	m_clients.push_back(std::move(client));
-
-
 }
 
 int Game::checkIfSofaIsFree() 
