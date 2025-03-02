@@ -41,7 +41,7 @@ void GUI::showComparison(const Hostess& hostess, const Client* client)
 	int selectedTraitHostess = hostess.m_stats[client->selectedStat];
 	int selectedStatHostess = hostess.m_traits[client->selectedTrait];
 
-	Vector2 recPosition = { 396, 878 };
+	Vector2 recPosition = { 380, 850 };
 	Vector2 recSize = { 100, 100 };
 	
 
