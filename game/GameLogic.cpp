@@ -8,7 +8,6 @@ void GameLogic::clientSpendMoney(Hostess* hostess, const Client* client)
 	{
 	case POOR:
 		hostess->m_moneyMade += GetRandomValue(10, 100);
-		std::cout << hostess->m_name << " has made some money. Total is: " << hostess->m_moneyMade << std::endl;
 		break;
 	case AVERAGE:
 		hostess->m_moneyMade += GetRandomValue(100, 800);
