@@ -20,6 +20,7 @@ void Game::Draw()
 		{
 			GUI::showHostessAndClientStats(selectedHostess, sofa.m_currentClient);
 			GUI::showComparison(selectedHostess, sofa.m_currentClient);
+			//std::cout << sofa.m_currentClient->m_happiness << std::endl;
 		}
 	}
 
@@ -319,8 +320,8 @@ void Game::placeClient(Client& client)
 		std::cout << "Client placed on sofa: " << sofaNotBeingUsed << std::endl;
 
 	}
-
 }
+
 
 
 

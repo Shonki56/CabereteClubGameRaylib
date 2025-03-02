@@ -41,4 +41,5 @@ public:
 	std::vector<int> m_stats;
 	std::vector<std::string> statNames = { "Talk", "Love", "Party", "Skill" };
 	std::vector<std::string> traitNames = { "Sexy", "Beauty", "Cute", "Funny" };
+	int m_moneyMade;
 };

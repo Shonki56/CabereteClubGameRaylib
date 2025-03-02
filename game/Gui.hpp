@@ -8,7 +8,7 @@
 namespace GUI
 {
 	void showHostessAndClientStats(const Hostess& hostess, const Client* client);
-	void showComparison(const Hostess& hostess, const Client* client);
+	void showComparison(const Hostess& hostess, Client* client);
 	void showClientStats(const Client* client);
 
 }

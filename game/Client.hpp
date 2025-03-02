@@ -4,7 +4,7 @@
 #include <map>
 #include<string>
 #include "StatsAndTraits.h"
-enum clientHappiness{ NOT, MEDIUM, MUCH }; 
+enum clientHappiness{ LOW, MEDIUM, HIGH, SPECIAL }; 
 enum clientType{POOR, AVERAGE, RICH, MEGARICH};
 
 class Client
@@ -16,6 +16,7 @@ public:
 	void Draw();
 	void Update();
 	clientType m_type;
+	clientHappiness m_happiness;
 	void getCorrectType();
 	Vector2 m_position;
 	bool m_isSeated;
@@ -27,6 +28,7 @@ public:
 	std::vector<std::string> traitNames = { "Sexy", "Beauty", "Cute", "Funny" };
 	int selectedTrait = GetRandomValue(0, 3);
 	int selectedStat = GetRandomValue(0, 3);
+	int m_moneyToSpend;
 private:
 	void createStatsAndTraits();
 	void InitClient();

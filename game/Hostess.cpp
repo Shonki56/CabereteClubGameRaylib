@@ -4,6 +4,7 @@ Hostess::Hostess()
 {
 	m_isBeingUsed = false;
 	m_isCurrentlySelected = false;
+	m_moneyMade = 0;
 }
 
 void Hostess::Draw()

@@ -34,7 +34,7 @@ void GUI::showHostessAndClientStats(const Hostess& hostess, const Client* client
 	showClientStats(client);
 }
 
-void GUI::showComparison(const Hostess& hostess, const Client* client)
+void GUI::showComparison(const Hostess& hostess, Client* client)
 {
 	int selectedTraitClient = client->m_traits[client->selectedTrait];
 	int selectedStatClient = client->m_stats[client->selectedStat];
@@ -48,14 +48,17 @@ void GUI::showComparison(const Hostess& hostess, const Client* client)
 	if (selectedTraitHostess > selectedTraitClient && selectedStatHostess > selectedStatClient)
 	{
 		DrawRectangleV(recPosition, recSize, GREEN);
+		client->m_happiness = HIGH;
 	}
 	else if (selectedTraitHostess >= selectedTraitClient || selectedStatHostess >= selectedStatClient)
 	{
 		DrawRectangleV(recPosition, recSize, YELLOW);
+		client->m_happiness = MEDIUM;
 	}
 	else
 	{
 		DrawRectangleV(recPosition, recSize, RED);
+		client->m_happiness = LOW;
 	}
 
 
