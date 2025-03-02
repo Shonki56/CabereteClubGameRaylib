@@ -29,50 +29,33 @@ void Client::getCorrectType()
 
 void Client::createStatsAndTraits()
 {
-	// USING VECTORS INSTEAD
+	int minStat = 0;
+	int maxStat = 0;
+	switch (m_type)
+	{
+	case POOR:
+		minStat = 1;
+		maxStat = 20;
+		break;
+	default:
+		std::cout << "Something has went wrong!\n";
+	}
+
 
 	for (int i = 0; i < 4; i++)
 	{
-		m_stats.push_back(GetRandomValue(1, 30));
-		m_traits.push_back(GetRandomValue(1, 30));
+		m_stats.push_back(GetRandomValue(minStat, maxStat));
+		m_traits.push_back(GetRandomValue(minStat, maxStat));
 	}
-
-	statsMap = {
-		{"Talk", GetRandomValue(1, 30)},
-		{"Love", GetRandomValue(1, 30)},
-		{"Party", GetRandomValue(1, 30)},
-		{"Skill", GetRandomValue(1, 30)},
-	};
-
-
 }
 
 void Client::InitClient()
 {
-	m_traitsStruct = { 0, 0, 0, 0 };
-	m_statsStruct = {0, 0, 0, 0, 0 };
-	createStatsAndTraits();
 	getCorrectType();
+	createStatsAndTraits();
 	m_position = { 298, 67 };
 	m_isSeated = false;
 	m_timeout = 10.0f;
 	m_timeSpawnedIn = GetTime();
-	printStats();
-}
-
-void Client::printStats()
-{
-	std::cout << "STATS\n";
-	std::cout << "Client Talk Stat: " << m_statsStruct.m_Talk << std::endl;
-	std::cout << "Client Love Stat: " << m_statsStruct.m_Love << std::endl;
-	std::cout << "Client Party Stat: " << m_statsStruct.m_Party << std::endl;
-	std::cout << "Client Skill Stat: " << m_statsStruct.m_Skill << std::endl;
-
-
-	std::cout << "TRAITS\n";
-	std::cout << "Client Sexy Trait: " << m_traitsStruct.m_Sexy << std::endl;
-	std::cout << "Client Beauty Trait: " << m_traitsStruct.m_Beauty << std::endl;
-	std::cout << "Client Cute Trait: " << m_traitsStruct.m_Cute << std::endl;
-	std::cout << "Client Funny Trait: " << m_traitsStruct.m_Funny << std::endl;
 }
 
