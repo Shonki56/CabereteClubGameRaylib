@@ -69,6 +69,7 @@ void Game::Update()
 	}
 
 	removeClient();
+	getTimeRemaining();
 
 }
 
@@ -91,9 +92,7 @@ void Game::placeHostess(Hostess& hostess, Sofa& sofa)
 
 void Game::InitGame()
 {
-	std::cout << "GAME STARTED!\n";
 	m_sofas = CreateSofas();
-	std::cout << m_sofas.size();
 	initHostesses();
 	m_lastSpawnTime = 0.0f;
 }
@@ -113,6 +112,13 @@ std::vector<Sofa> Game::CreateSofas()
 		}
 	}
 	return sofas;
+}
+
+void Game::getTimeRemaining()
+{
+	float currentTime = GetTime();
+	m_timeRemaining = totalTimePerNight - currentTime;
+	GUI::showTimer(m_timeRemaining);
 }
 
 void Game::displayHostessesFaces()

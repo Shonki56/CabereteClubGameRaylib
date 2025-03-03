@@ -1,4 +1,5 @@
 #include "Gui.hpp"
+#include <sstream>
 
 
 
@@ -106,4 +107,14 @@ void GUI::showMoneyEarnedByHostesses(Hostess hostesses[])
 		DrawText(text.c_str(), startingPosition.x, startingPosition.y + yIncrease, 30, WHITE);
 		yIncrease += 30;
 	}
+}
+
+void GUI::showTimer(float timeRemaining)
+{
+	std::ostringstream stream;
+	stream << std::fixed << std::setprecision(2) << timeRemaining;
+
+	std::string text = "Time Remaining: " + stream.str();
+	DrawText(text.c_str(), 726, 75, 32, WHITE);
+	
 }

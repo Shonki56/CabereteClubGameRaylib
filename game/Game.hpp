@@ -27,6 +27,9 @@ public:
 private:
 	void InitGame();
 	std::vector<Sofa> CreateSofas();
+	const float totalTimePerNight = 180.0f;
+	float m_timeRemaining = 180.0f;
+	void getTimeRemaining();
 	//std::vector<Hostess> m_hostesses;
 	Hostess m_hostesses[2];
 	Hostess selectedHostess;

@@ -4,6 +4,7 @@
 #include "raylib.h"
 #include <string>
 #include "include/raygui.h"
+#include <iomanip>
 
 namespace GUI
 {
@@ -11,5 +12,5 @@ namespace GUI
 	void showComparison(const Hostess& hostess, Client* client);
 	void showClientStats(const Client* client);
 	void showMoneyEarnedByHostesses(Hostess hostesses[]);
-
+	void showTimer(float timeRemaining);
 }
