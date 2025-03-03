@@ -305,6 +305,7 @@ void Game::removeClient()
 				m_sofas[sofaIndex].m_currentClient = nullptr;
 				m_clientSofaMap.erase(it);
 				m_sofas[sofaIndex].m_isBeingUsedByClient = false;
+				
 				std::cout << "Client removed. Sofa " << sofaIndex << " is now free!\n";
 			}
 			m_clients.erase(m_clients.begin() + i);
