@@ -31,8 +31,9 @@ Use this as a starting point or replace it with your code.
 #include <iostream>
 #include "include/json.hpp"
 //TEST
-#include "Client.hpp"
+#include "Gui.hpp"
 
+enum GameState {TITLE, MAIN_GAME, END};
 
 int main()
 {
@@ -40,17 +41,33 @@ int main()
 	const int screenHeight = 1000;
     InitWindow(screenWidth, screenHeight, "Caberet Madness");
     SetTargetFPS(60);
-
-
+    GameState initialState = TITLE; 
     Game game;
 
     while (!WindowShouldClose())
     {
-        
-        game.Update();
+        switch (initialState)
+        {
+        case TITLE:
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                initialState = MAIN_GAME;
+            }
+            break;
+        }
         BeginDrawing();
         ClearBackground(BLACK);
-        game.Draw();
+        switch (initialState)
+        {
+        case TITLE:
+            GUI::showTitleScreen();
+            break;
+        case MAIN_GAME:
+            game.playGame();
+            break;
+        }
+        
+        
         EndDrawing();
 
     }

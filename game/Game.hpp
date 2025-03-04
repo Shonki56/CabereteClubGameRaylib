@@ -24,12 +24,13 @@ public:
 	std::vector<Sofa> m_sofas;
 	void placeClient(Client& client);
 	float m_lastSpawnTime;
+	void playGame();
+	void getTimeRemaining();
 private:
 	void InitGame();
 	std::vector<Sofa> CreateSofas();
 	const float totalTimePerNight = 180.0f;
 	float m_timeRemaining = 180.0f;
-	void getTimeRemaining();
 	//std::vector<Hostess> m_hostesses;
 	Hostess m_hostesses[2];
 	Hostess selectedHostess;

@@ -2,6 +2,9 @@
 
 // Depending on how happy the client are the spend money more quickly but the amount is the same
 
+enum questionType {TOWEL, MENU, SHOT_GLASS
+};
+
 void GameLogic::clientSpendMoney(Hostess* hostess, const Client* client)
 {
 	switch (client->m_type)
@@ -39,4 +42,9 @@ void GameLogic::howOftenToGiveMoney(Client* client)
 		client->m_howOftenToSpendMoney = 2.0f;
 		break;
 	}
+}
+
+void GameLogic::playSituation(Hostess* hostess, Client* client)
+{
+	
 }

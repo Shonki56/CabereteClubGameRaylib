@@ -9,6 +9,11 @@ Game::Game()
 	InitGame();
 }
 
+void Game::playGame()
+{
+	Draw();
+	Update();
+}
 
 void Game::Draw()
 {
@@ -69,7 +74,7 @@ void Game::Update()
 	}
 
 	removeClient();
-	getTimeRemaining();
+	//getTimeRemaining();
 
 }
 

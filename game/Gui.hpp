@@ -13,4 +13,5 @@ namespace GUI
 	void showClientStats(const Client* client);
 	void showMoneyEarnedByHostesses(Hostess hostesses[]);
 	void showTimer(float timeRemaining);
+	void showTitleScreen();
 }

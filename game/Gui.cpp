@@ -118,3 +118,9 @@ void GUI::showTimer(float timeRemaining)
 	DrawText(text.c_str(), 726, 75, 32, WHITE);
 	
 }
+
+void GUI::showTitleScreen()
+{
+	DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), GREEN);
+	DrawText("PRESS ENTER TO START GAME", GetScreenWidth() / 2, GetScreenHeight() / 2, 40, WHITE);
+}
