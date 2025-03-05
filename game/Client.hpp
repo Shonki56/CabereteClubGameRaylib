@@ -14,7 +14,6 @@ public:
 	~Client();
 	Texture2D m_clientImage;
 	void Draw();
-	void Update();
 	clientType m_type;
 	clientHappiness m_happiness;
 	void getCorrectType();
@@ -24,16 +23,11 @@ public:
 	float m_timeSpawnedIn;
 	float m_timeSinceLastSpentMoney;
 	float m_howOftenToSpendMoney;
-	std::vector<int> m_stats;
-	std::vector<int> m_traits;
-	std::vector<std::string> statNames = { "Talk", "Love", "Party", "Skill" };
-	std::vector<std::string> traitNames = { "Sexy", "Beauty", "Cute", "Funny" };
+	StatsAndTraits m_statsAndTraits;
 	int selectedTrait = GetRandomValue(0, 3);
 	int selectedStat = GetRandomValue(0, 3);
-	int m_moneyToSpend;
 private:
 	void createStatsAndTraits();
 	void InitClient();
-	void printStats();
 
 };

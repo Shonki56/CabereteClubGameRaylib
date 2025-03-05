@@ -14,14 +14,14 @@ void GUI::showHostessAndClientStats(const Hostess& hostess, const Client* client
 	int startY = 20;
 	for (int i = 0; i < 4; i++)
 	{
-		std::string statsText = hostess.statNames[i] + ": " + std::to_string(hostess.m_stats[i]);
+		std::string statsText = hostess.m_statsAndTraits.m_statNames[i] + ": " + std::to_string(hostess.m_statsAndTraits.m_stats[i]);
 		if (client->selectedStat == i)
 			DrawText(statsText.c_str(), statsRec.x + xOffSetStats, statsRec.y + startY, 20, GREEN);
 		else
 			DrawText(statsText.c_str(), statsRec.x + xOffSetStats, statsRec.y + startY, 20, DARKGRAY);
 
 
-		std::string traitsText = hostess.traitNames[i] + ": " + std::to_string(hostess.m_traits[i]);
+		std::string traitsText = hostess.m_statsAndTraits.m_traitNames[i] + ": " + std::to_string(hostess.m_statsAndTraits.m_traits[i]);
 		if (client->selectedTrait == i)
 			DrawText(traitsText.c_str(), statsRec.x + xOffsetTraits, statsRec.y + startY, 20, GREEN);
 		else
@@ -37,10 +37,10 @@ void GUI::showHostessAndClientStats(const Hostess& hostess, const Client* client
 
 void GUI::showComparison(const Hostess& hostess, Client* client)
 {
-	int selectedTraitClient = client->m_traits[client->selectedTrait];
-	int selectedStatClient = client->m_stats[client->selectedStat];
-	int selectedTraitHostess = hostess.m_traits[client->selectedTrait];
-	int selectedStatHostess = hostess.m_stats[client->selectedStat];
+	int selectedTraitClient = client->m_statsAndTraits.m_traits[client->selectedTrait];
+	int selectedStatClient = client->m_statsAndTraits.m_stats[client->selectedStat];
+	int selectedTraitHostess = hostess.m_statsAndTraits.m_traits[client->selectedTrait];
+	int selectedStatHostess = hostess.m_statsAndTraits.m_stats[client->selectedStat];
 
 	Vector2 recPosition = { 380, 850 };
 	Vector2 recSize = { 100, 100 };
@@ -77,7 +77,7 @@ void GUI::showClientStats(const Client* client)
 
 	for (int i = 0; i < 4; i++)
 	{
-		std::string statsText = client->statNames[i] + ": " + std::to_string(client->m_stats[i]);
+		std::string statsText = client->m_statsAndTraits.m_statNames[i] + ": " + std::to_string(client->m_statsAndTraits.m_stats[i]);
 		if (i == client->selectedStat)
 		{
 			DrawText(statsText.c_str(), statsRec.x + xOffSetStats, statsRec.y + startX, 20, GREEN);
@@ -86,7 +86,7 @@ void GUI::showClientStats(const Client* client)
 			DrawText(statsText.c_str(), statsRec.x + xOffSetStats, statsRec.y + startX, 20, DARKGRAY);
 
 
-		std::string traitsText = client->traitNames[i] + ": " + std::to_string(client->m_traits[i]);
+		std::string traitsText = client->m_statsAndTraits.m_traitNames[i] + ": " + std::to_string(client->m_statsAndTraits.m_traits[i]);
 		if (i == client->selectedTrait)
 			DrawText(traitsText.c_str(), statsRec.x + xOffsetTraits, statsRec.y + startX, 20, GREEN);
 		else

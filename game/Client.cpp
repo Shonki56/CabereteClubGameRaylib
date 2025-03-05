@@ -68,8 +68,8 @@ void Client::createStatsAndTraits()
 
 	for (int i = 0; i < 4; i++)
 	{
-		m_stats.push_back(GetRandomValue(minStat, maxStat));
-		m_traits.push_back(GetRandomValue(minStat, maxStat));
+		m_statsAndTraits.m_stats.push_back(GetRandomValue(minStat, maxStat));
+		m_statsAndTraits.m_traits.push_back(GetRandomValue(minStat, maxStat));
 	}
 }
 
@@ -77,7 +77,7 @@ void Client::InitClient()
 {
 	getCorrectType();
 	createStatsAndTraits();
-	m_position = { 298, 67 };
+	//m_position = { 298, 67 };
 	m_isSeated = false;
 	m_timeout = 30.0f;
 	m_timeSpawnedIn = GetTime();

@@ -25,7 +25,6 @@ void Game::Draw()
 		{
 			GUI::showHostessAndClientStats(selectedHostess, sofa.m_currentClient);
 			GUI::showComparison(selectedHostess, sofa.m_currentClient);
-			//std::cout << sofa.m_currentClient->m_happiness << std::endl;
 		}
 
 		if (sofa.m_isBeingUsed && sofa.m_isBeingUsedByClient)
@@ -173,15 +172,15 @@ void Game::initHostesses()
 {
 	m_hostesses[0].m_image = LoadTexture("resources/Images/fullBodyGirls/Angelica.png");
 	m_hostesses[0].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Angelica-Head.png");
-	m_hostesses[0].m_stats = { 100,40,23,11,51 };
-	m_hostesses[0].m_traits = { 10,10,10,10 };
 	m_hostesses[0].m_name = "Angel";
+	m_hostesses[0].m_statsAndTraits.m_stats = { 100, 40, 23, 11, 51 };
+	m_hostesses[0].m_statsAndTraits.m_traits = {10, 10, 10, 10};
 
 	m_hostesses[1].m_image = LoadTexture("resources/Images/fullBodyGirls/Clara.png");
 	m_hostesses[1].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Clara-Head.png");
-	m_hostesses[1].m_stats = { 200,10,10,10,10 };
-	m_hostesses[1].m_traits = { 30,33,70,62 };
 	m_hostesses[1].m_name = "Clara";
+	m_hostesses[1].m_statsAndTraits.m_stats = { 100, 40, 23, 11, 51 };
+	m_hostesses[1].m_statsAndTraits.m_traits = {10, 10, 10, 10};
 }
 
 bool Game::isAHostessCurrentlySelected()
@@ -201,7 +200,6 @@ bool Game::isAHostessCurrentlySelected()
 
 void Game::handlePlacingHostess()
 {
-	// Make ID system for the sofas, that way it will return the correct sofa
 	for (int i = 0; i < m_sofas.size(); i++)
 	{
 		for (int j = 0; j < 2; j++) // 2 is the number of hostesses. will change later so not a magic number

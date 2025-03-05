@@ -19,3 +19,12 @@ struct Traits
 };
 
 }
+
+class StatsAndTraits
+{
+public:
+	std::vector<int> m_stats;
+	std::vector<int> m_traits;
+	std::vector<std::string> m_statNames = { "Talk", "Love", "Party", "Skill" };
+	std::vector<std::string> m_traitNames = { "Sexy", "Beauty", "Cute", "Funny" };
+};
