@@ -33,7 +33,7 @@ Use this as a starting point or replace it with your code.
 //TEST
 #include "Gui.hpp"
 
-enum GameState {TITLE, MAIN_GAME, END};
+enum GameState {TITLE, MAIN_GAME, PAUSED, END};
 
 int main()
 {
