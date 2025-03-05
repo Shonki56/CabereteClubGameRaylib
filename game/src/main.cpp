@@ -54,6 +54,11 @@ int main()
                 initialState = MAIN_GAME;
             }
             break;
+        case MAIN_GAME:
+            if (game.isNightOver())
+            {
+                initialState = END;
+            }
         }
         BeginDrawing();
         ClearBackground(BLACK);
@@ -64,6 +69,9 @@ int main()
             break;
         case MAIN_GAME:
             game.playGame();
+            break;
+        case END:
+            GUI::showEndScreen();
             break;
         }
         

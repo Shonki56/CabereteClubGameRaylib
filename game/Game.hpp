@@ -26,12 +26,12 @@ public:
 	float m_lastSpawnTime;
 	void playGame();
 	void getTimeRemaining();
+	bool isNightOver();
 private:
 	void InitGame();
 	std::vector<Sofa> CreateSofas();
-	const float totalTimePerNight = 180.0f;
-	float m_timeRemaining = 180.0f;
-	//std::vector<Hostess> m_hostesses;
+	const float totalTimePerNight = 20.0f;
+	float m_timeRemaining = totalTimePerNight;
 	Hostess m_hostesses[2];
 	Hostess selectedHostess;
 	void displayHostessesFaces();

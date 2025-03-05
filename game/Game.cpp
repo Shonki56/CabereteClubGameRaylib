@@ -73,7 +73,7 @@ void Game::Update()
 	}
 
 	removeClient();
-	//getTimeRemaining();
+	getTimeRemaining();
 
 }
 
@@ -123,6 +123,16 @@ void Game::getTimeRemaining()
 	float currentTime = GetTime();
 	m_timeRemaining = totalTimePerNight - currentTime;
 	GUI::showTimer(m_timeRemaining);
+}
+
+bool Game::isNightOver()
+{
+	if (m_timeRemaining <= 0.0)
+	{
+		return true;
+	}
+
+	return false;
 }
 
 void Game::displayHostessesFaces()

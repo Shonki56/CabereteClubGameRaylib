@@ -124,3 +124,9 @@ void GUI::showTitleScreen()
 	DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), GREEN);
 	DrawText("PRESS ENTER TO START GAME", GetScreenWidth() / 2, GetScreenHeight() / 2, 40, WHITE);
 }
+
+void GUI::showEndScreen()
+{
+	DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), DARKPURPLE);
+	DrawText("END OF NIGHT!", GetScreenWidth() / 2, GetScreenHeight() / 2, 40, WHITE);
+}

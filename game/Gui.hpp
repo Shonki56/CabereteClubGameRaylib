@@ -14,4 +14,5 @@ namespace GUI
 	void showMoneyEarnedByHostesses(Hostess hostesses[]);
 	void showTimer(float timeRemaining);
 	void showTitleScreen();
+	void showEndScreen();
 }
