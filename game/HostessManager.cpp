@@ -85,6 +85,25 @@ void HostessManager::handleSelectingHostesses()
 	}
 }
 
+void HostessManager::handlePlacingHostesses(SofaManager& sofaManager)
+{
+	for (auto& sofa : sofaManager.m_sofas)
+	{
+		for (int j = 0; j < 2; j++) // 2 is the number of hostesses. will change later so not a magic number
+		{
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area))
+				{
+					removeHostess(m_hostesses[j], sofa);
+					placeHostess(m_hostesses[j], sofa);
+				}
+			}
+		}
+	}
+
+}
+
 void HostessManager::initHostesses()
 {
 	m_hostesses[0].m_image = LoadTexture("resources/Images/fullBodyGirls/Angelica.png");

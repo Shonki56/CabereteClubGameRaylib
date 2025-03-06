@@ -77,8 +77,7 @@ void Game::Update()
 
 void Game::HandleInputs()
 {
-	handlePlacingHostess();
-
+	m_hostessManager.handlePlacingHostesses(m_sofaManager);
 	m_hostessManager.handleSelectingHostesses();
 }
 
@@ -128,24 +127,6 @@ void Game::displayHostessesFaces()
 		}
 
 		count++;
-	}
-}
-
-void Game::handlePlacingHostess()
-{
-	for (auto& sofa : m_sofaManager.m_sofas)
-	{
-		for (int j = 0; j < 2; j++) // 2 is the number of hostesses. will change later so not a magic number
-		{
-			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-			{
-				if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area))
-				{
-					m_hostessManager.removeHostess(m_hostessManager.m_hostesses[j], sofa);
-					m_hostessManager.placeHostess(m_hostessManager.m_hostesses[j], sofa);
-				}
-			}
-		}
 	}
 }
 
