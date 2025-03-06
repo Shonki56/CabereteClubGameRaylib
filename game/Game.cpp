@@ -30,7 +30,7 @@ void Game::Draw()
 			clientGiveMoney(sofa.m_currentHostess, sofa.m_currentClient);
 		}
 
-		GUI::showMoneyEarnedByHostesses(m_hostesses);
+		GUI::showMoneyEarnedByHostesses(m_hostessManager.m_hostesses);
 
 	}
 
@@ -47,11 +47,6 @@ void Game::Draw()
 
 void Game::Update()
 {
-	for (auto& sofa : m_sofas)
-	{
-		sofa.Update();
-	}
-
 	HandleInputs();
 	displayHostessesFaces();
 	if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
@@ -83,7 +78,6 @@ void Game::HandleInputs()
 
 void Game::InitGame()
 {
-	//m_sofas = CreateSofas();
 	m_lastSpawnTime = 0.0f;
 }
 
@@ -173,9 +167,9 @@ void Game::removeClient()
 			if (it != m_clientSofaMap.end())
 			{
 				int sofaIndex = it->second;
-				m_sofas[sofaIndex].m_currentClient = nullptr;
+				m_sofaManager.m_sofas[sofaIndex].m_currentClient = nullptr;
 				m_clientSofaMap.erase(it);
-				m_sofas[sofaIndex].m_isBeingUsedByClient = false;
+				m_sofaManager.m_sofas[sofaIndex].m_isBeingUsedByClient = false;
 				
 				std::cout << "Client removed. Sofa " << sofaIndex << " is now free!\n";
 			}

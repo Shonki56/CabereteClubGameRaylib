@@ -28,11 +28,6 @@ void Sofa::Draw()
 	}
 }
 
-void Sofa::Update()
-{
-
-}
-
 Rectangle Sofa::getRect()
 {
 	Rectangle rect;
