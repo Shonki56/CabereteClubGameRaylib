@@ -81,7 +81,7 @@ void Game::HandleInputs()
 {
 	handlePlacingHostess();
 
-	handleSelectingHostesses();
+	m_hostessManager.handleSelectingHostesses();
 }
 
 void Game::InitGame()
@@ -125,6 +125,8 @@ bool Game::isNightOver()
 	return false;
 }
 
+// HOSTESS STUFF
+
 void Game::displayHostessesFaces()
 {
 	int count = 1;
@@ -146,25 +148,6 @@ void Game::displayHostessesFaces()
 		}
 
 		count++;
-	}
-}
-
-void Game::handleSelectingHostesses()
-{
-	for (auto& hostess : m_hostessManager.m_hostesses)
-	{
-		if (!hostess.m_isBeingUsed)
-		{
-			Vector2 mousePosition = GetMousePosition();
-			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePosition, hostess.m_faceImageRectangle))
-			{
-				m_hostessManager.unselectAllHostesses();
-				hostess.m_isCurrentlySelected = !hostess.m_isCurrentlySelected;
-				std::cout << hostess.m_name << " is currently " << (hostess.m_isCurrentlySelected ? "" : "NOT ") << "selected\n";
-			}
-				
-
-		}
 	}
 }
 

@@ -83,6 +83,25 @@ bool HostessManager::isAHostessCurrentlySelected()
 
 }
 
+void HostessManager::handleSelectingHostesses()
+{
+	for (auto& hostess : m_hostesses)
+	{
+		if (!hostess.m_isBeingUsed)
+		{
+			Vector2 mousePosition = GetMousePosition();
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePosition, hostess.m_faceImageRectangle))
+			{
+				unselectAllHostesses();
+				hostess.m_isCurrentlySelected = !hostess.m_isCurrentlySelected;
+				std::cout << hostess.m_name << " is currently " << (hostess.m_isCurrentlySelected ? "" : "NOT ") << "selected\n";
+			}
+				
+
+		}
+	}
+}
+
 void HostessManager::initHostesses()
 {
 	m_hostesses[0].m_image = LoadTexture("resources/Images/fullBodyGirls/Angelica.png");

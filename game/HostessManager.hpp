@@ -12,6 +12,7 @@ public:
 	void removeHostess(Hostess& hostess, Sofa& sofa);
 	void unselectAllHostesses();
 	bool isAHostessCurrentlySelected();
+	void handleSelectingHostesses();
 	Hostess m_hostesses[2];
 	Hostess m_selectedHostess;
 private:
