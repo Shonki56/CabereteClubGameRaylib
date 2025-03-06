@@ -10,7 +10,7 @@ public:
 	HostessManager();
 	void placeHostess(Hostess& hostess, Sofa& sofa);
 	void removeHostess(Hostess& hostess, Sofa& sofa);
-	std::vector<Hostess> m_hostesses;
+	Hostess m_hostesses[2];
 private:
 	void initHostesses();
 

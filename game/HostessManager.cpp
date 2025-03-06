@@ -8,20 +8,54 @@ HostessManager::HostessManager()
 void HostessManager::placeHostess(Hostess& hostess, Sofa& sofa)
 {
 
-	hostess.m_position = sofa.m_position;
-	hostess.m_position.y -= 50;
-	sofa.m_isBeingUsed = true;
-	hostess.m_isBeingUsed = true;
-	hostess.m_isCurrentlySelected = false;
-	sofa.m_currentHostess = &hostess;
+	if (!sofa.m_isBeingUsed && hostess.m_isCurrentlySelected && hostess.m_isBeingUsed == false && sofa.m_currentClient != nullptr)
+	{
+		hostess.m_position = sofa.m_position;
+		hostess.m_position.y -= 50;
+		hostess.m_isBeingUsed = true;
+		hostess.m_isCurrentlySelected = false;
+		sofa.m_isBeingUsed = true;
+		sofa.m_currentHostess = &hostess;
+
+
+	}
+	else if (sofa.m_isBeingUsed == true) 
+	{
+		std::cout << "Sofa is being used!\n";
+	}
+	else if (hostess.m_isCurrentlySelected == false)
+	{
+		std::cout << "Hostess not currently selected!\n";
+	}
+	else if (hostess.m_isBeingUsed == true)
+	{
+		std::cout << "Hostess being used!\n";
+	}
+	else if (sofa.m_currentClient == nullptr)
+	{
+		std::cout << "Client not on sofa\n";
+	}
+	else
+	{
+		std::cout << "Adding incomplete\n";
+	}
+
 
 }
 
 void HostessManager::removeHostess(Hostess& hostess, Sofa& sofa)
 {
-	sofa.m_isBeingUsed = false;
-	hostess.m_isBeingUsed = false;
-	sofa.m_currentHostess = nullptr;
+	if (sofa.m_isBeingUsed && sofa.m_currentHostess == &hostess)
+	{
+		sofa.m_isBeingUsed = false;
+		hostess.m_isBeingUsed = false;
+		sofa.m_currentHostess = nullptr;
+
+	}
+	else
+	{
+		std::cout << "Removal not needed!\n";
+	}
 }
 
 void HostessManager::initHostesses()

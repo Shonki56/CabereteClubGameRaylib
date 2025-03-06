@@ -36,7 +36,7 @@ void Game::Draw()
 
 	}
 
-	for (auto& hostess : m_hostesses)
+	for (auto& hostess : m_hostessManager.m_hostesses)
 	{
 		hostess.Draw();
 	}
@@ -84,20 +84,9 @@ void Game::HandleInputs()
 	handleSelectingHostesses();
 }
 
-void Game::placeHostess(Hostess& hostess, Sofa& sofa)
-{
-	hostess.m_position = sofa.m_position;
-	hostess.m_position.y -= 50;
-	sofa.m_isBeingUsed = true;
-	hostess.m_isBeingUsed = true;
-	hostess.m_isCurrentlySelected = false;
-	sofa.m_currentHostess = &hostess;
-}
-
 void Game::InitGame()
 {
 	m_sofas = CreateSofas();
-	initHostesses();
 	m_lastSpawnTime = 0.0f;
 }
 
@@ -112,7 +101,8 @@ std::vector<Sofa> Game::CreateSofas()
 		{
 			float x = offsetX + column * 350;
 			float y = offsetY + row * 360;
-			sofas.push_back(Sofa({ x, y }));
+			Sofa newSofa({ x, y });
+			sofas.push_back(newSofa);
 		}
 	}
 	return sofas;
@@ -138,7 +128,7 @@ bool Game::isNightOver()
 void Game::displayHostessesFaces()
 {
 	int count = 1;
-	for (auto& hostess : m_hostesses)
+	for (auto& hostess : m_hostessManager.m_hostesses)
 	{
 		if (hostess.m_isBeingUsed == false)
 		{
@@ -161,7 +151,7 @@ void Game::displayHostessesFaces()
 
 void Game::handleSelectingHostesses()
 {
-	for (auto& hostess : m_hostesses)
+	for (auto& hostess : m_hostessManager.m_hostesses)
 	{
 		if (!hostess.m_isBeingUsed)
 		{
@@ -178,24 +168,9 @@ void Game::handleSelectingHostesses()
 	}
 }
 
-void Game::initHostesses()
-{
-	m_hostesses[0].m_image = LoadTexture("resources/Images/fullBodyGirls/Angelica.png");
-	m_hostesses[0].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Angelica-Head.png");
-	m_hostesses[0].m_name = "Angel";
-	m_hostesses[0].m_statsAndTraits.m_stats = { 100, 40, 23, 11, 51 };
-	m_hostesses[0].m_statsAndTraits.m_traits = {10, 10, 10, 10};
-
-	m_hostesses[1].m_image = LoadTexture("resources/Images/fullBodyGirls/Clara.png");
-	m_hostesses[1].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Clara-Head.png");
-	m_hostesses[1].m_name = "Clara";
-	m_hostesses[1].m_statsAndTraits.m_stats = { 100, 40, 23, 11, 51 };
-	m_hostesses[1].m_statsAndTraits.m_traits = {10, 10, 10, 10};
-}
-
 bool Game::isAHostessCurrentlySelected()
 {
-	for (auto& hostess : m_hostesses)
+	for (auto& hostess : m_hostessManager.m_hostesses)
 	{
 		if (hostess.m_isCurrentlySelected == true)
 		{
@@ -218,20 +193,8 @@ void Game::handlePlacingHostess()
 			{
 				if (CheckCollisionPointRec(GetMousePosition(), m_sofas[i].m_area))
 				{
-					std::cout << "Sofa number " << i << " has been pressed\n";
-					if (!m_sofas[i].m_isBeingUsed && m_hostesses[j].m_isCurrentlySelected && m_hostesses[j].m_isBeingUsed == false && m_sofas[i].m_currentClient != nullptr)
-					{
-						std::cout << m_hostesses[j].m_name << " is sitting on sofa number " << i << std::endl;
-						placeHostess(m_hostesses[j], m_sofas[i]);
-						GameLogic::howOftenToGiveMoney(m_sofas[i].m_currentClient);
-					}
-					else if (m_sofas[i].m_isBeingUsed && m_sofas[i].m_currentHostess == &m_hostesses[j])
-					{
-						m_sofas[i].m_isBeingUsed = false;
-						m_hostesses[j].m_isBeingUsed = false;
-						m_sofas[i].m_currentHostess = nullptr;
-						std::cout << m_hostesses[j].m_name << " has been taken off sofa number " << i << std::endl;
-					}
+					m_hostessManager.removeHostess(m_hostessManager.m_hostesses[j], m_sofas[i]);
+					m_hostessManager.placeHostess(m_hostessManager.m_hostesses[j], m_sofas[i]);
 				}
 			}
 		}
@@ -240,14 +203,11 @@ void Game::handlePlacingHostess()
 
 void Game::unselectAllHostesses()
 {
-	for (auto& hostess : m_hostesses)
+	for (auto& hostess : m_hostessManager.m_hostesses)
 	{
 		hostess.m_isCurrentlySelected = false;
 	}
 }
-
-
-
 
 
 // CLIENT STUFF
