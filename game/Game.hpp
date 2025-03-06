@@ -11,6 +11,7 @@
 #include <map>
 #include <iterator>
 #include "HostessManager.hpp"
+#include "SofaManager.hpp"
 
 
 
@@ -45,5 +46,6 @@ private:
 	std::map<Client*, int> m_clientSofaMap;
 	void clientGiveMoney(Hostess* hostess, Client* client);
 	HostessManager m_hostessManager;
+	SofaManager m_sofaManager;
 
 };

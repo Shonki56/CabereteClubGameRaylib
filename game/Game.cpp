@@ -1,9 +1,7 @@
 #include "Game.hpp"
 #include <iostream>
-#include "include/json.hpp"
 #include "include/stb_image_write.h"
 
-using json = nlohmann::json;
 Game::Game()
 {
 	InitGame();
@@ -17,7 +15,7 @@ void Game::playGame()
 
 void Game::Draw()
 {
-	for (auto& sofa : m_sofas)
+	for (auto& sofa : m_sofaManager.m_sofas)
 	{
 		sofa.Draw();
 		
@@ -86,26 +84,8 @@ void Game::HandleInputs()
 
 void Game::InitGame()
 {
-	m_sofas = CreateSofas();
+	//m_sofas = CreateSofas();
 	m_lastSpawnTime = 0.0f;
-}
-
-std::vector<Sofa> Game::CreateSofas()
-{
-	int offsetX = 400;
-	int offsetY = 150;
-	std::vector<Sofa> sofas;
-	for (int row = 0; row < 2; ++row)
-	{
-		for (int column = 0; column < 2; ++column)
-		{
-			float x = offsetX + column * 350;
-			float y = offsetY + row * 360;
-			Sofa newSofa({ x, y });
-			sofas.push_back(newSofa);
-		}
-	}
-	return sofas;
 }
 
 void Game::getTimeRemaining()
@@ -153,16 +133,16 @@ void Game::displayHostessesFaces()
 
 void Game::handlePlacingHostess()
 {
-	for (int i = 0; i < m_sofas.size(); i++)
+	for (auto& sofa : m_sofaManager.m_sofas)
 	{
 		for (int j = 0; j < 2; j++) // 2 is the number of hostesses. will change later so not a magic number
 		{
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			{
-				if (CheckCollisionPointRec(GetMousePosition(), m_sofas[i].m_area))
+				if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area))
 				{
-					m_hostessManager.removeHostess(m_hostessManager.m_hostesses[j], m_sofas[i]);
-					m_hostessManager.placeHostess(m_hostessManager.m_hostesses[j], m_sofas[i]);
+					m_hostessManager.removeHostess(m_hostessManager.m_hostesses[j], sofa);
+					m_hostessManager.placeHostess(m_hostessManager.m_hostesses[j], sofa);
 				}
 			}
 		}
@@ -188,28 +168,6 @@ void Game::spawnClient()
 
 	placeClient(*client);
 	m_clients.push_back(std::move(client));
-}
-
-int Game::checkIfSofaIsFree() 
-{
-	for (int i = 0; i < m_sofas.size(); i++)
-	{
-		if (m_sofas[i].m_currentClient == nullptr)
-		{
-			return i;
-			break;
-		}
-		else
-		{
-			std::cout << "Sofa " << i << " is currently being used\n";
-		}
-
-	}
-
-	std::cout << "No free sofa found!\n";
-	return -1;
-
-
 }
 
 bool Game::clientTimeout(const Client& client)
@@ -249,17 +207,17 @@ void Game::removeClient()
 
 void Game::placeClient(Client& client)
 {
-	if (checkIfSofaIsFree() != -1)
+	if (m_sofaManager.checkIfASofaIsFree() != -1)
 	{
-		int sofaNotBeingUsed = checkIfSofaIsFree();
+		int sofaNotBeingUsed = m_sofaManager.checkIfASofaIsFree();
 
-		client.m_position.y = m_sofas[sofaNotBeingUsed].m_position.y;
-		client.m_position.x = m_sofas[sofaNotBeingUsed].m_position.x + 100;
+		client.m_position.y = m_sofaManager.m_sofas[sofaNotBeingUsed].m_position.y;
+		client.m_position.x = m_sofaManager.m_sofas[sofaNotBeingUsed].m_position.x + 100;
 		client.m_isSeated = true;
 
 
-		m_sofas[sofaNotBeingUsed].m_currentClient = &client;
-		m_sofas[sofaNotBeingUsed].m_isBeingUsedByClient = true;
+		m_sofaManager.m_sofas[sofaNotBeingUsed].m_currentClient = &client;
+		m_sofaManager.m_sofas[sofaNotBeingUsed].m_isBeingUsedByClient = true;
 
 		m_clientSofaMap[&client] = sofaNotBeingUsed;
 
@@ -268,6 +226,10 @@ void Game::placeClient(Client& client)
 
 		std::cout << "Client placed on sofa: " << sofaNotBeingUsed << std::endl;
 
+	}
+	else
+	{
+		std::cout << "Unable to place client because m_sofaManager.CheckIfASofaIsFree == " << m_sofaManager.checkIfASofaIsFree() << std::endl;
 	}
 }
 
