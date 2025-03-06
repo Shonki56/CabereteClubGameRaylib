@@ -58,6 +58,31 @@ void HostessManager::removeHostess(Hostess& hostess, Sofa& sofa)
 	}
 }
 
+void HostessManager::unselectAllHostesses()
+{
+	for (auto& hostess : m_hostesses)
+	{
+		hostess.m_isCurrentlySelected = false;
+	}
+}
+
+bool HostessManager::isAHostessCurrentlySelected()
+{
+
+	for (auto& hostess : m_hostesses)
+	{
+		if (hostess.m_isCurrentlySelected == true)
+		{
+			m_selectedHostess = hostess;
+			return true;
+
+		}
+	}
+
+	return false;
+
+}
+
 void HostessManager::initHostesses()
 {
 	m_hostesses[0].m_image = LoadTexture("resources/Images/fullBodyGirls/Angelica.png");

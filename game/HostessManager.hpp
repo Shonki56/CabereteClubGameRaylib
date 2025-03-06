@@ -10,7 +10,10 @@ public:
 	HostessManager();
 	void placeHostess(Hostess& hostess, Sofa& sofa);
 	void removeHostess(Hostess& hostess, Sofa& sofa);
+	void unselectAllHostesses();
+	bool isAHostessCurrentlySelected();
 	Hostess m_hostesses[2];
+	Hostess m_selectedHostess;
 private:
 	void initHostesses();
 

@@ -21,10 +21,10 @@ void Game::Draw()
 	{
 		sofa.Draw();
 		
-		if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && sofa.m_isBeingUsedByClient == true && isAHostessCurrentlySelected() == true)
+		if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && sofa.m_isBeingUsedByClient == true && m_hostessManager.isAHostessCurrentlySelected() == true)
 		{
-			GUI::showHostessAndClientStats(selectedHostess, sofa.m_currentClient);
-			GUI::showComparison(selectedHostess, sofa.m_currentClient);
+			GUI::showHostessAndClientStats(m_hostessManager.m_selectedHostess, sofa.m_currentClient);
+			GUI::showComparison(m_hostessManager.m_selectedHostess, sofa.m_currentClient);
 		}
 
 		if (sofa.m_isBeingUsed && sofa.m_isBeingUsedByClient)
@@ -158,7 +158,7 @@ void Game::handleSelectingHostesses()
 			Vector2 mousePosition = GetMousePosition();
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(mousePosition, hostess.m_faceImageRectangle))
 			{
-				unselectAllHostesses();
+				m_hostessManager.unselectAllHostesses();
 				hostess.m_isCurrentlySelected = !hostess.m_isCurrentlySelected;
 				std::cout << hostess.m_name << " is currently " << (hostess.m_isCurrentlySelected ? "" : "NOT ") << "selected\n";
 			}
@@ -166,21 +166,6 @@ void Game::handleSelectingHostesses()
 
 		}
 	}
-}
-
-bool Game::isAHostessCurrentlySelected()
-{
-	for (auto& hostess : m_hostessManager.m_hostesses)
-	{
-		if (hostess.m_isCurrentlySelected == true)
-		{
-			selectedHostess = hostess;
-			return true;
-
-		}
-	}
-
-	return false;
 }
 
 void Game::handlePlacingHostess()
@@ -200,15 +185,6 @@ void Game::handlePlacingHostess()
 		}
 	}
 }
-
-void Game::unselectAllHostesses()
-{
-	for (auto& hostess : m_hostessManager.m_hostesses)
-	{
-		hostess.m_isCurrentlySelected = false;
-	}
-}
-
 
 // CLIENT STUFF
 
