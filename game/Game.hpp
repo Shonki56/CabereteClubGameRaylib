@@ -10,6 +10,7 @@
 #include "GameLogic.hpp"
 #include <map>
 #include <iterator>
+#include "HostessManager.hpp"
 
 
 
@@ -48,5 +49,6 @@ private:
 	void removeClient();
 	std::map<Client*, int> m_clientSofaMap;
 	void clientGiveMoney(Hostess* hostess, Client* client);
+	HostessManager m_hostessManager;
 
 };
