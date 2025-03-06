@@ -17,23 +17,6 @@ void HostessManager::placeHostess(Hostess& hostess, Sofa& sofa)
 		sofa.m_isBeingUsed = true;
 		sofa.m_currentHostess = &hostess;
 
-
-	}
-	else if (sofa.m_isBeingUsed == true) 
-	{
-		std::cout << "Sofa is being used!\n";
-	}
-	else if (hostess.m_isCurrentlySelected == false)
-	{
-		std::cout << "Hostess not currently selected!\n";
-	}
-	else if (hostess.m_isBeingUsed == true)
-	{
-		std::cout << "Hostess being used!\n";
-	}
-	else if (sofa.m_currentClient == nullptr)
-	{
-		std::cout << "Client not on sofa\n";
 	}
 	else
 	{

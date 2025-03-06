@@ -21,7 +21,6 @@ public:
 	void Draw();
 	void Update();
 	void HandleInputs();
-	void placeHostess(Hostess& hostess, Sofa& sofa);
 	std::vector<Sofa> m_sofas;
 	void placeClient(Client& client);
 	float m_lastSpawnTime;
@@ -36,11 +35,7 @@ private:
 	Hostess m_hostesses[2];
 	Hostess selectedHostess;
 	void displayHostessesFaces();
-	void handleSelectingHostesses();
-	void initHostesses();
-	bool isAHostessCurrentlySelected();
 	void handlePlacingHostess();
-	void unselectAllHostesses();
 	void generateClient();
 	void spawnClient();
 	std::vector<std::unique_ptr<Client>> m_clients;
