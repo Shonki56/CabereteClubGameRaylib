@@ -79,7 +79,7 @@ void Client::InitClient()
 	createStatsAndTraits();
 	//m_position = { 298, 67 };
 	m_isSeated = false;
-	m_timeout = 30.0f;
+	m_timeout = 8.0f;
 	m_timeSpawnedIn = GetTime();
 }
 
