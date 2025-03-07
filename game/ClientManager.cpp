@@ -10,7 +10,7 @@ void ClientManager::spawnClient(SofaManager& sofaManager)
 
 void ClientManager::generateClient(SofaManager& sofaManager)
 {
-	const float spawnTime = 8.0f;
+	const float spawnTime = 3.0f;
 	float currentTime = GetTime();
 	if (currentTime - m_lastClientSpawnTime >= spawnTime)
 	{
