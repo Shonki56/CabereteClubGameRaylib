@@ -18,6 +18,10 @@ void HostessManager::placeHostess(Hostess& hostess, Sofa& sofa)
 		sofa.m_currentHostess = &hostess;
 
 	}
+	else if (sofa.m_currentClient == nullptr)
+	{
+		std::cout << "Sofa is currently not being used by a client\n";
+	}
 	else
 	{
 		std::cout << "Adding incomplete\n";
