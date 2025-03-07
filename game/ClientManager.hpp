@@ -8,14 +8,13 @@
 class ClientManager
 {
 public:
-	void generateClient();
-	void placeClient(Client& client);
-	void removeClient();
+	void generateClient(SofaManager& sofaManager);
+	void placeClient(Client& client, SofaManager& sofaManager);
+	void removeClient(SofaManager& sofaManager);
 	bool isClientTimedOut(const Client& client);
-	void spawnClient();
+	void spawnClient(SofaManager& sofaManager);
 	float m_lastClientSpawnTime; 
 	std::vector<std::unique_ptr<Client>> m_clients;
 	std::map<Client*, int> m_clientSofaMap;
-	SofaManager m_sofaManager;
 private:
 };

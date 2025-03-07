@@ -62,10 +62,10 @@ void Game::Update()
 
 	if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE))
 	{
-		m_clientManager.spawnClient();
+		m_clientManager.spawnClient(m_sofaManager);
 	}
 
-	m_clientManager.removeClient();
+	m_clientManager.removeClient(m_sofaManager);
 	getTimeRemaining();
 
 }
@@ -79,7 +79,6 @@ void Game::HandleInputs()
 void Game::InitGame()
 {
 	m_lastSpawnTime = 0.0f;
-	m_clientManager.m_sofaManager = m_sofaManager;
 }
 
 void Game::getTimeRemaining()

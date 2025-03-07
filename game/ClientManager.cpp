@@ -1,37 +1,39 @@
 #include "ClientManager.hpp"
 
-void ClientManager::spawnClient()
+void ClientManager::spawnClient(SofaManager& sofaManager)
 {
 	auto client = std::make_unique<Client>(POOR);
 
-	placeClient(*client);
+	placeClient(*client, sofaManager);
 	m_clients.push_back(std::move(client));
 }
 
-void ClientManager::generateClient()
+void ClientManager::generateClient(SofaManager& sofaManager)
 {
 	const float spawnTime = 8.0f;
 	float currentTime = GetTime();
 	if (currentTime - m_lastClientSpawnTime >= spawnTime)
 	{
-		spawnClient();
+		spawnClient(sofaManager);
 		m_lastClientSpawnTime = currentTime;
 	}
 }
 
-void ClientManager::placeClient(Client& client)
+
+
+void ClientManager::placeClient(Client& client, SofaManager& sofaManager)
 {
-	int sofaNotBeingUsed = m_sofaManager.checkIfASofaIsFree();
+	int sofaNotBeingUsed = sofaManager.checkIfASofaIsFree();
 	if (sofaNotBeingUsed != -1)
 	{
-		client.m_position.y = m_sofaManager.m_sofas[sofaNotBeingUsed].m_position.y;
+		client.m_position.y = sofaManager.m_sofas[sofaNotBeingUsed].m_position.y;
 
-		client.m_position.x = m_sofaManager.m_sofas[sofaNotBeingUsed].m_position.x + 100;
+		client.m_position.x = sofaManager.m_sofas[sofaNotBeingUsed].m_position.x + 100;
 
 		client.m_isSeated = true;
 
-		m_sofaManager.m_sofas[sofaNotBeingUsed].m_currentClient = &client;
-		m_sofaManager.m_sofas[sofaNotBeingUsed].m_isBeingUsedByClient = true;
+		sofaManager.m_sofas[sofaNotBeingUsed].m_currentClient = &client;
+		sofaManager.m_sofas[sofaNotBeingUsed].m_isBeingUsedByClient = true;
 
 		
 		m_clientSofaMap[&client] = sofaNotBeingUsed;
@@ -44,11 +46,11 @@ void ClientManager::placeClient(Client& client)
 	}
 	else
 	{
-		std::cout << "Unable to place client because m_sofaManager.CheckIfASofaIsFree == " << m_sofaManager.checkIfASofaIsFree() << std::endl;
+		std::cout << "Unable to place client because m_sofaManager.CheckIfASofaIsFree == " << sofaManager.checkIfASofaIsFree() << std::endl;
 	}
 }
 
-void ClientManager::removeClient()
+void ClientManager::removeClient(SofaManager& sofaManager)
 {
 	for (int i = m_clients.size() - 1; i >= 0; i--)
 	{
@@ -59,9 +61,9 @@ void ClientManager::removeClient()
 			if (it != m_clientSofaMap.end())
 			{
 				int sofaIndex = it->second;
-				m_sofaManager.m_sofas[sofaIndex].m_currentClient = nullptr;
+				sofaManager.m_sofas[sofaIndex].m_currentClient = nullptr;
 				m_clientSofaMap.erase(it);
-				m_sofaManager.m_sofas[sofaIndex].m_isBeingUsedByClient = false;
+				sofaManager.m_sofas[sofaIndex].m_isBeingUsedByClient = false;
 				
 				std::cout << "Client removed. Sofa " << sofaIndex << " is now free!\n";
 			}
