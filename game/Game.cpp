@@ -135,5 +135,4 @@ void Game::clientGiveMoney(Hostess* hostess, Client* client)
 		GameLogic::clientSpendMoney(hostess, client);
 		client->m_timeSinceLastSpentMoney = currentTime;
 	}
-
 }
