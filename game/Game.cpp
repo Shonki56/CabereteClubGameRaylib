@@ -9,8 +9,8 @@ Game::Game()
 
 void Game::playGame()
 {
-	Draw();
 	Update();
+	Draw();
 }
 
 void Game::Draw()
@@ -25,9 +25,10 @@ void Game::Draw()
 			GUI::showComparison(m_hostessManager.m_selectedHostess, sofa.m_currentClient);
 		}
 
-		if (sofa.m_isBeingUsed && sofa.m_isBeingUsedByClient)
+		if (sofa.m_isBeingUsed && sofa.m_isBeingUsedByClient && sofa.m_currentClient->m_spendMoneyTimer.m_hasTimerRunOut)
 		{
 			clientGiveMoney(sofa.m_currentHostess, sofa.m_currentClient);
+			sofa.m_currentClient->m_spendMoneyTimer.resetTimer();
 		}
 
 		GUI::showMoneyEarnedByHostesses(m_hostessManager.m_hostesses);
@@ -78,7 +79,6 @@ void Game::Update()
 	}
 
 	m_clientManager.removeClient(m_sofaManager);
-	//getTimeRemaining();
 	m_gameTimer.updateCurrentTimeAndTimeLeft();
 	GUI::showTimer(m_gameTimer.getTimeLeft());
 
@@ -127,10 +127,6 @@ void Game::displayHostessesFaces()
 
 void Game::clientGiveMoney(Hostess* hostess, Client* client)
 {
-	float currentTime = GetTime();
-	if (currentTime - client->m_timeSinceLastSpentMoney >= client->m_howOftenToSpendMoney)
-	{
-		GameLogic::clientSpendMoney(hostess, client);
-		client->m_timeSinceLastSpentMoney = currentTime;
-	}
+	hostess->m_moneyMade += client->m_howMuchToSpend();
+	std::cout << hostess->m_name << " has just made some money!\n";
 }

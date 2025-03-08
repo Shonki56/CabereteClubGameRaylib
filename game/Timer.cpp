@@ -32,6 +32,17 @@ void Timer::setTotalTime(float time)
 	m_timeLeft = time;
 }
 
+void Timer::resetTimer()
+{
+	if (m_hasTimerRunOut)
+	{
+		m_startTime = GetTime();
+		m_timeLeft = m_totalTime;
+		std::cout << m_timeLeft << std::endl;
+		m_hasTimerRunOut = false;
+	}
+}
+
 void Timer::pauseTimer()
 {
 	m_currentState = TimerState::PAUSED;
@@ -52,7 +63,6 @@ void Timer::continueTimer()
 	float pausedDuration = GetTime() - m_timePaused;
 	m_totalTime += pausedDuration;
 	m_currentState = TimerState::NOT_PAUSED;
-
 }
 
 void ExtendedTimer::extendTimer(float extraTime)

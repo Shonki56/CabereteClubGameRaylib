@@ -12,6 +12,7 @@ public:
 	void updateCurrentTimeAndTimeLeft();
 	float getTimeLeft() { return m_timeLeft; }
 	void setTotalTime(float time);
+	void resetTimer();
 	bool m_hasTimerRunOut = false;
 	TimerState m_currentState;
 private:

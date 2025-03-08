@@ -15,7 +15,14 @@ Client::~Client()
 void Client::DrawAndUpdate()
 {
 	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, WHITE);
-	m_clientTimer.updateCurrentTimeAndTimeLeft();
+	m_lifetime.updateCurrentTimeAndTimeLeft();
+	m_spendMoneyTimer.updateCurrentTimeAndTimeLeft();
+	//if (m_spendMoneyTimer.m_hasTimerRunOut)
+	//{
+	//	m_spendMoneyTimer.resetTimer();
+	//	std::cout << "Timer has been reset\n";
+	//	m_timeToPay = true;
+	//}
 }
 
 void Client::getCorrectType()
@@ -38,6 +45,25 @@ void Client::getCorrectType()
 		std::cout << "Something went wrong loading client texture!\n";
 	}
 
+}
+
+float Client::m_howMuchToSpend()
+{
+	switch (m_type)
+	{
+	case POOR:
+		return GetRandomValue(10, 100);
+		break;
+	case AVERAGE:
+		return GetRandomValue(100, 800);
+		break;
+	case RICH:
+		return GetRandomValue(1000, 3000);
+		break;
+	case MEGARICH:
+		return GetRandomValue(3000, 10000);
+		break;
+	}
 }
 
 void Client::createStatsAndTraits()
@@ -80,7 +106,9 @@ void Client::InitClient()
 	createStatsAndTraits();
 	//m_position = { 298, 67 };
 	m_isSeated = false;
-	m_clientTimer.setTotalTime(7.0f);
-	m_clientTimer.startTimer();
+	m_lifetime.setTotalTime(20.0f);
+	m_lifetime.startTimer();
+	m_spendMoneyTimer.setTotalTime(3.0f);
+	m_spendMoneyTimer.startTimer();
 }
 

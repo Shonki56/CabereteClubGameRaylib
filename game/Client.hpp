@@ -20,14 +20,13 @@ public:
 	void getCorrectType();
 	Vector2 m_position;
 	bool m_isSeated;
-	float m_timeout;
-	float m_timeSpawnedIn;
-	float m_timeSinceLastSpentMoney;
-	float m_howOftenToSpendMoney;
 	StatsAndTraits m_statsAndTraits;
 	int selectedTrait = GetRandomValue(0, 3);
 	int selectedStat = GetRandomValue(0, 3);
-	Timer m_clientTimer;
+	Timer m_lifetime;
+	Timer m_spendMoneyTimer;
+	float m_howMuchToSpend();
+	bool m_timeToPay = false;
 private:
 	void createStatsAndTraits();
 	void InitClient();

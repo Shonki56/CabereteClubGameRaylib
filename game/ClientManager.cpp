@@ -76,7 +76,7 @@ void ClientManager::removeClient(SofaManager& sofaManager)
 
 bool ClientManager::isClientTimedOut(const Client& client)
 {
-	if (client.m_clientTimer.m_hasTimerRunOut)
+	if (client.m_lifetime.m_hasTimerRunOut)
 	{
 		return true;
 	}
