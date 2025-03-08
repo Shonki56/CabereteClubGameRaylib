@@ -41,7 +41,7 @@ void Game::Draw()
 
 	for (auto& client : m_clientManager.m_clients)
 	{
-		client->Draw();
+		client->DrawAndUpdate();
 	}
 }
 

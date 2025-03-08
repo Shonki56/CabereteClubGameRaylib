@@ -4,6 +4,7 @@
 #include <map>
 #include<string>
 #include "StatsAndTraits.h"
+#include "Timer.hpp"
 enum clientHappiness{ LOW, MEDIUM, HIGH, SPECIAL }; 
 enum clientType{POOR, AVERAGE, RICH, MEGARICH};
 
@@ -13,7 +14,7 @@ public:
 	Client(clientType clientType);
 	~Client();
 	Texture2D m_clientImage;
-	void Draw();
+	void DrawAndUpdate();
 	clientType m_type;
 	clientHappiness m_happiness;
 	void getCorrectType();
@@ -26,6 +27,7 @@ public:
 	StatsAndTraits m_statsAndTraits;
 	int selectedTrait = GetRandomValue(0, 3);
 	int selectedStat = GetRandomValue(0, 3);
+	Timer m_clientTimer;
 private:
 	void createStatsAndTraits();
 	void InitClient();

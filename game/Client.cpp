@@ -12,9 +12,10 @@ Client::~Client()
 	//	UnloadTexture(m_clientImage);
 }
 
-void Client::Draw()
+void Client::DrawAndUpdate()
 {
 	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, WHITE);
+	m_clientTimer.updateCurrentTimeAndTimeLeft();
 }
 
 void Client::getCorrectType()
@@ -79,7 +80,7 @@ void Client::InitClient()
 	createStatsAndTraits();
 	//m_position = { 298, 67 };
 	m_isSeated = false;
-	m_timeout = 8.0f;
-	m_timeSpawnedIn = GetTime();
+	m_clientTimer.setTotalTime(7.0f);
+	m_clientTimer.startTimer();
 }
 

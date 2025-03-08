@@ -19,7 +19,10 @@ void Timer::updateCurrentTimeAndTimeLeft()
 	{
 		m_currentTimeInProgram = GetTime() - m_startTime;
 		m_timeLeft = m_totalTime - m_currentTimeInProgram;
-		std::cout << "Time remaining: " << m_timeLeft << std::endl;
+		if (m_timeLeft <= 0)
+		{
+			m_hasTimerRunOut = true;
+		}
 	}
 }
 
