@@ -9,12 +9,24 @@ public:
 	{
 	}
 	const float m_startTime;
-	const float m_howLongUntilStop;
+	float m_howLongUntilStop;
 	float m_currentTimeInProgram;
 	float m_timeLeft;
 	void setTimeLeft();
 private:
 	void updateCurrentTime();
+
+};
+
+
+class ExtendedTimer : public Timer
+{
+public:
+	void extendTimer(float extraTime);
+
+
+private:
+
 
 };
 
