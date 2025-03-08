@@ -1,13 +1,26 @@
 #include "Timer.hpp"
 
+
+Timer::Timer()
+{
+	m_startTime = 0.0f;
+	m_totalTime = 0.0f;
+	m_timeLeft = 0.0f;
+	m_currentState = TimerState::NOT_STARTED;
+}
+
 void Timer::updateCurrentTimeAndTimeLeft()
 {
+
+	if (m_currentState == TimerState::NOT_STARTED) return;
+
+
 	if (m_currentState == TimerState::NOT_PAUSED)
 	{
+		m_currentTimeInProgram = GetTime() - m_startTime;
 		m_timeLeft = m_totalTime - m_currentTimeInProgram;
 		std::cout << "Time remaining: " << m_timeLeft << std::endl;
 	}
-	m_currentTimeInProgram = GetTime();
 }
 
 void Timer::setTotalTime(float time)
@@ -24,8 +37,11 @@ void Timer::pauseTimer()
 
 void Timer::startTimer()
 {
-	m_startTime = GetTime();
-	m_currentState = TimerState::NOT_PAUSED;
+	if (m_currentState == TimerState::NOT_STARTED) 
+	{
+		m_startTime = GetTime();
+		m_currentState = TimerState::NOT_PAUSED;
+	}
 }
 
 void Timer::continueTimer()

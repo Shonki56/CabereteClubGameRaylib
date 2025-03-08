@@ -4,19 +4,15 @@
 class Timer
 {
 public:
-	Timer() 
-	{
-		m_timeLeft = m_totalTime;
-		m_currentTimeInProgram = GetTime();
-	}
+	Timer();
 	enum TimerState {PAUSED, NOT_PAUSED, NOT_STARTED};
 	void pauseTimer();
 	void startTimer();
 	void continueTimer();
 	void updateCurrentTimeAndTimeLeft();
-	TimerState m_currentState = NOT_STARTED;
 	float getTimeLeft() { return m_timeLeft; }
 	void setTotalTime(float time);
+	TimerState m_currentState;
 private:
 	float m_timeLeft;
 	float m_startTime;
