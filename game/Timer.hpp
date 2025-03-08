@@ -1,20 +1,32 @@
 #pragma once
 #include <raylib.h>
+#include <iostream>
 class Timer
 {
 public:
-	Timer(float howLongTimer, float startTime = GetTime()) 
-		: m_howLongUntilStop(howLongTimer),
-		  m_startTime(startTime)
+	Timer() 
 	{
+		m_timeLeft = m_totalTime;
+		m_currentTimeInProgram = GetTime();
 	}
-	const float m_startTime;
-	float m_howLongUntilStop;
-	float m_currentTimeInProgram;
-	float m_timeLeft;
-	void setTimeLeft();
+	enum TimerState {PAUSED, NOT_PAUSED, NOT_STARTED};
+	void pauseTimer();
+	void startTimer();
+	void continueTimer();
+	void updateCurrentTimeAndTimeLeft();
+	TimerState m_currentState = NOT_STARTED;
+	float getTimeLeft() { return m_timeLeft; }
+	void setTotalTime(float time);
 private:
-	void updateCurrentTime();
+	float m_timeLeft;
+	float m_startTime;
+	float m_currentTimeInProgram;
+	float m_timePaused;
+	float m_timeToAdd;
+
+protected:
+	float m_totalTime;
+
 
 };
 

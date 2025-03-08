@@ -52,13 +52,15 @@ int main()
             if (IsKeyPressed(KEY_ENTER))
             {
                 initialState = MAIN_GAME;
+                game.m_gameTimer.setTotalTime(game.m_timePerNight);
+                game.m_gameTimer.startTimer();
             }
             break;
-        case MAIN_GAME:
-            if (game.isNightOver())
-            {
-                initialState = END;
-            }
+        //case MAIN_GAME:
+            //if (game.isNightOver())
+            //{
+            //    initialState = END;
+            //}
         }
         BeginDrawing();
         ClearBackground(BLACK);

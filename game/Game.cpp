@@ -55,18 +55,32 @@ void Game::Update()
 		std::cout << "Mouse Y Pos:" << GetMousePosition().y << std::endl;
 	}
 
-	if (m_clients.size() < 4)
-	{
-		//generateClient();
-	}
+	//if (m_clients.size() < 4)
+	//{
+	//	//generateClient();
+	//}
 
 	if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE))
 	{
 		m_clientManager.spawnClient(m_sofaManager);
 	}
 
+	if (IsKeyPressed(KEY_C))
+	{
+		if (m_gameTimer.m_currentState == Timer::TimerState::NOT_PAUSED)
+		{
+			m_gameTimer.pauseTimer();
+		}
+		else
+		{
+			m_gameTimer.continueTimer();
+		}
+	}
+
 	m_clientManager.removeClient(m_sofaManager);
-	getTimeRemaining();
+	//getTimeRemaining();
+	m_gameTimer.updateCurrentTimeAndTimeLeft();
+	GUI::showTimer(m_gameTimer.getTimeLeft());
 
 }
 
@@ -81,22 +95,6 @@ void Game::InitGame()
 	m_lastSpawnTime = 0.0f;
 }
 
-void Game::getTimeRemaining()
-{
-	float currentTime = GetTime();
-	m_timeRemaining = totalTimePerNight - currentTime;
-	GUI::showTimer(m_timeRemaining);
-}
-
-bool Game::isNightOver()
-{
-	if (m_timeRemaining <= 0.0)
-	{
-		return true;
-	}
-
-	return false;
-}
 
 // HOSTESS STUFF
 
