@@ -52,7 +52,8 @@ int main()
             if (IsKeyPressed(KEY_ENTER))
             {
                 initialState = MAIN_GAME;
-                game.m_gameTimer.setTotalTime(game.m_timePerNight);
+                //game.m_gameTimer.setTotalTime(game.m_timePerNight);
+                game.m_gameTimer.setTotalTime(5.0f);
                 game.m_gameTimer.startTimer();
             }
             break;
@@ -73,7 +74,7 @@ int main()
             game.playGame();
             break;
         case END:
-            GUI::showEndScreen();
+            GUI::showEndScreen(game.m_hostessManager);
             break;
         }
         

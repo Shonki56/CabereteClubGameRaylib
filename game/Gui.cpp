@@ -111,12 +111,7 @@ void GUI::showMoneyEarnedByHostesses(Hostess hostesses[])
 
 void GUI::showTimer(float timeRemaining)
 {
-	std::ostringstream stream;
-	stream << std::fixed << std::setprecision(2) << timeRemaining;
-
-	std::string text = "Time Remaining: " + stream.str();
-	DrawText(text.c_str(), 726, 75, 32, WHITE);
-	
+	DrawText(TextFormat("Time Remaining: %02.02f", timeRemaining), 726, 75, 32, WHITE);
 }
 
 void GUI::showTitleScreen()
@@ -125,8 +120,19 @@ void GUI::showTitleScreen()
 	DrawText("PRESS ENTER TO START GAME", GetScreenWidth() / 2, GetScreenHeight() / 2, 40, WHITE);
 }
 
-void GUI::showEndScreen()
+void GUI::showEndScreen(HostessManager hostessManager)
 {
+	int test = MeasureText("END OF NIGHT", 40);
 	DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), DARKPURPLE);
-	DrawText("END OF NIGHT!", GetScreenWidth() / 2, GetScreenHeight() / 2, 40, WHITE);
+	DrawText("END OF NIGHT!",(GetScreenWidth() - test) / 2, 32, 40, WHITE);
+	float yOffset = 300;
+	for (int i = 0; i < 2; i++)
+	{
+		std::string wholeThing = hostessManager.m_hostesses[i].m_name + " has made: " + std::to_string(hostessManager.m_hostesses[i].m_moneyMade);
+		int textSize = MeasureText(wholeThing.c_str(), 40);
+		DrawText(wholeThing.c_str(), (GetScreenWidth() - textSize) / 2, yOffset, 40, WHITE);
+		yOffset += 75;
+	}
+
+
 }

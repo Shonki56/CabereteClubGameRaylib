@@ -24,11 +24,11 @@ public:
 	float m_timePerNight = 20.0f;
 	void playGame();
 	Timer m_gameTimer;
+	HostessManager m_hostessManager;
 private:
 	void InitGame();
 	void displayHostessesFaces();
 	void clientGiveMoney(Hostess* hostess, Client* client);
-	HostessManager m_hostessManager;
 	SofaManager m_sofaManager;
 	ClientManager m_clientManager;
 

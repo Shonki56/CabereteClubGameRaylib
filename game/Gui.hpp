@@ -5,6 +5,7 @@
 #include <string>
 #include "include/raygui.h"
 #include <iomanip>
+#include "HostessManager.hpp"
 
 namespace GUI
 {
@@ -14,5 +15,5 @@ namespace GUI
 	void showMoneyEarnedByHostesses(Hostess hostesses[]);
 	void showTimer(float timeRemaining);
 	void showTitleScreen();
-	void showEndScreen();
+	void showEndScreen(HostessManager hostessManager);
 }
