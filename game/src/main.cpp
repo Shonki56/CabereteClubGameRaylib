@@ -56,11 +56,11 @@ int main()
                 game.m_gameTimer.startTimer();
             }
             break;
-        //case MAIN_GAME:
-            //if (game.isNightOver())
-            //{
-            //    initialState = END;
-            //}
+        case MAIN_GAME:
+            if (game.m_gameTimer.m_hasTimerRunOut)
+            {
+                initialState = END;
+            }
         }
         BeginDrawing();
         ClearBackground(BLACK);
