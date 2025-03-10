@@ -2,7 +2,7 @@
 
 void ClientManager::spawnClient(SofaManager& sofaManager)
 {
-	auto client = std::make_unique<Client>(POOR);
+	auto client = std::make_unique<Client>(MEGARICH);
 
 	placeClient(*client, sofaManager);
 	m_clients.push_back(std::move(client));

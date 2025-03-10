@@ -14,7 +14,24 @@ Client::~Client()
 
 void Client::DrawAndUpdate()
 {
+	switch (m_type)
+	{
+	case POOR:
 	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, WHITE);
+	break;
+	case AVERAGE:
+	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, BLUE);
+	break;
+	case RICH:
+	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, RED);
+	break;
+	case MEGARICH:
+	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, PURPLE);
+	break;
+	default:
+		std::cout << "Something went wrong loading client texture!\n";
+	}
+	//DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, WHITE);
 	m_lifetime.updateCurrentTimeAndTimeLeft();
 	m_spendMoneyTimer.updateCurrentTimeAndTimeLeft();
 	//if (m_spendMoneyTimer.m_hasTimerRunOut)
