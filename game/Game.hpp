@@ -20,11 +20,12 @@ public:
 	void Draw();
 	void Update();
 	void HandleInputs();
+	void playGame();
 	float m_lastSpawnTime;
 	float m_timePerNight = 20.0f;
-	void playGame();
 	Timer m_gameTimer;
 	HostessManager m_hostessManager;
+	unsigned int m_moneyMade;
 private:
 	void InitGame();
 	void displayHostessesFaces();

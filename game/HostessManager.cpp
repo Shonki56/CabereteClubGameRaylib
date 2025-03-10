@@ -5,6 +5,18 @@ HostessManager::HostessManager()
 	initHostesses();
 }
 
+
+int HostessManager::getTotalMoneyMade()
+{
+	int total = 0;
+	for (auto& hostess : m_hostesses)
+	{
+		total += hostess.m_moneyMade;
+	}
+
+	return total;
+}
+
 void HostessManager::placeHostess(Hostess& hostess, Sofa& sofa)
 {
 

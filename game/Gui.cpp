@@ -134,5 +134,10 @@ void GUI::showEndScreen(HostessManager hostessManager)
 		yOffset += 75;
 	}
 
+	std::string totalMoneyMade = "Total money made: " + std::to_string(hostessManager.getTotalMoneyMade());
+
+	int totalMoneyMadeTextSize = MeasureText(totalMoneyMade.c_str(), 40);
+	DrawText(totalMoneyMade.c_str(), (GetScreenWidth() - totalMoneyMadeTextSize) / 2, yOffset, 40, WHITE);
+
 
 }

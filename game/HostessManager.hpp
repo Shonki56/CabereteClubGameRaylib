@@ -13,6 +13,7 @@ public:
 	bool isAHostessCurrentlySelected();
 	void handleSelectingHostesses();
 	void handlePlacingHostesses(SofaManager& sofaManager);
+	int getTotalMoneyMade();
 	Hostess m_hostesses[2];
 	Hostess m_selectedHostess;
 private:

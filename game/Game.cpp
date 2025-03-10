@@ -130,3 +130,4 @@ void Game::clientGiveMoney(Hostess* hostess, Client* client)
 	hostess->m_moneyMade += client->m_howMuchToSpend();
 	std::cout << hostess->m_name << " has just made some money!\n";
 }
+
