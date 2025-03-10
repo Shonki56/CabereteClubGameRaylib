@@ -14,7 +14,7 @@ public:
 	void handleSelectingHostesses();
 	void handlePlacingHostesses(SofaManager& sofaManager);
 	int getTotalMoneyMade();
-	Hostess m_hostesses[2];
+	Hostess m_hostesses[4];
 	Hostess m_selectedHostess;
 private:
 	void placeHostess(Hostess& hostess, Sofa& sofa);

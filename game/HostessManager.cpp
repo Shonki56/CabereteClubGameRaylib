@@ -23,7 +23,8 @@ void HostessManager::placeHostess(Hostess& hostess, Sofa& sofa)
 	if (!sofa.m_isBeingUsed && hostess.m_isCurrentlySelected && hostess.m_isBeingUsed == false && sofa.m_currentClient != nullptr)
 	{
 		hostess.m_position = sofa.m_position;
-		hostess.m_position.y -= 50;
+		hostess.m_position.y -= 50 + hostess.m_extraYNeeded;
+		hostess.m_position.x += hostess.m_extraXNeeded;
 		hostess.m_isBeingUsed = true;
 		hostess.m_isCurrentlySelected = false;
 		sofa.m_isBeingUsed = true;
@@ -105,7 +106,7 @@ void HostessManager::handlePlacingHostesses(SofaManager& sofaManager)
 {
 	for (auto& sofa : sofaManager.m_sofas)
 	{
-		for (int j = 0; j < 2; j++) // 2 is the number of hostesses. will change later so not a magic number
+		for (int j = 0; j < 4; j++) // 2 is the number of hostesses. will change later so not a magic number
 		{
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			{
@@ -133,5 +134,19 @@ void HostessManager::initHostesses()
 	m_hostesses[1].m_name = "Clara";
 	m_hostesses[1].m_statsAndTraits.m_stats = { 100, 40, 23, 11, 51 };
 	m_hostesses[1].m_statsAndTraits.m_traits = {10, 10, 10, 10};
+
+	m_hostesses[2].m_image = LoadTexture("resources/Images/fullBodyGirls/Kaya.png");
+	m_hostesses[2].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Kaya-Head.png");
+	m_hostesses[2].m_name = "Kaya";
+	m_hostesses[2].m_statsAndTraits.m_stats = { 100, 40, 23, 11, 51 };
+	m_hostesses[2].m_statsAndTraits.m_traits = {10, 10, 10, 10};
+	m_hostesses[2].m_extraXNeeded = 30;
+	m_hostesses[2].m_extraYNeeded = -30;
+
+	m_hostesses[3].m_image = LoadTexture("resources/Images/fullBodyGirls/Iguara.png");
+	m_hostesses[3].m_faceImage = LoadTexture("resources/Images/faceOnlyGirls/Iguara-Head.png");
+	m_hostesses[3].m_name = "Iguara";
+	m_hostesses[3].m_statsAndTraits.m_stats = { 100, 40, 23, 11, 51 };
+	m_hostesses[3].m_statsAndTraits.m_traits = {10, 10, 10, 10};
 
 }

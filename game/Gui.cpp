@@ -127,9 +127,10 @@ void GUI::showEndScreen(HostessManager hostessManager)
 	DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), DARKPURPLE);
 	DrawText("END OF NIGHT!",(GetScreenWidth() - test) / 2, 32, 40, WHITE);
 	float yOffset = 300;
-	for (int i = 0; i < 2; i++)
+
+	for (Hostess& hostess : hostessManager.m_hostesses)
 	{
-		std::string wholeThing = hostessManager.m_hostesses[i].m_name + " has made: " + std::to_string(hostessManager.m_hostesses[i].m_moneyMade);
+		std::string wholeThing = hostess.m_name + " has made: " + std::to_string(hostess.m_moneyMade);
 		int textSize = MeasureText(wholeThing.c_str(), 40);
 		DrawText(wholeThing.c_str(), (GetScreenWidth() - textSize) / 2, yOffset, 40, WHITE);
 		yOffset += 100;

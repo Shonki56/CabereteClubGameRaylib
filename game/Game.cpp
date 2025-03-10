@@ -30,9 +30,6 @@ void Game::Draw()
 			clientGiveMoney(sofa.m_currentHostess, sofa.m_currentClient);
 			sofa.m_currentClient->m_spendMoneyTimer.resetTimer();
 		}
-
-		GUI::showMoneyEarnedByHostesses(m_hostessManager.m_hostesses);
-
 	}
 
 	for (auto& hostess : m_hostessManager.m_hostesses)

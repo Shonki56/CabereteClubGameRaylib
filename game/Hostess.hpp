@@ -21,5 +21,7 @@ public:
 	std::string m_name;
 	StatsAndTraits m_statsAndTraits;
 	int m_moneyMade;
+	float m_extraXNeeded = 0;
+	float m_extraYNeeded = 0;
 
 };
