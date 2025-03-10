@@ -125,7 +125,7 @@ void Client::InitClient()
 	m_isSeated = false;
 	m_lifetime.setTotalTime(20.0f);
 	m_lifetime.startTimer();
-	m_spendMoneyTimer.setTotalTime(3.0f);
+	m_spendMoneyTimer.setTotalTime(3.0f); // this needs moving so it starts when a hostess is placed on a sofa with a client
 	m_spendMoneyTimer.startTimer();
 }
 
