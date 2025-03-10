@@ -117,7 +117,8 @@ void GUI::showTimer(float timeRemaining)
 void GUI::showTitleScreen()
 {
 	DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), GREEN);
-	DrawText("PRESS ENTER TO START GAME", GetScreenWidth() / 2, GetScreenHeight() / 2, 40, WHITE);
+	int textSize = MeasureText("PRESS ENTER TO START GAME", 40);
+	DrawText("PRESS ENTER TO START GAME", (GetScreenWidth() - textSize) / 2, GetScreenHeight() / 2, 40, WHITE);
 }
 
 void GUI::showEndScreen(HostessManager hostessManager)
@@ -131,7 +132,7 @@ void GUI::showEndScreen(HostessManager hostessManager)
 		std::string wholeThing = hostessManager.m_hostesses[i].m_name + " has made: " + std::to_string(hostessManager.m_hostesses[i].m_moneyMade);
 		int textSize = MeasureText(wholeThing.c_str(), 40);
 		DrawText(wholeThing.c_str(), (GetScreenWidth() - textSize) / 2, yOffset, 40, WHITE);
-		yOffset += 75;
+		yOffset += 100;
 	}
 
 	std::string totalMoneyMade = "Total money made: " + std::to_string(hostessManager.getTotalMoneyMade());
