@@ -17,6 +17,7 @@ int HostessManager::getTotalMoneyMade()
 	return total;
 }
 
+
 void HostessManager::placeHostess(Hostess& hostess, Sofa& sofa)
 {
 

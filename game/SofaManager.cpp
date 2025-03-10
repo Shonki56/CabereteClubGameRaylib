@@ -41,3 +41,15 @@ int SofaManager::checkIfASofaIsFree()
 	return -1;
 
 }
+
+void SofaManager::freeEmptySofas()
+{
+	for (Sofa& sofa : m_sofas)
+	{
+		if (sofa.m_isBeingUsedByClient == false)
+		{
+			sofa.m_currentHostess->m_isBeingUsed = false;
+			sofa.m_isBeingUsed = false;
+		}
+	}
+}

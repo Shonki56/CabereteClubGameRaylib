@@ -45,6 +45,7 @@ void Game::Draw()
 
 void Game::Update()
 {
+	m_sofaManager.freeEmptySofas();
 	HandleInputs();
 	displayHostessesFaces();
 	if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))

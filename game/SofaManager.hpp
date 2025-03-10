@@ -9,6 +9,7 @@ public:
 	SofaManager();
 	std::vector<Sofa> m_sofas;
 	int checkIfASofaIsFree();
+	void freeEmptySofas();
 private:
 	void fillSofasVector();
 
