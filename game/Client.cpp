@@ -31,15 +31,8 @@ void Client::DrawAndUpdate()
 	default:
 		std::cout << "Something went wrong loading client texture!\n";
 	}
-	//DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, WHITE);
 	m_lifetimeTimer.updateCurrentTimeAndTimeLeft();
 	m_spendMoneyTimer.updateCurrentTimeAndTimeLeft();
-	//if (m_spendMoneyTimer.m_hasTimerRunOut)
-	//{
-	//	m_spendMoneyTimer.resetTimer();
-	//	std::cout << "Timer has been reset\n";
-	//	m_timeToPay = true;
-	//}
 }
 
 void Client::getCorrectType()
@@ -85,10 +78,29 @@ float Client::m_howMuchToSpend()
 
 void Client::setTimers()
 {
-	m_spendMoneyTimer.setTotalTime(3);
-	m_lifetimeTimer.setTotalTime(30);
+	m_spendMoneyTimer.setTotalTime(getClientHappinessHowOftenToSpendMoney());
+	m_lifetimeTimer.setTotalTime(20);
 	m_spendMoneyTimer.startTimer();
 	m_lifetimeTimer.startTimer();
+}
+
+float Client::getClientHappinessHowOftenToSpendMoney()
+{
+	switch (m_happiness)
+	{
+	case LOW:
+		return 10.0f;
+		break;
+	case MEDIUM:
+		return 6.0f;
+		break;
+	case HIGH:
+		return 2.5f;
+		break;
+	case SPECIAL:
+		return 1.8f;
+		break;
+	}
 }
 
 void Client::createStatsAndTraits()

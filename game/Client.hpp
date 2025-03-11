@@ -29,6 +29,7 @@ public:
 	bool m_timeToPay = false;
 	void setTimers();
 private:
+	float getClientHappinessHowOftenToSpendMoney();
 	void createStatsAndTraits();
 	void InitClient();
 
