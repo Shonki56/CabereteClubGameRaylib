@@ -23,10 +23,11 @@ public:
 	StatsAndTraits m_statsAndTraits;
 	int selectedTrait = GetRandomValue(0, 3);
 	int selectedStat = GetRandomValue(0, 3);
-	Timer m_lifetime;
+	Timer m_lifetimeTimer;
 	Timer m_spendMoneyTimer;
 	float m_howMuchToSpend();
 	bool m_timeToPay = false;
+	void setTimers();
 private:
 	void createStatsAndTraits();
 	void InitClient();

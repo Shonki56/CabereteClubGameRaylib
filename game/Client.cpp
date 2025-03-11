@@ -32,7 +32,7 @@ void Client::DrawAndUpdate()
 		std::cout << "Something went wrong loading client texture!\n";
 	}
 	//DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, WHITE);
-	m_lifetime.updateCurrentTimeAndTimeLeft();
+	m_lifetimeTimer.updateCurrentTimeAndTimeLeft();
 	m_spendMoneyTimer.updateCurrentTimeAndTimeLeft();
 	//if (m_spendMoneyTimer.m_hasTimerRunOut)
 	//{
@@ -83,6 +83,14 @@ float Client::m_howMuchToSpend()
 	}
 }
 
+void Client::setTimers()
+{
+	m_spendMoneyTimer.setTotalTime(3);
+	m_lifetimeTimer.setTotalTime(30);
+	m_spendMoneyTimer.startTimer();
+	m_lifetimeTimer.startTimer();
+}
+
 void Client::createStatsAndTraits()
 {
 	int minStat = 0;
@@ -121,11 +129,6 @@ void Client::InitClient()
 {
 	getCorrectType();
 	createStatsAndTraits();
-	//m_position = { 298, 67 };
 	m_isSeated = false;
-	m_lifetime.setTotalTime(20.0f);
-	m_lifetime.startTimer();
-	m_spendMoneyTimer.setTotalTime(3.0f); // this needs moving so it starts when a hostess is placed on a sofa with a client
-	m_spendMoneyTimer.startTimer();
 }
 
