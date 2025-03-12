@@ -17,16 +17,16 @@ void Client::DrawAndUpdate()
 	switch (m_type)
 	{
 	case POOR:
-	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, WHITE);
+	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, m_size, WHITE);
 	break;
 	case AVERAGE:
-	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, BLUE);
+	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f,  m_size ,BLUE);
 	break;
 	case RICH:
-	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, RED);
+	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, m_size, RED);
 	break;
 	case MEGARICH:
-	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, 3.0f, PURPLE);
+	DrawTextureEx(m_clientImage, {m_position.x, m_position.y}, 0.0f, m_size, PURPLE);
 	break;
 	default:
 		std::cout << "Something went wrong loading client texture!\n";

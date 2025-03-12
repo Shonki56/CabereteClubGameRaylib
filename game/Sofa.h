@@ -19,7 +19,7 @@ public:
 	Hostess* m_currentHostess;
 	Client* m_currentClient;
 	bool m_isBeingUsedByClient;
-private:
 	float m_sofaSize = 0.35;
+private:
 	void isSofaBeingUsed();
 };

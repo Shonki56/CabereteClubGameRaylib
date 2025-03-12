@@ -13,33 +13,50 @@ void Game::playGame()
 	Draw();
 }
 
+void Game::DrawMainGame()
+{
+	displayHostessesFaces();
+	for (auto& sofa : m_sofaManager.m_sofas)
+		{
+			sofa.Draw();
+			
+			if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && sofa.m_isBeingUsedByClient == true && m_hostessManager.isAHostessCurrentlySelected() == true)
+			{
+				GUI::showHostessAndClientStats(m_hostessManager.m_selectedHostess, sofa.m_currentClient);
+				GUI::showComparison(m_hostessManager.m_selectedHostess, sofa.m_currentClient);
+			}
+
+			if (sofa.m_isBeingUsed && sofa.m_isBeingUsedByClient && sofa.m_currentClient->m_spendMoneyTimer.m_hasTimerRunOut)
+			{
+				clientGiveMoney(sofa.m_currentHostess, sofa.m_currentClient);
+				sofa.m_currentClient->m_spendMoneyTimer.resetTimer();
+			}
+		}
+
+		for (auto& hostess : m_hostessManager.m_hostesses)
+		{
+			hostess.Draw();
+		}
+
+		for (auto& client : m_clientManager.m_clients)
+		{
+			client->DrawAndUpdate();
+		}
+
+	m_gameTimer.updateCurrentTimeAndTimeLeft();
+	GUI::showTimer(m_gameTimer.getTimeLeft());
+}
+
 void Game::Draw()
 {
-	for (auto& sofa : m_sofaManager.m_sofas)
+	switch (m_gameState)
 	{
-		sofa.Draw();
-		
-		if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && sofa.m_isBeingUsedByClient == true && m_hostessManager.isAHostessCurrentlySelected() == true)
-		{
-			GUI::showHostessAndClientStats(m_hostessManager.m_selectedHostess, sofa.m_currentClient);
-			GUI::showComparison(m_hostessManager.m_selectedHostess, sofa.m_currentClient);
-		}
-
-		if (sofa.m_isBeingUsed && sofa.m_isBeingUsedByClient && sofa.m_currentClient->m_spendMoneyTimer.m_hasTimerRunOut)
-		{
-			clientGiveMoney(sofa.m_currentHostess, sofa.m_currentClient);
-			sofa.m_currentClient->m_spendMoneyTimer.resetTimer();
-		}
-	}
-
-	for (auto& hostess : m_hostessManager.m_hostesses)
-	{
-		hostess.Draw();
-	}
-
-	for (auto& client : m_clientManager.m_clients)
-	{
-		client->DrawAndUpdate();
+	case MAIN_GAME:
+		DrawMainGame();
+		break;
+	case SITUATION:
+		Situation sit(m_sofaManager.m_sofas[0].m_currentHostess, m_sofaManager.m_sofas[0].m_currentClient, m_sofaManager.m_sofas[0]);
+		sit.DrawSituation();
 	}
 }
 
@@ -47,7 +64,6 @@ void Game::Update()
 {
 	m_sofaManager.freeEmptySofas();
 	HandleInputs();
-	displayHostessesFaces();
 	if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
 	{
 		std::cout << "Mouse X Pos:" << GetMousePosition().x << std::endl;
@@ -76,9 +92,12 @@ void Game::Update()
 		}
 	}
 
+	if (IsKeyPressed(KEY_G))
+	{
+		m_gameState = SITUATION;
+	}
+
 	m_clientManager.removeClient(m_sofaManager);
-	m_gameTimer.updateCurrentTimeAndTimeLeft();
-	GUI::showTimer(m_gameTimer.getTimeLeft());
 
 }
 
@@ -91,6 +110,7 @@ void Game::HandleInputs()
 void Game::InitGame()
 {
 	m_lastSpawnTime = 0.0f;
+	m_gameState = MAIN_GAME;
 }
 
 

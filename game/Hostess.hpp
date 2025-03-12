@@ -23,5 +23,6 @@ public:
 	int m_moneyMade;
 	float m_extraXNeeded = 0;
 	float m_extraYNeeded = 0;
+	float m_size = 0.6;
 
 };

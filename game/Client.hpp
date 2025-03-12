@@ -28,6 +28,7 @@ public:
 	float m_howMuchToSpend();
 	bool m_timeToPay = false;
 	void setTimers();
+	float m_size = 3.0f;
 private:
 	float getClientHappinessHowOftenToSpendMoney();
 	void createStatsAndTraits();
