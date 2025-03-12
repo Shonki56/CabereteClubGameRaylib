@@ -57,6 +57,7 @@ void Game::Draw()
 	case SITUATION:
 		Situation sit(m_sofaManager.m_sofas[0].m_currentHostess, m_sofaManager.m_sofas[0].m_currentClient, m_sofaManager.m_sofas[0]);
 		sit.DrawSituation();
+		GUI::showTimer(m_gameTimer.getTimeLeft());
 		break;
 	}
 }
@@ -102,6 +103,7 @@ void Game::Update()
 		}
 		else
 		{
+			continueAllTimers();
 			m_gameState = MAIN_GAME;
 		}
 	}
@@ -119,6 +121,19 @@ void Game::pauseAllTimers()
 		{
 			sofa.m_currentClient->m_lifetimeTimer.pauseTimer();
 			sofa.m_currentClient->m_spendMoneyTimer.pauseTimer();
+		}
+	}
+}
+
+void Game::continueAllTimers()
+{
+	m_gameTimer.continueTimer();
+	for (Sofa& sofa : m_sofaManager.m_sofas)
+	{
+		if (sofa.m_isBeingUsedByClient && sofa.m_isBeingUsed)
+		{
+			sofa.m_currentClient->m_lifetimeTimer.continueTimer();
+			sofa.m_currentClient->m_spendMoneyTimer.continueTimer();
 		}
 	}
 }

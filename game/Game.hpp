@@ -37,5 +37,6 @@ private:
 	void Draw();
 	void Update();
 	void pauseAllTimers();
+	void continueAllTimers();
 
 };
