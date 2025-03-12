@@ -32,5 +32,7 @@ private:
 	void clientGiveMoney(Hostess* hostess, Client* client);
 	SofaManager m_sofaManager;
 	ClientManager m_clientManager;
+	Camera2D m_camera;
+	void resetCamera();
 
 };

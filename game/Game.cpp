@@ -5,6 +5,10 @@
 Game::Game()
 {
 	InitGame();
+	m_camera.offset = { 0, 0 };
+	m_camera.target = { 0, 0 };
+	m_camera.rotation = 0;
+	m_camera.zoom = 1.0f;
 }
 
 void Game::playGame()
@@ -45,6 +49,7 @@ void Game::Draw()
 
 void Game::Update()
 {
+	BeginMode2D(m_camera);
 	m_sofaManager.freeEmptySofas();
 	HandleInputs();
 	displayHostessesFaces();
@@ -52,6 +57,7 @@ void Game::Update()
 	{
 		std::cout << "Mouse X Pos:" << GetMousePosition().x << std::endl;
 		std::cout << "Mouse Y Pos:" << GetMousePosition().y << std::endl;
+		resetCamera();
 	}
 
 	//if (m_clients.size() < 4)
@@ -61,8 +67,14 @@ void Game::Update()
 
 	if (IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE))
 	{
-		m_clientManager.spawnClient(m_sofaManager);
+		//m_clientManager.spawnClient(m_sofaManager);
+		m_camera.offset = { GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f };
+		//m_camera.target = {GetMousePosition().x + 200, GetMousePosition().y + 200};
+		m_camera.target = GetMousePosition();
+		m_camera.rotation = 0;
+		m_camera.zoom = 1.5f;
 	}
+
 
 	if (IsKeyPressed(KEY_C))
 	{
@@ -127,5 +139,13 @@ void Game::clientGiveMoney(Hostess* hostess, Client* client)
 {
 	hostess->m_moneyMade += client->m_howMuchToSpend();
 	std::cout << hostess->m_name << " has just made some money!\n";
+}
+
+void Game::resetCamera()
+{
+	m_camera.offset = { 0, 0 };
+	m_camera.target = { 0, 0 };
+	m_camera.rotation = 0;
+	m_camera.zoom = 1.0f;
 }
 
