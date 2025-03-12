@@ -57,6 +57,7 @@ void Game::Draw()
 	case SITUATION:
 		Situation sit(m_sofaManager.m_sofas[0].m_currentHostess, m_sofaManager.m_sofas[0].m_currentClient, m_sofaManager.m_sofas[0]);
 		sit.DrawSituation();
+		break;
 	}
 }
 
@@ -94,11 +95,32 @@ void Game::Update()
 
 	if (IsKeyPressed(KEY_G))
 	{
-		m_gameState = SITUATION;
+		if (m_gameState == MAIN_GAME)
+		{
+			pauseAllTimers();
+			m_gameState = SITUATION;
+		}
+		else
+		{
+			m_gameState = MAIN_GAME;
+		}
 	}
 
 	m_clientManager.removeClient(m_sofaManager);
 
+}
+
+void Game::pauseAllTimers()
+{
+	m_gameTimer.pauseTimer();
+	for (Sofa& sofa : m_sofaManager.m_sofas)
+	{
+		if (sofa.m_isBeingUsedByClient && sofa.m_isBeingUsed)
+		{
+			sofa.m_currentClient->m_lifetimeTimer.pauseTimer();
+			sofa.m_currentClient->m_spendMoneyTimer.pauseTimer();
+		}
+	}
 }
 
 void Game::HandleInputs()
