@@ -2,6 +2,7 @@
 #include <raylib.h>
 #include "Hostess.hpp";
 #include "Client.hpp";
+#include "Situation.hpp"
 
 class Sofa
 {
@@ -19,6 +20,7 @@ public:
 	Hostess* m_currentHostess;
 	Client* m_currentClient;
 	bool m_isBeingUsedByClient;
+	Situation* m_currentSituation;
 private:
 	float m_sofaSize = 0.35;
 	void isSofaBeingUsed();

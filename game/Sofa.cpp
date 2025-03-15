@@ -8,6 +8,7 @@ Sofa::Sofa(Vector2 position)
 	this->m_position = position;
 	m_area = getRect();
 	m_currentClient = nullptr;
+	m_currentSituation = nullptr;
 }
 
 Sofa::~Sofa()

@@ -64,6 +64,16 @@ void Game::Update()
 		m_clientManager.spawnClient(m_sofaManager);
 	}
 
+	if (IsKeyPressed(KEY_T))
+	{
+		Client* tempClient = m_sofaManager.m_sofas[0].m_currentClient;
+		Hostess* tempHostess = m_sofaManager.m_sofas[0].m_currentHostess;
+		m_sofaManager.m_sofas[0].m_currentSituation = new Situation();
+		m_sofaManager.m_sofas[0].m_currentSituation->setClientAndHostess(tempClient, tempHostess);
+		std::cout << m_sofaManager.m_sofas[0].m_currentSituation->situationName << std::endl;
+		
+	}
+
 	if (IsKeyPressed(KEY_C))
 	{
 		if (m_gameTimer.m_currentState == Timer::TimerState::NOT_PAUSED)

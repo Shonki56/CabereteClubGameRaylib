@@ -10,6 +10,7 @@
 #include "SofaManager.hpp"
 #include "ClientManager.hpp"
 #include "Timer.hpp";
+#include "Situation.hpp"
 
 
 
