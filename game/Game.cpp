@@ -66,12 +66,7 @@ void Game::Update()
 
 	if (IsKeyPressed(KEY_T))
 	{
-		Client* tempClient = m_sofaManager.m_sofas[0].m_currentClient;
-		Hostess* tempHostess = m_sofaManager.m_sofas[0].m_currentHostess;
-		m_sofaManager.m_sofas[0].m_currentSituation = new Situation();
-		m_sofaManager.m_sofas[0].m_currentSituation->setClientAndHostess(tempClient, tempHostess);
-		std::cout << m_sofaManager.m_sofas[0].m_currentSituation->situationName << std::endl;
-		
+		createSituation();
 	}
 
 	if (IsKeyPressed(KEY_C))
@@ -137,5 +132,19 @@ void Game::clientGiveMoney(Hostess* hostess, Client* client)
 {
 	hostess->m_moneyMade += client->m_howMuchToSpend();
 	std::cout << hostess->m_name << " has just made some money!\n";
+}
+
+void Game::createSituation()
+{
+	for (Sofa& sofa : m_sofaManager.m_sofas)
+	{
+		if (sofa.m_isBeingUsed  && sofa.m_currentSituation == nullptr)
+		{
+			sofa.m_currentSituation = new Situation();
+			sofa.m_currentSituation->setClientAndHostess(sofa.m_currentClient, sofa.m_currentHostess);
+			std::cout << sofa.m_currentSituation->situationName << std::endl;
+			return;
+		}
+	}
 }
 

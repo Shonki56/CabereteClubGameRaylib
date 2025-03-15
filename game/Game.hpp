@@ -33,5 +33,6 @@ private:
 	void clientGiveMoney(Hostess* hostess, Client* client);
 	SofaManager m_sofaManager;
 	ClientManager m_clientManager;
+	void createSituation();
 
 };

@@ -31,6 +31,7 @@ void HostessManager::placeHostess(Hostess& hostess, Sofa& sofa)
 		sofa.m_isBeingUsed = true;
 		sofa.m_currentHostess = &hostess;
 		sofa.m_currentClient->setTimers();
+		sofa.m_isBeingUsedByClientAndHostess = true;
 
 	}
 	else if (sofa.m_currentClient == nullptr)
@@ -52,6 +53,7 @@ void HostessManager::removeHostess(Hostess& hostess, Sofa& sofa)
 		sofa.m_isBeingUsed = false;
 		hostess.m_isBeingUsed = false;
 		sofa.m_currentHostess = nullptr;
+		sofa.m_isBeingUsedByClientAndHostess = false;
 
 	}
 	else

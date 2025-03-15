@@ -21,6 +21,7 @@ public:
 	Client* m_currentClient;
 	bool m_isBeingUsedByClient;
 	Situation* m_currentSituation;
+	bool m_isBeingUsedByClientAndHostess;
 private:
 	float m_sofaSize = 0.35;
 	void isSofaBeingUsed();
