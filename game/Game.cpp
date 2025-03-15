@@ -134,6 +134,8 @@ void Game::clientGiveMoney(Hostess* hostess, Client* client)
 	std::cout << hostess->m_name << " has just made some money!\n";
 }
 
+// Situation stuff
+
 void Game::createSituation()
 {
 	for (Sofa& sofa : m_sofaManager.m_sofas)

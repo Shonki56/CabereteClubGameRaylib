@@ -27,6 +27,11 @@ void Sofa::Draw()
 	{
 		DrawRectangleLinesEx(m_area, 2.0, WHITE);
 	}
+
+	if (m_currentSituation != nullptr)
+	{
+		DrawText("!", m_position.x, m_position.y - 100, 100, RED);
+	}
 }
 
 Rectangle Sofa::getRect()
