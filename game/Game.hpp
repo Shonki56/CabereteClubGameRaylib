@@ -17,6 +17,7 @@
 class Game
 {
 public:
+	enum GameState {MAIN_GAME, SITUATION, FEVER_TIME};
 	Game();
 	void Draw();
 	void Update();
@@ -27,12 +28,16 @@ public:
 	Timer m_gameTimer;
 	HostessManager m_hostessManager;
 	unsigned int m_moneyMade;
+	GameState m_currentGameState = MAIN_GAME;
 private:
 	void InitGame();
 	void displayHostessesFaces();
 	void clientGiveMoney(Hostess* hostess, Client* client);
 	SofaManager m_sofaManager;
 	ClientManager m_clientManager;
+	Situation* m_currentSituation = nullptr;
 	void createSituation();
+	void drawMainGame();
+	void drawCurrentSituation();
 
 };

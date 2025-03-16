@@ -5,6 +5,12 @@ Situation::Situation()
 	assignSituationType();
 }
 
+void Situation::Draw()
+{
+	DrawTexture(m_sofa, 500, 500, WHITE);
+	
+}
+
 void Situation::setClientAndHostess(Client* client, Hostess* hostess)
 {
 	m_pClient = client;

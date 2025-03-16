@@ -15,31 +15,14 @@ void Game::playGame()
 
 void Game::Draw()
 {
-	for (auto& sofa : m_sofaManager.m_sofas)
+	switch (m_currentGameState)
 	{
-		sofa.Draw();
-		
-		if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && sofa.m_isBeingUsedByClient == true && m_hostessManager.isAHostessCurrentlySelected() == true)
-		{
-			GUI::showHostessAndClientStats(m_hostessManager.m_selectedHostess, sofa.m_currentClient);
-			GUI::showComparison(m_hostessManager.m_selectedHostess, sofa.m_currentClient);
-		}
-
-		if (sofa.m_isBeingUsed && sofa.m_isBeingUsedByClient && sofa.m_currentClient->m_spendMoneyTimer.m_hasTimerRunOut)
-		{
-			clientGiveMoney(sofa.m_currentHostess, sofa.m_currentClient);
-			sofa.m_currentClient->m_spendMoneyTimer.resetTimer();
-		}
-	}
-
-	for (auto& hostess : m_hostessManager.m_hostesses)
-	{
-		hostess.Draw();
-	}
-
-	for (auto& client : m_clientManager.m_clients)
-	{
-		client->DrawAndUpdate();
+	case MAIN_GAME:
+		drawMainGame();
+		break;
+	case SITUATION:
+		drawCurrentSituation();
+		break;
 	}
 }
 
@@ -91,6 +74,11 @@ void Game::HandleInputs()
 {
 	m_hostessManager.handlePlacingHostesses(m_sofaManager);
 	m_hostessManager.handleSelectingHostesses();
+
+	if (CheckCollisionPointRec(GetMousePosition(), m_sofaManager.m_sofas[0].m_area) && m_sofaManager.m_sofas[0].m_currentSituation != nullptr)
+	{
+		m_sofaManager.m_sofas[0].m_currentSituation->Draw();
+	}
 }
 
 void Game::InitGame()
@@ -148,5 +136,41 @@ void Game::createSituation()
 			return;
 		}
 	}
+}
+
+void Game::drawMainGame()
+{
+	for (auto& sofa : m_sofaManager.m_sofas)
+	{
+		sofa.Draw();
+		
+		if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && sofa.m_isBeingUsedByClient == true && m_hostessManager.isAHostessCurrentlySelected() == true)
+		{
+			GUI::showHostessAndClientStats(m_hostessManager.m_selectedHostess, sofa.m_currentClient);
+			GUI::showComparison(m_hostessManager.m_selectedHostess, sofa.m_currentClient);
+		}
+
+		if (sofa.m_isBeingUsed && sofa.m_isBeingUsedByClient && sofa.m_currentClient->m_spendMoneyTimer.m_hasTimerRunOut)
+		{
+			clientGiveMoney(sofa.m_currentHostess, sofa.m_currentClient);
+			sofa.m_currentClient->m_spendMoneyTimer.resetTimer();
+		}
+	}
+
+	for (auto& hostess : m_hostessManager.m_hostesses)
+	{
+		hostess.Draw();
+	}
+
+	for (auto& client : m_clientManager.m_clients)
+	{
+		client->DrawAndUpdate();
+	}
+
+}
+
+void Game::drawCurrentSituation()
+{
+	m_currentSituation->Draw();
 }
 
