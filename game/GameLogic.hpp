@@ -2,11 +2,12 @@
 #include "Sofa.h"
 #include "Client.hpp"
 #include "Hostess.hpp"
+#include "Situation.hpp"
+#include "raygui.h"
 
 
 namespace GameLogic
 {
-	void clientSpendMoney(Hostess* hostess, const Client* client);
-	void howOftenToGiveMoney(Client* client);
-	void playSituation(Hostess* hostess, Client* client);
+	void situationLogic(Hostess* hostess, Client* client);
+
 }

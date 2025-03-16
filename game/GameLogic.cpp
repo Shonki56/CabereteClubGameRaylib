@@ -2,5 +2,8 @@
 
 // Depending on how happy the client are the spend money more quickly but the amount is the same
 
-enum questionType {TOWEL, MENU, SHOT_GLASS
-};
+void GameLogic::situationLogic(Hostess* hostess, Client* client)
+{
+	Rectangle test;
+	GuiGroupBox(test, "This is a test");
+}
