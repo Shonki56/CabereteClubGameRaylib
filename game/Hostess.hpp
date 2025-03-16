@@ -24,5 +24,4 @@ public:
 	float m_extraXNeeded = 0;
 	float m_extraYNeeded = 0;
 	float m_textureScale = 1.3;
-
 };

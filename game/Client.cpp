@@ -84,6 +84,18 @@ void Client::setTimers()
 	m_lifetimeTimer.startTimer();
 }
 
+void Client::pauseTimers()
+{
+	m_lifetimeTimer.pauseTimer();
+	m_spendMoneyTimer.pauseTimer();
+}
+
+void Client::continueTimers()
+{
+	m_lifetimeTimer.continueTimer();
+	m_spendMoneyTimer.continueTimer();
+}
+
 float Client::getClientHappinessHowOftenToSpendMoney()
 {
 	switch (m_happiness)

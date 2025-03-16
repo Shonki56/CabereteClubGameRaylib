@@ -29,6 +29,8 @@ public:
 	bool m_timeToPay = false;
 	void setTimers();
 	float m_textureScale = 10;
+	void pauseTimers();
+	void continueTimers();
 private:
 	float getClientHappinessHowOftenToSpendMoney();
 	void createStatsAndTraits();

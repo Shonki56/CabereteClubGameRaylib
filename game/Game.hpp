@@ -39,5 +39,7 @@ private:
 	void createSituation();
 	void drawMainGame();
 	void drawCurrentSituation();
+	void pauseAllTimers();
+	void continueAllTimers();
 
 };

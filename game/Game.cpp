@@ -85,6 +85,7 @@ void Game::HandleInputs()
 		{
 			m_currentSituation = sofa.m_currentSituation;
 			m_currentGameState = SITUATION;
+			pauseAllTimers();
 		}
 	}
 }
@@ -182,4 +183,30 @@ void Game::drawCurrentSituation()
 {
 	m_currentSituation->Draw();
 }
+
+void Game::pauseAllTimers()
+{
+	for (auto& client : m_clientManager.m_clients)
+	{
+		Client& ptrclient = *client;
+
+		ptrclient.pauseTimers();
+	}
+
+	m_gameTimer.pauseTimer();
+}
+
+void Game::continueAllTimers()
+{
+	for (auto& client : m_clientManager.m_clients)
+	{
+		Client& ptrclient = *client;
+
+		ptrclient.continueTimers();
+	}
+
+	m_gameTimer.continueTimer();
+}
+
+
 
