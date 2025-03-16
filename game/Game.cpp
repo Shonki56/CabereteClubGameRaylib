@@ -30,7 +30,6 @@ void Game::Update()
 {
 	m_sofaManager.freeEmptySofas();
 	HandleInputs();
-	displayHostessesFaces();
 	if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
 	{
 		std::cout << "Mouse X Pos:" << GetMousePosition().x << std::endl;
@@ -75,9 +74,18 @@ void Game::HandleInputs()
 	m_hostessManager.handlePlacingHostesses(m_sofaManager);
 	m_hostessManager.handleSelectingHostesses();
 
-	if (CheckCollisionPointRec(GetMousePosition(), m_sofaManager.m_sofas[0].m_area) && m_sofaManager.m_sofas[0].m_currentSituation != nullptr)
+	for (int i = 0; i < 4; i++)
 	{
-		m_sofaManager.m_sofas[0].m_currentSituation->Draw();
+
+	}
+
+	for (Sofa& sofa : m_sofaManager.m_sofas)
+	{
+		if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && IsMouseButtonPressed(MOUSE_BUTTON_RIGHT) && sofa.m_currentSituation != nullptr)
+		{
+			m_currentSituation = sofa.m_currentSituation;
+			m_currentGameState = SITUATION;
+		}
 	}
 }
 
@@ -167,6 +175,7 @@ void Game::drawMainGame()
 		client->DrawAndUpdate();
 	}
 
+	displayHostessesFaces();
 }
 
 void Game::drawCurrentSituation()
