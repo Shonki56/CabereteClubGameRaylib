@@ -28,6 +28,7 @@ public:
 	float m_howMuchToSpend();
 	bool m_timeToPay = false;
 	void setTimers();
+	float m_textureScale = 10;
 private:
 	float getClientHappinessHowOftenToSpendMoney();
 	void createStatsAndTraits();
