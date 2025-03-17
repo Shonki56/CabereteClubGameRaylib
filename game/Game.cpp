@@ -149,6 +149,9 @@ void Game::createSituation()
 
 void Game::drawMainGame()
 {
+	Rectangle rec{ 24,24,120,30 };
+	int button = GuiButton(rec, "Something");
+
 	for (auto& sofa : m_sofaManager.m_sofas)
 	{
 		sofa.Draw();

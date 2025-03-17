@@ -6,6 +6,7 @@
 #include "include/raygui.h"
 #include <iomanip>
 #include "HostessManager.hpp"
+#include "Situation.hpp"
 
 namespace GUI
 {

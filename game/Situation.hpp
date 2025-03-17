@@ -3,6 +3,8 @@
 #include <string>
 #include "Client.hpp"
 #include "Hostess.hpp"
+#include "GUI.hpp"
+#include "include/raygui.h"
 
 class Situation
 {
@@ -20,6 +22,8 @@ public:
 	Vector2 m_sofaPosition = { 400, 500 };
 	Vector2 m_clientPosition = { m_sofaPosition.x + 450, m_sofaPosition.y};
 	Vector2 m_hostessPosition = { m_sofaPosition.x + 150, m_sofaPosition.y - 50};
+	void displayAndSetPlayerAnswer();
+	SituationType m_playerAnswer;
 private:
 	void assignSituationType();
 

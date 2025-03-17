@@ -4,6 +4,6 @@
 
 void GameLogic::situationLogic(Hostess* hostess, Client* client)
 {
-	Rectangle test;
-	GuiGroupBox(test, "This is a test");
+	//Rectangle test;
+	//GuiGroupBox(test, "This is a test");
 }
