@@ -8,6 +8,5 @@
 
 namespace GameLogic
 {
-	void situationLogic(Hostess* hostess, Client* client);
 
 }
