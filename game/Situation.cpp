@@ -8,8 +8,7 @@ Situation::Situation()
 
 void Situation::Draw()
 {
-	DrawTexture(m_sofa, 500, 500, WHITE);
-	//DrawTexture(m_pClient->m_clientImage, 600, 500, WHITE);
+	DrawTexture(m_sofaTexture, 500, 500, WHITE);
 	DrawTextureEx(m_pClient->m_clientImage, m_clientPosition, 0, m_pClient->m_textureScale, WHITE);
 	DrawTextureEx(m_pHostess->m_image, m_hostessPosition, 0, m_pHostess->m_textureScale, WHITE);
 	showChoicesAndSetPlayerChoice();
@@ -19,10 +18,12 @@ void Situation::setClientAndHostess(Client* client, Hostess* hostess)
 {
 	Client* clientCopy = new Client(*client);
 	m_pClient = clientCopy;
+	m_pClient->m_hasHadSituation = true;
 
 
 	Hostess* hostessCopy = new Hostess(*hostess);
 	m_pHostess = hostessCopy;
+
 
 }
 
@@ -66,6 +67,12 @@ void Situation::answerChecker()
 	if (m_playerChoice == m_sitType)
 	{
 		std::cout << "Player chose correctly!\n";
+		m_isSituationOver = true;
+	}
+	else
+	{
+		std::cout << "Player has chosen incorrectly\n";
+		m_isSituationOver = true;
 	}
 }
 

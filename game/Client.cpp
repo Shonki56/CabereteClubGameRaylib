@@ -33,6 +33,7 @@ void Client::DrawAndUpdate()
 	}
 	m_lifetimeTimer.updateCurrentTimeAndTimeLeft();
 	m_spendMoneyTimer.updateCurrentTimeAndTimeLeft();
+
 }
 
 void Client::getCorrectType()

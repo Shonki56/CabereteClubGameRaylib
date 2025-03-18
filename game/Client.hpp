@@ -31,6 +31,7 @@ public:
 	float m_textureScale = 10;
 	void pauseTimers();
 	void continueTimers();
+	bool m_hasHadSituation = false;
 private:
 	float getClientHappinessHowOftenToSpendMoney();
 	void createStatsAndTraits();

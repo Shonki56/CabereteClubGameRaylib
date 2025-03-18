@@ -67,6 +67,16 @@ void Game::Update()
 	m_gameTimer.updateCurrentTimeAndTimeLeft();
 	GUI::showTimer(m_gameTimer.getTimeLeft());
 
+	if (m_currentSituation != nullptr)
+	{
+		if (m_currentSituation->m_isSituationOver)
+		{
+			m_currentGameState = MAIN_GAME;
+			m_currentSituation = nullptr;
+			continueAllTimers();
+		}
+	}
+
 }
 
 void Game::HandleInputs()
@@ -74,17 +84,13 @@ void Game::HandleInputs()
 	m_hostessManager.handlePlacingHostesses(m_sofaManager);
 	m_hostessManager.handleSelectingHostesses();
 
-	for (int i = 0; i < 4; i++)
-	{
-
-	}
-
 	for (Sofa& sofa : m_sofaManager.m_sofas)
 	{
 		if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && IsMouseButtonPressed(MOUSE_BUTTON_RIGHT) && sofa.m_currentSituation != nullptr)
 		{
 			m_currentSituation = sofa.m_currentSituation;
 			m_currentGameState = SITUATION;
+			sofa.m_currentClient->m_hasHadSituation = true;
 			pauseAllTimers();
 		}
 	}

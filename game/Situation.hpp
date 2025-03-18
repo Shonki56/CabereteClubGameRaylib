@@ -13,7 +13,7 @@ public:
 	void Draw();
 	Client* m_pClient;
 	Hostess* m_pHostess;
-	Texture2D m_sofa = LoadTexture("resources/Images/sofa.png");
+	Texture2D m_sofaTexture = LoadTexture("resources/Images/sofa.png");
 	SituationType m_sitType;
 	std::string situationNames[5] = {"", "Small Glass", "Big Glass", "Towel", "Menu" };
 	std::string situationName;
@@ -23,8 +23,9 @@ public:
 	Vector2 m_hostessPosition = { m_sofaPosition.x + 150, m_sofaPosition.y - 50};
 	SituationType m_playerChoice = DEFAULT;
 	void showChoicesAndSetPlayerChoice();
-	void answerChecker();
+	bool m_isSituationOver = false;
 private:
 	void assignSituationType();
+	void answerChecker();
 
 };
