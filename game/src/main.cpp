@@ -32,6 +32,8 @@ Use this as a starting point or replace it with your code.
 #include "include/json.hpp"
 //TEST
 #include "Gui.hpp"
+#define RAYGUI_IMPLEMENTATION
+#include "include/raygui.h"
 
 enum GameState {TITLE, MAIN_GAME, PAUSED, END};
 

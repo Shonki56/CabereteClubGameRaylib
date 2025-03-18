@@ -560,8 +560,8 @@ typedef enum {
     BACKGROUND_COLOR,           // Background color
     TEXT_LINE_SPACING,          // Text spacing between lines
     TEXT_ALIGNMENT_VERTICAL,    // Text vertical alignment inside text bounds (after border and padding)
-    TEXT_WRAP_MODE              // Text wrap-mode inside text bounds
-    //TEXT_DECORATION             // Text decoration: 0-None, 1-Underline, 2-Line-through, 3-Overline
+    TEXT_WRAP_MODE,              // Text wrap-mode inside text bounds
+    //TEXT_DECORATION = 1             // Text decoration: 0-None, 1-Underline, 2-Line-through, 3-Overline
     //TEXT_DECORATION_THICK       // Text decoration line thikness
 } GuiDefaultProperty;
 
