@@ -30,36 +30,49 @@ void Situation::showChoicesAndSetPlayerChoice()
 {
 	Rectangle test{ 100, 200, 300, 430 };
 	GuiGroupBox(test, "Choices");
-	GuiSetStyle(GuiControl::BUTTON, GuiDefaultProperty::TEXT_SIZE, 32);
+	GuiSetStyle(DEFAULT, GuiDefaultProperty::TEXT_SIZE, 32);
 	GuiSetStyle(DEFAULT, GuiDefaultProperty::TEXT_SPACING, 8);
 	Vector2 startPosition{ 100, 100 };
 	Rectangle smallGlassRec{ test.x, test.y + 30, 300, 60 };
 	Rectangle bigGlassRec{ test.x, test.y + 130, 300, 60 };
 	Rectangle towelRec{ test.x, test.y + 230, 300, 60 };
 	Rectangle menuRec{ test.x, test.y + 330, 300, 60 };
-	if (GuiButton(smallGlassRec, situationNames[0].c_str()))
+	if (GuiButton(smallGlassRec, situationNames[1].c_str()))
 	{
 		m_playerChoice = SMALL_GLASS;
+		answerChecker();
 	}
-	if (GuiButton(bigGlassRec, situationNames[1].c_str()))
+	if (GuiButton(bigGlassRec, situationNames[2].c_str()))
 	{
 		m_playerChoice = BIG_GLASS;
+		answerChecker();
 	}
-	if (GuiButton(towelRec, situationNames[2].c_str()))
+	if (GuiButton(towelRec, situationNames[3].c_str()))
 	{
 		m_playerChoice = TOWEL;
+		answerChecker();
 	}
-	if (GuiButton(menuRec, situationNames[3].c_str()))
+	if (GuiButton(menuRec, situationNames[4].c_str()))
 	{
 		m_playerChoice = MENU;
+		answerChecker();
 	}
 
 
 }
 
+void Situation::answerChecker()
+{
+	if (m_playerChoice == m_sitType)
+	{
+		std::cout << "Player chose correctly!\n";
+	}
+}
+
 void Situation::assignSituationType()
 {
-	int random = GetRandomValue(0, 3);
+	int random = GetRandomValue(1, 4);
+	std::cout << random << std::endl;
 	m_sitType = static_cast<SituationType>(random);
 	situationName = situationNames[random];
 }
