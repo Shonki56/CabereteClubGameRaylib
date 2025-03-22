@@ -3,7 +3,7 @@
 Situation::Situation()
 {
 	assignSituationType();
-	
+	setHostessNeedTexture();
 }
 
 void Situation::Draw()
@@ -12,6 +12,22 @@ void Situation::Draw()
 	DrawTextureEx(m_pClient->m_clientImage, m_clientPosition, 0, m_pClient->m_textureScale, WHITE);
 	DrawTextureEx(m_pHostess->m_image, m_hostessPosition, 0, m_pHostess->m_textureScale, WHITE);
 	showChoicesAndSetPlayerChoice();
+
+	switch (m_sitType)
+	{
+	case TOWEL:
+		DrawRectangleRec(m_hostessNeed, BLUE);
+		break;
+	case BIG_GLASS:
+		DrawTextureEx(m_hostessNeddTexture, { 800, 300 }, 0, 0.25, WHITE);
+		break;
+	case SMALL_GLASS:
+		DrawTextureEx(m_hostessNeddTexture, { 800, 350 }, 0, 0.5, WHITE);
+		break;
+	case MENU:
+		DrawTextureEx(m_hostessNeddTexture, { 800, 350 }, 0, 0.5, WHITE);
+		break;
+	}
 }
 
 void Situation::setClientAndHostess(Client* client, Hostess* hostess)
@@ -73,6 +89,22 @@ void Situation::answerChecker()
 	{
 		std::cout << "Player has chosen incorrectly\n";
 		m_isSituationOver = true;
+	}
+}
+
+void Situation::setHostessNeedTexture()
+{
+	switch (m_sitType)
+	{
+	case SMALL_GLASS:
+		m_hostessNeddTexture = LoadTexture("resources/Images/Situations/small_glass.png");
+		break;
+	case BIG_GLASS:
+		m_hostessNeddTexture = LoadTexture("resources/Images/Situations/large_glass.png");
+		break;
+	case MENU:
+		m_hostessNeddTexture = LoadTexture("resources/Images/Situations/menu.jpg");
+		break;
 	}
 }
 

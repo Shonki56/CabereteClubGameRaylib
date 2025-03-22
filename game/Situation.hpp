@@ -24,8 +24,11 @@ public:
 	SituationType m_playerChoice = DEFAULT;
 	void showChoicesAndSetPlayerChoice();
 	bool m_isSituationOver = false;
+	Rectangle m_hostessNeed{843, 400, 100, 100};
+	Texture2D m_hostessNeddTexture;
 private:
 	void assignSituationType();
 	void answerChecker();
+	void setHostessNeedTexture();
 
 };
