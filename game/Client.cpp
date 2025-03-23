@@ -80,7 +80,7 @@ float Client::m_howMuchToSpend()
 void Client::setTimers()
 {
 	m_spendMoneyTimer.setTotalTime(getClientHappinessHowOftenToSpendMoney());
-	m_lifetimeTimer.setTotalTime(20);
+	m_lifetimeTimer.setTotalTime(50);
 	m_spendMoneyTimer.startTimer();
 	m_lifetimeTimer.startTimer();
 }
@@ -95,6 +95,13 @@ void Client::continueTimers()
 {
 	m_lifetimeTimer.continueTimer();
 	m_spendMoneyTimer.continueTimer();
+}
+
+void Client::setHowOftenToSpendMoney()
+{
+	float time = getClientHappinessHowOftenToSpendMoney();
+	std::cout << time << std::endl;
+	m_spendMoneyTimer.setTotalTime(time);
 }
 
 float Client::getClientHappinessHowOftenToSpendMoney()

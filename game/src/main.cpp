@@ -55,7 +55,7 @@ int main()
             {
                 initialState = MAIN_GAME;
                 //game.m_gameTimer.setTotalTime(game.m_timePerNight);
-                game.m_gameTimer.setTotalTime(30.0f);
+                game.m_gameTimer.setTotalTime(180);
                 game.m_gameTimer.startTimer();
             }
             break;

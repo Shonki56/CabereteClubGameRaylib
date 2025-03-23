@@ -22,6 +22,6 @@ public:
 	StatsAndTraits m_statsAndTraits;
 	int m_moneyMade;
 	float m_extraXNeeded = 0;
-	float m_extraYNeeded = 0;
-	float m_textureScale = 1.3;
+	double m_extraYNeeded = 0;
+	double m_textureScale = 1.3;
 };
