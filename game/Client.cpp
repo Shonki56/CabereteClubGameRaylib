@@ -94,7 +94,7 @@ void Client::pauseTimers()
 void Client::continueTimers()
 {
 	m_lifetimeTimer.continueTimer();
-	m_spendMoneyTimer.continueTimer();
+	m_spendMoneyTimer.continueTimerWithoutAddingPausedTime(); // No longer adding paused time, but now it isnt using the correct time
 }
 
 void Client::setHowOftenToSpendMoney()

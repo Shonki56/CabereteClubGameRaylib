@@ -103,6 +103,7 @@ void Situation::answerChecker()
 			}
 			m_pClient->setHowOftenToSpendMoney();
 			m_pClient->m_spendMoneyTimer.resetTimer();
+			std::cout << "Total time for payout is: " << m_pClient->m_spendMoneyTimer.getTotalTime() << std::endl;
 			std::cout << "Client payout time is now: " << m_pClient->m_spendMoneyTimer.getTimeLeft();
 		}
 	}

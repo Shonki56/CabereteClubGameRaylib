@@ -73,7 +73,7 @@ void Game::Update()
 		{
 			m_currentGameState = MAIN_GAME;
 			m_currentSituation = nullptr;
-			continueAllTimers();
+			continueAllTimers(); // this causing the extra seconds added to timer
 		}
 	}
 
@@ -135,6 +135,7 @@ void Game::clientGiveMoney(Hostess* hostess, Client* client)
 {
 	hostess->m_moneyMade += client->m_howMuchToSpend();
 	std::cout << hostess->m_name << " has just made some money! \n";
+	std::cout << "This is in Game::clientGiveMoney \t Client total time remaining: " << client->m_spendMoneyTimer.getTotalTime() << std::endl;
 }
 
 // Situation stuff
@@ -212,6 +213,11 @@ void Game::continueAllTimers()
 	}
 
 	m_gameTimer.continueTimer();
+}
+
+void Game::endSituation()
+{
+
 }
 
 

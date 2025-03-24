@@ -29,7 +29,6 @@ void Timer::updateCurrentTimeAndTimeLeft()
 void Timer::setTotalTime(float time)
 {
 	m_totalTime = time;
-	m_timeLeft = time;
 }
 
 void Timer::resetTimer()
@@ -42,6 +41,12 @@ void Timer::resetTimer()
 		m_hasTimerRunOut = false;
 	}
 }
+
+void Timer::continueTimerWithoutAddingPausedTime()
+{
+	m_currentState = TimerState::NOT_PAUSED;
+}
+
 
 void Timer::pauseTimer()
 {
@@ -61,7 +66,7 @@ void Timer::startTimer()
 void Timer::continueTimer()
 {
 	float pausedDuration = GetTime() - m_timePaused;
-	m_totalTime += pausedDuration;
+	m_totalTime += pausedDuration; // this is causing the bug!! its adding the paused duration on
 	m_currentState = TimerState::NOT_PAUSED;
 }
 

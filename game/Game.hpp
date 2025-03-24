@@ -41,5 +41,6 @@ private:
 	void drawCurrentSituation();
 	void pauseAllTimers();
 	void continueAllTimers();
+	void endSituation();
 
 };
