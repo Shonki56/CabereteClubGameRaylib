@@ -30,5 +30,6 @@ private:
 	void assignSituationType();
 	void answerChecker();
 	void setHostessNeedTexture();
+	void improveHappiness();
 
 };

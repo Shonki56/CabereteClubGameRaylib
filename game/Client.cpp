@@ -33,6 +33,7 @@ void Client::DrawAndUpdate()
 	}
 	m_lifetimeTimer.updateCurrentTimeAndTimeLeft();
 	m_spendMoneyTimer.updateCurrentTimeAndTimeLeft();
+	//std::cout << m_spendMoneyTimer.getTimeLeft() << std::endl; // for some reason it resets back to old value
 
 }
 

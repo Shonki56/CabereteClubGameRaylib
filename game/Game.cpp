@@ -134,8 +134,8 @@ void Game::displayHostessesFaces()
 void Game::clientGiveMoney(Hostess* hostess, Client* client)
 {
 	hostess->m_moneyMade += client->m_howMuchToSpend();
-	std::cout << hostess->m_name << " has just made some money! \n";
 	std::cout << "This is in Game::clientGiveMoney \t Client total time remaining: " << client->m_spendMoneyTimer.getTotalTime() << std::endl;
+	std::cout << "This is in Game::clientGiveMoney \t Client happiness level: " << client->m_happiness << std::endl;
 }
 
 // Situation stuff
