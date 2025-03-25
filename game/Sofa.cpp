@@ -28,7 +28,7 @@ void Sofa::Draw()
 		DrawRectangleLinesEx(m_area, 2.0, WHITE);
 	}
 
-	if (m_currentSituation != nullptr && m_currentClient != nullptr && m_currentClient->m_hasHadSituation == false)
+	if (m_currentSituation != nullptr && m_currentClient != nullptr && m_currentClient->m_hasHadSituation == false && m_isBeingUsedByClientAndHostess == true)
 	{
 		DrawText("!", m_position.x, m_position.y - 100, 100, RED);
 	}
@@ -65,6 +65,7 @@ void Sofa::isSofaBeingUsed()
 			else
 			{
 				m_isBeingUsed = false;
+				m_currentSituation = nullptr; // hasn't worked
 				std::cout << "Now False!\n";
 			}
 		}

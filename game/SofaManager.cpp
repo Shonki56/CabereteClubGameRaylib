@@ -50,6 +50,8 @@ void SofaManager::freeEmptySofas()
 		{
 			sofa.m_currentHostess->m_isBeingUsed = false;
 			sofa.m_isBeingUsed = false;
+			sofa.m_isBeingUsedByClientAndHostess = false;
+			sofa.m_currentSituation = nullptr;
 		}
 	}
 }

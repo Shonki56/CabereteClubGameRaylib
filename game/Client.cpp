@@ -81,7 +81,7 @@ float Client::m_howMuchToSpend()
 void Client::setTimers()
 {
 	m_spendMoneyTimer.setTotalTime(getClientHappinessHowOftenToSpendMoney());
-	m_lifetimeTimer.setTotalTime(50);
+	m_lifetimeTimer.setTotalTime(15);
 	m_spendMoneyTimer.startTimer();
 	m_lifetimeTimer.startTimer();
 }
