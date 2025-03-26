@@ -12,5 +12,6 @@ public:
 	void freeEmptySofas();
 private:
 	void fillSofasVector();
+	void freeSingleSofa(Sofa& sofa);
 
 };

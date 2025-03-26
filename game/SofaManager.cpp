@@ -16,6 +16,14 @@ void SofaManager::fillSofasVector()
 	}
 }
 
+void SofaManager::freeSingleSofa(Sofa& sofa)
+{
+	sofa.m_currentHostess->m_isBeingUsed = false;
+	sofa.m_isBeingUsed = false;
+	sofa.m_isBeingUsedByClientAndHostess = false;
+	sofa.m_currentSituation = nullptr;
+}
+
 SofaManager::SofaManager()
 {
 	fillSofasVector();
@@ -48,10 +56,7 @@ void SofaManager::freeEmptySofas()
 	{
 		if (sofa.m_isBeingUsedByClient == false)
 		{
-			sofa.m_currentHostess->m_isBeingUsed = false;
-			sofa.m_isBeingUsed = false;
-			sofa.m_isBeingUsedByClientAndHostess = false;
-			sofa.m_currentSituation = nullptr;
+			freeSingleSofa(sofa);
 		}
 	}
 }
