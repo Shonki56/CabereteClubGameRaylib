@@ -22,6 +22,9 @@ public:
 	bool m_isBeingUsedByClient;
 	Situation* m_currentSituation;
 	bool m_isBeingUsedByClientAndHostess;
+	void createSituation();
+	bool checkIfPressedToStartSituation();
+	bool m_hasBeenPressedToStartSituation = false;
 private:
 	float m_sofaSize = 0.35;
 	void isSofaBeingUsed();

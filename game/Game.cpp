@@ -30,12 +30,6 @@ void Game::Update()
 {
 	m_sofaManager.freeEmptySofas();
 	HandleInputs();
-	if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
-	{
-		std::cout << "Mouse X Pos:" << GetMousePosition().x << std::endl;
-		std::cout << "Mouse Y Pos:" << GetMousePosition().y << std::endl;
-	}
-
 	//if (m_clients.size() < 4)
 	//{
 	//	//generateClient();
@@ -46,10 +40,6 @@ void Game::Update()
 		m_clientManager.spawnClient(m_sofaManager);
 	}
 
-	if (IsKeyPressed(KEY_T))
-	{
-		createSituation();
-	}
 
 	if (IsKeyPressed(KEY_C))
 	{
@@ -76,6 +66,9 @@ void Game::Update()
 			continueAllTimers(); // this causing the extra seconds added to timer
 		}
 	}
+	 
+	 
+
 
 }
 
@@ -86,7 +79,7 @@ void Game::HandleInputs()
 
 	for (Sofa& sofa : m_sofaManager.m_sofas)
 	{
-		if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && IsMouseButtonPressed(MOUSE_BUTTON_RIGHT) && sofa.m_currentSituation != nullptr)
+		if (sofa.checkIfPressedToStartSituation())
 		{
 			m_currentSituation = sofa.m_currentSituation;
 			m_currentGameState = SITUATION;
@@ -140,19 +133,21 @@ void Game::clientGiveMoney(Hostess* hostess, Client* client)
 
 // Situation stuff
 
-void Game::createSituation()
-{
-	for (Sofa& sofa : m_sofaManager.m_sofas)
-	{
-		if (sofa.m_isBeingUsed  && sofa.m_currentSituation == nullptr)
-		{
-			sofa.m_currentSituation = new Situation();
-			sofa.m_currentSituation->setClientAndHostess(sofa.m_currentClient, sofa.m_currentHostess);
-			std::cout << sofa.m_currentSituation->situationName << std::endl;
-			return;
-		}
-	}
-}
+//void Game::createSituation() // this doesn't work properly
+//{
+//	for (Sofa& sofa : m_sofaManager.m_sofas)
+//	{
+//		if (sofa.m_isBeingUsed  && sofa.m_currentSituation == nullptr)
+//		{
+//			sofa.m_currentSituation = new Situation();
+//			sofa.m_currentSituation->setClientAndHostess(sofa.m_currentClient, sofa.m_currentHostess);
+//			std::cout << sofa.m_currentSituation->situationName << std::endl;
+//			return;
+//		}
+//	}
+//}
+
+// should create situation only when its pressed on.
 
 void Game::drawMainGame()
 {

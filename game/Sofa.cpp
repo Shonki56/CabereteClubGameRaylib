@@ -32,6 +32,11 @@ void Sofa::Draw()
 	{
 		DrawText("!", m_position.x, m_position.y - 100, 100, RED);
 	}
+
+	if (m_currentSituation == nullptr && m_currentClient != nullptr && m_currentHostess != nullptr)
+	{
+		createSituation();
+	}
 }
 
 Rectangle Sofa::getRect()
@@ -48,6 +53,25 @@ void Sofa::ChangeToActive()
 {
 	m_isBeingUsed = true;
 	std::cout << "Changed to active!\n";
+}
+
+void Sofa::createSituation()
+{
+	if (m_currentClient->m_hasSituationReady == true && m_currentClient->m_hasHadSituation == false)
+	{
+		m_currentSituation = new Situation(m_currentHostess, m_currentClient);
+		std::cout << "Situation Created!" << std::endl;
+	}
+}
+
+bool Sofa::checkIfPressedToStartSituation()
+{
+	if (CheckCollisionPointRec(GetMousePosition(), m_area) && IsMouseButtonPressed(MOUSE_BUTTON_RIGHT) && m_currentSituation != nullptr)
+	{
+		m_currentClient->m_hasHadSituation = true;
+		std::cout << "Situation pressed on\t";
+		return true;
+	}
 }
 
 void Sofa::isSofaBeingUsed()

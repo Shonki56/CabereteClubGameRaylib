@@ -1,9 +1,11 @@
 #include "Situation.hpp"
 
-Situation::Situation()
+Situation::Situation(Hostess* hostess, Client* client)
 {
 	assignSituationType();
 	setHostessNeedTexture();
+	m_pClient = client;
+	m_pHostess = hostess;
 }
 
 void Situation::Draw()
@@ -28,23 +30,6 @@ void Situation::Draw()
 		DrawTextureEx(m_hostessNeddTexture, { 800, 350 }, 0, 0.5, WHITE);
 		break;
 	}
-}
-
-void Situation::setClientAndHostess(Client* client, Hostess* hostess)
-{
-	//Client* clientCopy = new Client(*client);
-	//m_pClient = clientCopy;
-	//m_pClient->m_hasHadSituation = true;
-
-
-	//Hostess* hostessCopy = new Hostess(*hostess);
-	//m_pHostess = hostessCopy;
-
-	m_pClient = client;
-
-	m_pHostess = hostess;
-
-
 }
 
 void Situation::showChoicesAndSetPlayerChoice()
@@ -95,7 +80,6 @@ void Situation::answerChecker()
 			int improveClientHappiness = currentClientHappiness + 1;
 			std::cout << "improved client happiness: " << improveClientHappiness << std::endl;
 			m_pClient->m_happiness = static_cast<clientHappiness>(improveClientHappiness);
-			//improveHappiness(); // not changing the value on the client pointer for some reason
 
 			
 			switch (m_pClient->m_happiness)
@@ -142,6 +126,12 @@ void Situation::setHostessNeedTexture()
 void Situation::improveHappiness()
 {
 	m_pClient->m_happiness = HIGH;
+}
+
+void Situation::setTextures()
+{
+	m_clientTexture = m_pClient->m_clientImage;
+	m_hostessTexture = m_pHostess->m_image;
 }
 
 void Situation::assignSituationType()

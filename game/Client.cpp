@@ -35,6 +35,11 @@ void Client::DrawAndUpdate()
 	m_spendMoneyTimer.updateCurrentTimeAndTimeLeft();
 	//std::cout << m_spendMoneyTimer.getTimeLeft() << std::endl; // for some reason it resets back to old value
 
+	if (m_hasHadSituation == false && m_hasSituationReady == false)
+	{
+		situationProbabilityMaker();
+	}
+
 }
 
 void Client::getCorrectType()
@@ -104,6 +109,17 @@ void Client::setHowOftenToSpendMoney()
 	std::cout << time << std::endl;
 	m_spendMoneyTimer.setTotalTime(time);
 }
+
+void Client::situationProbabilityMaker()
+{
+	int randomNumber = GetRandomValue(1, 100);
+	if (randomNumber == 33)
+	{
+		m_hasSituationReady = true;
+	}
+
+}
+
 
 float Client::getClientHappinessHowOftenToSpendMoney()
 {

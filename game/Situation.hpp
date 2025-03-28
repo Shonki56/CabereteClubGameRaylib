@@ -12,6 +12,8 @@ public:
 	Client* m_pClient;
 	Hostess* m_pHostess;
 	Texture2D m_sofaTexture = LoadTexture("resources/Images/sofa.png");
+	Texture2D m_clientTexture;
+	Texture2D m_hostessTexture;
 	SituationType m_sitType;
 	std::string situationNames[5] = {"", "Small Glass", "Big Glass", "Towel", "Menu" };
 	std::string situationName;
@@ -24,9 +26,10 @@ public:
 	bool m_isSituationOver = false;
 	void showChoicesAndSetPlayerChoice();
 	void setClientAndHostess(Client* client, Hostess* hostess);
-	Situation();
+	Situation(Hostess* hostess, Client* client);
 	void Draw();
 private:
+	void setTextures();
 	void assignSituationType();
 	void answerChecker();
 	void setHostessNeedTexture();
