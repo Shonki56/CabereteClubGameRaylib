@@ -58,7 +58,7 @@ void Sofa::ChangeToActive()
 
 void Sofa::createSituationIfNeeded()
 {
-	int randomNum = GetRandomValue(1, 2500);
+	int randomNum = GetRandomValue(1, 500);
 	if (m_currentSituation == nullptr && randomNum == 33)
 	{
 		createSituation();
