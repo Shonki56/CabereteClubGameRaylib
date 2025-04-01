@@ -82,19 +82,6 @@ void Situation::answerChecker()
 			int currentClientHappiness = static_cast<int>(m_pClient->m_happiness);
 			int improveClientHappiness = currentClientHappiness + 1;
 			m_pClient->m_happiness = static_cast<clientHappiness>(improveClientHappiness);
-			
-			switch (m_pClient->m_happiness)
-			{
-			case LOW:
-				std::cout << "LOW\n";
-				break;
-			case MEDIUM:
-				std::cout << "MEDIUM\n";
-				break;
-			case HIGH:
-				std::cout << "HIGH\n";
-				break;
-			}
 			m_pClient->setHowOftenToSpendMoney();
 			m_pClient->m_spendMoneyTimer.resetTimer();
 		}
