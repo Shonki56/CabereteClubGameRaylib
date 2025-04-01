@@ -89,7 +89,6 @@ void Situation::answerChecker()
 	if (m_playerChoice == m_sitType)
 	{
 		std::cout << "Player chose correctly!\n";
-		m_isSituationOver = true;
 		if (m_pClient->m_happiness != clientHappiness::HIGH)
 		{
 			int currentClientHappiness = static_cast<int>(m_pClient->m_happiness);
@@ -98,6 +97,7 @@ void Situation::answerChecker()
 			m_pClient->setHowOftenToSpendMoney();
 			m_pClient->m_spendMoneyTimer.resetTimer();
 		}
+		m_isSituationOver = true;
 	}
 	else
 	{

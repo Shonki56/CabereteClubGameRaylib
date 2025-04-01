@@ -48,17 +48,16 @@ void HostessManager::placeHostess(Hostess& hostess, Sofa& sofa)
 
 void HostessManager::removeHostess(Hostess& hostess, Sofa& sofa)
 {
-	if (sofa.m_isBeingUsed && sofa.m_currentHostess == &hostess)
+	if (sofa.m_isBeingUsed && sofa.m_currentHostess == &hostess && sofa.m_currentSituation == nullptr)
 	{
 		sofa.m_isBeingUsed = false;
 		hostess.m_isBeingUsed = false;
 		sofa.m_currentHostess = nullptr;
 		sofa.m_isBeingUsedByClientAndHostess = false;
-
 	}
-	else
+	else if (sofa.m_currentSituation != nullptr)
 	{
-		std::cout << "Removal not needed!\n";
+		std::cout << "sofas current situation != nullptr\n"; // this is running for all sofas
 	}
 }
 
@@ -98,6 +97,7 @@ void HostessManager::handleSelectingHostesses()
 			{
 				unselectAllHostesses();
 				hostess.m_isCurrentlySelected = !hostess.m_isCurrentlySelected;
+				m_selectedHostess = hostess;
 				std::cout << hostess.m_name << " is currently " << (hostess.m_isCurrentlySelected ? "" : "NOT ") << "selected\n";
 			}
 				
@@ -116,12 +116,29 @@ void HostessManager::handlePlacingHostesses(SofaManager& sofaManager)
 			{
 				if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area))
 				{
-					removeHostess(m_hostesses[j], sofa);
+					removeHostess(m_hostesses[j], sofa); 
 					placeHostess(m_hostesses[j], sofa);
 				}
 			}
 		}
 	}
+
+	/*for (auto& sofa : sofaManager.m_sofas)
+	{
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), sofa.m_area))
+		{
+			if (sofa.m_currentHostess == nullptr)
+			{
+				placeHostess(m_selectedHostess, sofa);
+				TraceLog(LOG_DEBUG, "Hostess placed!");
+			}
+			else
+			{
+				removeHostess(m_selectedHostess, sofa);
+				TraceLog(LOG_DEBUG, "Hostess removed!");
+			}
+		}
+	}*/
 
 }
 

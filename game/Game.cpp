@@ -69,7 +69,7 @@ void Game::Update()
 
 	if (m_currentSituation != nullptr)
 	{
-		if (m_currentSituation->m_isSituationOver)
+		if (m_currentSituation->m_isSituationOver) // dont think im resetting the sofas m_currentSituation
 		{
 			delete m_currentSituation;
 			m_currentGameState = MAIN_GAME;

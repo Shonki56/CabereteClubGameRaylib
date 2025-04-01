@@ -27,4 +27,5 @@ private:
 	float m_sofaSize = 0.35;
 	void isSofaBeingUsed();
 	void createSituation();
+	void setCurrentSituationToNullptr();
 };

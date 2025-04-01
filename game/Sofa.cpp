@@ -9,6 +9,7 @@ Sofa::Sofa(Vector2 position)
 	m_area = getRect();
 	m_currentClient = nullptr;
 	m_currentSituation = nullptr;
+	m_currentHostess = nullptr;
 }
 
 Sofa::~Sofa()
@@ -22,6 +23,12 @@ void Sofa::Draw()
 	{
 		createSituationIfNeeded();
 	}
+
+	if (m_currentClient != nullptr)
+	{
+		setCurrentSituationToNullptr();
+	}
+	
 
 	DrawTextureEx(m_image, m_position,0, m_sofaSize, WHITE);	
 	if (m_isBeingUsed)
@@ -92,6 +99,14 @@ void Sofa::createSituation()
 	if (m_currentClient->m_hasHadSituation == false)
 	{
 		m_currentSituation = new Situation(m_currentClient, m_currentHostess);
+	}
+}
+
+void Sofa::setCurrentSituationToNullptr()
+{
+	if (m_currentClient->m_hasHadSituation == true)
+	{
+		m_currentSituation = nullptr;
 	}
 }
 

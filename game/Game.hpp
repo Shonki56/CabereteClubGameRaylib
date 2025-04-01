@@ -42,5 +42,4 @@ private:
 	void pauseAllTimers();
 	void continueAllTimers();
 	void endSituation();
-
 };
