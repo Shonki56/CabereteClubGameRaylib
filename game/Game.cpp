@@ -77,6 +77,8 @@ void Game::Update()
 		}
 	}
 
+	
+
 }
 
 void Game::HandleInputs()

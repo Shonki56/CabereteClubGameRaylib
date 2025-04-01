@@ -25,6 +25,7 @@ public:
 	void showChoicesAndSetPlayerChoice();
 	void setClientAndHostess(Client* client, Hostess* hostess);
 	Situation();
+	Situation(Client* client, Hostess* hostess);
 	void Draw();
 private:
 	void assignSituationType();

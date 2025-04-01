@@ -18,6 +18,11 @@ Sofa::~Sofa()
 
 void Sofa::Draw()
 {
+	if (m_isBeingUsedByClientAndHostess == true) // Will change to an update function if works
+	{
+		createSituationIfNeeded();
+	}
+
 	DrawTextureEx(m_image, m_position,0, m_sofaSize, WHITE);	
 	if (m_isBeingUsed)
 	{
@@ -32,6 +37,7 @@ void Sofa::Draw()
 	{
 		DrawText("!", m_position.x, m_position.y - 100, 100, RED);
 	}
+
 }
 
 Rectangle Sofa::getRect()
@@ -48,6 +54,15 @@ void Sofa::ChangeToActive()
 {
 	m_isBeingUsed = true;
 	std::cout << "Changed to active!\n";
+}
+
+void Sofa::createSituationIfNeeded()
+{
+	int randomNum = GetRandomValue(1, 2500);
+	if (m_currentSituation == nullptr && randomNum == 33)
+	{
+		createSituation();
+	}
 }
 
 void Sofa::isSofaBeingUsed()
@@ -69,6 +84,14 @@ void Sofa::isSofaBeingUsed()
 				std::cout << "Now False!\n";
 			}
 		}
+	}
+}
+
+void Sofa::createSituation()
+{
+	if (m_currentClient->m_hasHadSituation == false)
+	{
+		m_currentSituation = new Situation(m_currentClient, m_currentHostess);
 	}
 }
 

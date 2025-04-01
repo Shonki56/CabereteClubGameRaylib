@@ -6,6 +6,14 @@ Situation::Situation()
 	setHostessNeedTexture();
 }
 
+Situation::Situation(Client* client, Hostess* hostess)
+{
+	m_pClient = client;
+	m_pHostess = hostess;
+	assignSituationType();
+	setHostessNeedTexture();
+}
+
 void Situation::Draw()
 {
 	DrawTexture(m_sofaTexture, 500, 500, WHITE);
