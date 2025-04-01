@@ -14,6 +14,11 @@ Situation::Situation(Client* client, Hostess* hostess)
 	setHostessNeedTexture();
 }
 
+Situation::~Situation()
+{
+	TraceLog(LOG_DEBUG, "SITUATION DELETED");
+}
+
 void Situation::Draw()
 {
 	DrawTexture(m_sofaTexture, 500, 500, WHITE);

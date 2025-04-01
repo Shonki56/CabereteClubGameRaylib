@@ -39,6 +39,7 @@ enum GameState {TITLE, MAIN_GAME, PAUSED, END};
 
 int main()
 {
+    SetTraceLogLevel(LOG_ALL);
 	const int screenWidth = 1500;
 	const int screenHeight = 1000;
     InitWindow(screenWidth, screenHeight, "Caberet Madness");

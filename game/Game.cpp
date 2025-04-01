@@ -71,6 +71,7 @@ void Game::Update()
 	{
 		if (m_currentSituation->m_isSituationOver)
 		{
+			delete m_currentSituation;
 			m_currentGameState = MAIN_GAME;
 			m_currentSituation = nullptr;
 			continueAllTimers(); // this causing the extra seconds added to timer

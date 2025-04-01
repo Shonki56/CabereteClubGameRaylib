@@ -26,6 +26,7 @@ public:
 	void setClientAndHostess(Client* client, Hostess* hostess);
 	Situation();
 	Situation(Client* client, Hostess* hostess);
+	~Situation();
 	void Draw();
 private:
 	void assignSituationType();
