@@ -29,6 +29,11 @@ void Sofa::Draw()
 		setCurrentSituationToNullptr();
 	}
 	
+	if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT) && CheckCollisionPointRec(GetMousePosition(), m_area) && m_currentHostess != nullptr)
+	{
+		std::cout << "Sofa currently has " << m_currentHostess->m_name << std::endl;
+	}
+	
 
 	DrawTextureEx(m_image, m_position,0, m_sofaSize, WHITE);	
 	if (m_isBeingUsed)
