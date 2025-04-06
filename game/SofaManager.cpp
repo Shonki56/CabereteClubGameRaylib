@@ -18,13 +18,14 @@ void SofaManager::fillSofasVector()
 
 void SofaManager::freeSingleSofa(Sofa& sofa)// attempting to run this even though
 {
-	if (sofa.m_currentClient != nullptr)
-	{
-		sofa.m_currentHostess->m_isBeingUsed = false; // this is causing a problem but im not sure why. Sofa deleting client before it runs this??
-	}
 	sofa.m_isBeingUsed = false;
 	sofa.m_isBeingUsedByClientAndHostess = false;
 	sofa.m_currentSituation = nullptr; 
+	if (sofa.m_currentHostess != nullptr)
+	{
+		sofa.m_currentHostess->m_isBeingUsed = false;
+		sofa.m_currentHostess = nullptr;
+	}
 }
 
 SofaManager::SofaManager()
