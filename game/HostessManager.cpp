@@ -52,7 +52,7 @@ void HostessManager::removeHostess(Hostess& hostess, Sofa& sofa)
 	{
 		sofa.m_isBeingUsed = false;
 		hostess.m_isBeingUsed = false;
-		sofa.m_currentHostess = nullptr;
+		sofa.m_currentHostess = nullptr; // maybe this??
 		sofa.m_isBeingUsedByClientAndHostess = false;
 	}
 	else if (sofa.m_currentSituation != nullptr)
@@ -114,10 +114,13 @@ void HostessManager::handlePlacingHostesses(SofaManager& sofaManager)
 		{
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			{
-				if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area))
+				if (CheckCollisionPointRec(GetMousePosition(), sofa.m_area) && sofa.m_isBeingUsedByClient == true && sofa.m_currentHostess == nullptr)
+				{
+					placeHostess(m_hostesses[j], sofa);
+				}
+				else
 				{
 					removeHostess(m_hostesses[j], sofa); 
-					placeHostess(m_hostesses[j], sofa);
 				}
 			}
 		}
