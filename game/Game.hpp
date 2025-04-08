@@ -32,7 +32,7 @@ public:
 private:
 	void InitGame();
 	void displayHostessesFaces();
-	void clientGiveMoney(Hostess* hostess, Client* client);
+	void clientGiveMoneyAndAddToFeverTime(Hostess* hostess, Client* client);
 	SofaManager m_sofaManager;
 	ClientManager m_clientManager;
 	Situation* m_currentSituation = nullptr;
@@ -42,4 +42,7 @@ private:
 	void pauseAllTimers();
 	void continueAllTimers();
 	void endSituation();
+	float m_feverTimeLevel = 0;
+	void addToFeverTimeMeter(float);
+	void drawFeverTimeProgressBar();
 };

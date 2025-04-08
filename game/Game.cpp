@@ -53,14 +53,7 @@ void Game::Update()
 
 	if (IsKeyPressed(KEY_C))
 	{
-		if (m_gameTimer.m_currentState == Timer::TimerState::NOT_PAUSED)
-		{
-			m_gameTimer.pauseTimer();
-		}
-		else
-		{
-			m_gameTimer.continueTimer();
-		}
+		addToFeverTimeMeter(5);
 	}
 
 	m_clientManager.removeClient(m_sofaManager);
@@ -134,11 +127,14 @@ void Game::displayHostessesFaces()
 
 // MAIN GAME LOGIC STUFF
 
-void Game::clientGiveMoney(Hostess* hostess, Client* client)
+void Game::clientGiveMoneyAndAddToFeverTime(Hostess* hostess, Client* client)
 {
-	hostess->m_moneyMade += client->m_howMuchToSpend();
+	float howMuchToAdd = client->m_howMuchToSpend();
+	hostess->m_moneyMade += howMuchToAdd;
+	addToFeverTimeMeter(howMuchToAdd / 1000.0);
 	std::cout << "This is in Game::clientGiveMoney \t Client total time remaining: " << client->m_spendMoneyTimer.getTotalTime() << std::endl;
 	std::cout << "This is in Game::clientGiveMoney \t Client happiness level: " << client->m_happiness << std::endl;
+	std::cout << howMuchToAdd / 1000.0 << "Has been added to fever time meter\n";
 }
 
 // Situation stuff
@@ -171,7 +167,7 @@ void Game::drawMainGame()
 
 		if (sofa.m_isBeingUsed && sofa.m_isBeingUsedByClient && sofa.m_currentClient->m_spendMoneyTimer.m_hasTimerRunOut)
 		{
-			clientGiveMoney(sofa.m_currentHostess, sofa.m_currentClient);
+			clientGiveMoneyAndAddToFeverTime(sofa.m_currentHostess, sofa.m_currentClient);
 			sofa.m_currentClient->m_spendMoneyTimer.resetTimer();
 		}
 	}
@@ -187,6 +183,8 @@ void Game::drawMainGame()
 	}
 
 	displayHostessesFaces();
+
+	drawFeverTimeProgressBar();
 }
 
 void Game::drawCurrentSituation()
@@ -221,6 +219,17 @@ void Game::continueAllTimers()
 void Game::endSituation()
 {
 
+}
+
+void Game::addToFeverTimeMeter(float amountToAdd)
+{
+	m_feverTimeLevel += amountToAdd;
+}
+
+void Game::drawFeverTimeProgressBar()
+{
+	Rectangle test{ 100, 800, 200, 50 }; 
+	GuiProgressBar(test, "FEVER TIME", "", &m_feverTimeLevel, 0, 100);
 }
 
 
