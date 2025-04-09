@@ -45,4 +45,7 @@ private:
 	float m_feverTimeLevel = 0;
 	void addToFeverTimeMeter(float);
 	void drawFeverTimeProgressBar();
+	std::string currentFeverTimeLevel = "LEVEL 1";
+	void activateFeverTime();
+	void setFeverTimeLevelText();
 };

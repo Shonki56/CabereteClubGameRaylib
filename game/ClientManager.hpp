@@ -16,5 +16,6 @@ public:
 	float m_lastClientSpawnTime; 
 	std::vector<std::unique_ptr<Client>> m_clients;
 	std::map<Client*, int> m_clientSofaMap;
+	void applyFeverTime();
 private:
 };

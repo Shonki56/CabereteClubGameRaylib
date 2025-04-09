@@ -8,6 +8,14 @@ void ClientManager::spawnClient(SofaManager& sofaManager)
 	m_clients.push_back(std::move(client));
 }
 
+void ClientManager::applyFeverTime()
+{
+	for (auto& client : m_clients)
+	{
+		client->m_happiness = SPECIAL;
+	}
+}
+
 void ClientManager::generateClient(SofaManager& sofaManager)
 {
 	const float spawnTime = 3.0f;
