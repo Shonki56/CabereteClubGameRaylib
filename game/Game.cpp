@@ -71,13 +71,6 @@ void Game::Update()
 		}
 	}
 	 
-	if (isFeverTimeActive == true && isFeverTimeUpdatesFinished == false)
-	{
-		m_sofaManager.clearAllSituations();
-		m_clientManager.extendTimers(); // not working
-		isFeverTimeUpdatesFinished = true;
-	}
-
 	if (isFeverTimeActive == false)
 	{
 		m_sofaManager.createSituationsForSofas();
@@ -254,6 +247,8 @@ void Game::drawFeverTimeProgressBar()
 void Game::activateFeverTime()
 {
 	isFeverTimeActive = true;
+	m_clientManager.extendTimers();
+	m_sofaManager.clearAllSituations();
 	m_clientManager.applyFeverTime(); 
 }
 
