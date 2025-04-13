@@ -72,3 +72,11 @@ void SofaManager::clearAllSituations()
 		sofa.clearSituation();
 	}
 }
+
+void SofaManager::createSituationsForSofas()
+{
+	for (auto& sofa : m_sofas)
+	{
+		sofa.createSituationIfNeeded();
+	}
+}

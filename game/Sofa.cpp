@@ -19,9 +19,9 @@ Sofa::~Sofa()
 
 void Sofa::Draw()
 {
-	if (m_isBeingUsedByClientAndHostess == true) // Will change to an update function if works
+	if (m_isBeingUsedByClientAndHostess == true) // Will change to an update function if works. this is also causing situations to be created during fever time
 	{
-		createSituationIfNeeded();
+		//createSituationIfNeeded();
 	}
 
 	if (m_currentClient != nullptr)
@@ -106,7 +106,7 @@ void Sofa::isSofaBeingUsed()
 
 void Sofa::createSituation()
 {
-	if (m_currentClient->m_hasHadSituation == false)
+	if (m_currentClient != nullptr && m_currentClient->m_hasHadSituation == false && m_isBeingUsedByClientAndHostess == true)
 	{
 		m_currentSituation = new Situation(m_currentClient, m_currentHostess);
 	}

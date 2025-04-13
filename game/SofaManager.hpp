@@ -11,6 +11,7 @@ public:
 	int checkIfASofaIsFree();
 	void freeEmptySofas();
 	void clearAllSituations();
+	void createSituationsForSofas();
 private:
 	void fillSofasVector();
 	void freeSingleSofa(Sofa& sofa);

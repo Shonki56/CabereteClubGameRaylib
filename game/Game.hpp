@@ -49,4 +49,5 @@ private:
 	void activateFeverTime();
 	void setFeverTimeLevelText();
 	bool isFeverTimeActive = false;
+	bool isFeverTimeUpdatesFinished = false;
 };

@@ -16,6 +16,15 @@ void ClientManager::applyFeverTime()
 	}
 }
 
+void ClientManager::extendTimers()
+{
+	for (auto& client : m_clients)
+	{
+		client->m_lifetimeTimer.extendTimer(50); // temp value to see if it works
+		std::cout << "Client time is now: " << client->m_lifetimeTimer.getTimeLeft() << std::endl;
+	}
+}
+
 void ClientManager::generateClient(SofaManager& sofaManager)
 {
 	const float spawnTime = 3.0f;

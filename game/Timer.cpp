@@ -33,18 +33,24 @@ void Timer::setTotalTime(float time)
 
 void Timer::resetTimer()
 {
-	if (m_hasTimerRunOut)
-	{
+	//if (m_hasTimerRunOut) // why do i need this?
+	//{
 		m_startTime = GetTime();
 		m_timeLeft = m_totalTime;
 		std::cout << m_timeLeft << std::endl;
 		m_hasTimerRunOut = false;
-	}
+	//}
 }
 
 void Timer::continueTimerWithoutAddingPausedTime()
 {
 	m_currentState = TimerState::NOT_PAUSED;
+}
+
+void Timer::extendTimer(float timeToAdd)
+{
+	setTotalTime(m_timeLeft + timeToAdd);
+	resetTimer();
 }
 
 

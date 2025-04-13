@@ -15,6 +15,7 @@ public:
 	void resetTimer();
 	float getTotalTime() { return m_totalTime; }
 	void continueTimerWithoutAddingPausedTime();
+	void extendTimer(float);
 	bool m_hasTimerRunOut = false;
 	TimerState m_currentState;
 private:
