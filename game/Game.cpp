@@ -228,25 +228,32 @@ void Game::endSituation()
 
 void Game::addToFeverTimeMeter(float amountToAdd)
 {
-	m_feverTimeLevel += amountToAdd;
-	setFeverTimeLevelText();
+	if (isFeverTimeActive == false)
+	{
+		m_feverTimeLevel += amountToAdd;
+		setFeverTimeLevelText();
+	}
 }
 
 void Game::drawFeverTimeProgressBar()
 {
 	Rectangle progressBarRectangle{ 100, 800, 200, 50 }; 
 	Rectangle feverTimeButton{ 400, 800, 100, 20 };
-	GuiProgressBar(progressBarRectangle, "FEVER TIME", "", &m_feverTimeLevel, 0, 300);
+	GuiProgressBar(progressBarRectangle, "FEVER TIME", "", &m_feverTimeLevel, 0, 100);
 	DrawText(currentFeverTimeLevel.c_str(), 300, 800, 20, BLUE);
 	if (GuiButton(feverTimeButton, "Fever Time!"))
 	{
-		activateFeverTime();
+		if (m_feverTimeLevel >= 100)
+		{
+			activateFeverTime();
+		}
 	}
 }
 
 void Game::activateFeverTime()
 {
 	isFeverTimeActive = true;
+	m_feverTimeLevel = 0;
 	m_clientManager.extendTimers();
 	m_sofaManager.clearAllSituations();
 	m_clientManager.applyFeverTime(); 
