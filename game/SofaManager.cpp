@@ -64,3 +64,11 @@ void SofaManager::freeEmptySofas()
 		}
 	}
 }
+
+void SofaManager::clearAllSituations()
+{
+	for (auto& sofa : m_sofas)
+	{
+		sofa.clearSituation();
+	}
+}

@@ -70,6 +70,11 @@ void Game::Update()
 			continueAllTimers(); // this causing the extra seconds added to timer
 		}
 	}
+	 
+	if (isFeverTimeActive == true)
+	{
+		m_sofaManager.clearAllSituations();
+	}
 
 	
 
@@ -242,7 +247,7 @@ void Game::drawFeverTimeProgressBar()
 
 void Game::activateFeverTime()
 {
-	m_clientManager.applyFeverTime(); // doesn't work for some reason
+	m_clientManager.applyFeverTime(); 
 }
 
 void Game::setFeverTimeLevelText()

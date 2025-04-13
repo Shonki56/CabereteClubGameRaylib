@@ -10,6 +10,7 @@ public:
 	std::vector<Sofa> m_sofas;
 	int checkIfASofaIsFree();
 	void freeEmptySofas();
+	void clearAllSituations();
 private:
 	void fillSofasVector();
 	void freeSingleSofa(Sofa& sofa);

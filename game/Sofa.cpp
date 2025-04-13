@@ -77,6 +77,11 @@ void Sofa::createSituationIfNeeded()
 	}
 }
 
+void Sofa::clearSituation()
+{
+	m_currentSituation = nullptr;
+}
+
 void Sofa::isSofaBeingUsed()
 {
 	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
