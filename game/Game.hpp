@@ -48,4 +48,5 @@ private:
 	std::string currentFeverTimeLevel = "LEVEL 1";
 	void activateFeverTime();
 	void setFeverTimeLevelText();
+	bool isFeverTimeActive = false;
 };

@@ -143,7 +143,7 @@ void Game::createSituation()
 {
 	for (Sofa& sofa : m_sofaManager.m_sofas)
 	{
-		if (sofa.m_isBeingUsed  && sofa.m_currentSituation == nullptr)
+		if (sofa.m_isBeingUsed  && sofa.m_currentSituation == nullptr && isFeverTimeActive == false)
 		{
 			sofa.m_currentSituation = new Situation();
 			sofa.m_currentSituation->setClientAndHostess(sofa.m_currentClient, sofa.m_currentHostess);
@@ -229,14 +229,20 @@ void Game::addToFeverTimeMeter(float amountToAdd)
 
 void Game::drawFeverTimeProgressBar()
 {
-	Rectangle test{ 100, 800, 200, 50 }; 
-	GuiProgressBar(test, "FEVER TIME", "", &m_feverTimeLevel, 0, 300);
+	Rectangle progressBarRectangle{ 100, 800, 200, 50 }; 
+	Rectangle feverTimeButton{ 400, 800, 100, 20 };
+	GuiProgressBar(progressBarRectangle, "FEVER TIME", "", &m_feverTimeLevel, 0, 300);
 	DrawText(currentFeverTimeLevel.c_str(), 300, 800, 20, BLUE);
+	if (GuiButton(feverTimeButton, "Fever Time!"))
+	{
+		isFeverTimeActive = true;
+		activateFeverTime();
+	}
 }
 
 void Game::activateFeverTime()
 {
-	m_clientManager.applyFeverTime();
+	m_clientManager.applyFeverTime(); // doesn't work for some reason
 }
 
 void Game::setFeverTimeLevelText()

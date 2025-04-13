@@ -12,7 +12,7 @@ void ClientManager::applyFeverTime()
 {
 	for (auto& client : m_clients)
 	{
-		client->m_happiness = SPECIAL;
+		client->setHappiness(SPECIAL);
 	}
 }
 

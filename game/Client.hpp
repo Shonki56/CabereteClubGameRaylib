@@ -33,6 +33,7 @@ public:
 	void continueTimers();
 	bool m_hasHadSituation = false;
 	void setHowOftenToSpendMoney();
+	void setHappiness(clientHappiness);
 private:
 	float getClientHappinessHowOftenToSpendMoney();
 	void createStatsAndTraits();

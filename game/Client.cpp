@@ -105,6 +105,13 @@ void Client::setHowOftenToSpendMoney()
 	m_spendMoneyTimer.setTotalTime(time);
 }
 
+void Client::setHappiness(clientHappiness happiness)
+{
+	m_happiness = happiness;
+	setHowOftenToSpendMoney();
+	m_spendMoneyTimer.resetTimer();
+}
+
 float Client::getClientHappinessHowOftenToSpendMoney()
 {
 	switch (m_happiness)
