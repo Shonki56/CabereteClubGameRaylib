@@ -46,16 +46,6 @@ void Game::Update()
 		m_clientManager.spawnClient(m_sofaManager);
 	}
 
-	if (IsKeyPressed(KEY_T))
-	{
-		createSituation();
-	}
-
-	if (IsKeyPressed(KEY_C))
-	{
-		addToFeverTimeMeter(5);
-	}
-
 	m_clientManager.removeClient(m_sofaManager);
 	m_gameTimer.updateCurrentTimeAndTimeLeft();
 	GUI::showTimer(m_gameTimer.getTimeLeft());
@@ -70,14 +60,21 @@ void Game::Update()
 			continueAllTimers(); // this causing the extra seconds added to timer
 		}
 	}
-	 
+	
+
+	if (isFeverTimeActive == true)
+	{
+		if (m_clientManager.isThereCurrentlyAFeverTimeClient() == false)
+		{
+			isFeverTimeActive = false;
+		}
+
+	}
+
 	if (isFeverTimeActive == false)
 	{
 		m_sofaManager.createSituationsForSofas();
 	}
-
-	
-
 }
 
 void Game::HandleInputs()
@@ -140,22 +137,6 @@ void Game::clientGiveMoneyAndAddToFeverTime(Hostess* hostess, Client* client)
 	std::cout << "This is in Game::clientGiveMoney \t Client total time remaining: " << client->m_spendMoneyTimer.getTotalTime() << std::endl;
 	std::cout << "This is in Game::clientGiveMoney \t Client happiness level: " << client->m_happiness << std::endl;
 	std::cout << howMuchToAdd / 1000.0 << "Has been added to fever time meter\n";
-}
-
-// Situation stuff
-
-void Game::createSituation()
-{
-	for (Sofa& sofa : m_sofaManager.m_sofas)
-	{
-		if (sofa.m_isBeingUsed  && sofa.m_currentSituation == nullptr && isFeverTimeActive == false)
-		{
-			sofa.m_currentSituation = new Situation();
-			sofa.m_currentSituation->setClientAndHostess(sofa.m_currentClient, sofa.m_currentHostess);
-			std::cout << sofa.m_currentSituation->situationName << std::endl;
-			return;
-		}
-	}
 }
 
 void Game::drawMainGame()
@@ -231,16 +212,16 @@ void Game::addToFeverTimeMeter(float amountToAdd)
 	if (isFeverTimeActive == false)
 	{
 		m_feverTimeLevel += amountToAdd;
-		setFeverTimeLevelText();
 	}
 }
 
 void Game::drawFeverTimeProgressBar()
 {
-	Rectangle progressBarRectangle{ 100, 800, 200, 50 }; 
-	Rectangle feverTimeButton{ 400, 800, 100, 20 };
+	GuiSetStyle(DEFAULT, GuiDefaultProperty::TEXT_SIZE, 14);
+	GuiSetStyle(DEFAULT, GuiDefaultProperty::TEXT_SPACING, 1);
+	Rectangle progressBarRectangle{ 100, 800, 200, 30 }; 
+	Rectangle feverTimeButton{ 350, 800, 100, 30 };
 	GuiProgressBar(progressBarRectangle, "FEVER TIME", "", &m_feverTimeLevel, 0, 100);
-	DrawText(currentFeverTimeLevel.c_str(), 300, 800, 20, BLUE);
 	if (GuiButton(feverTimeButton, "Fever Time!"))
 	{
 		if (m_feverTimeLevel >= 100)
@@ -258,23 +239,4 @@ void Game::activateFeverTime()
 	m_sofaManager.clearAllSituations();
 	m_clientManager.applyFeverTime(); 
 }
-
-void Game::setFeverTimeLevelText()
-{
-	if (m_feverTimeLevel < 100)
-	{
-		currentFeverTimeLevel = "LEVEL 1";
-	}
-	else if (m_feverTimeLevel > 100 && m_feverTimeLevel < 200)
-	{
-		currentFeverTimeLevel = "LEVEL 2";
-	}
-	else if (m_feverTimeLevel >= 300)
-	{
-		currentFeverTimeLevel = "LEVEL 3";
-	}
-
-}
-
-
 

@@ -18,5 +18,7 @@ public:
 	std::map<Client*, int> m_clientSofaMap;
 	void applyFeverTime();
 	void extendTimers();
+	bool isThereCurrentlyAFeverTimeClient();
+	bool m_feverTimeClientActive = false;
 private:
 };

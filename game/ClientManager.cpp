@@ -25,6 +25,20 @@ void ClientManager::extendTimers()
 	}
 }
 
+bool ClientManager::isThereCurrentlyAFeverTimeClient()
+{
+	for (auto& client : m_clients)
+	{
+		if (client->m_happiness == SPECIAL)
+		{
+			std::cout << "Client is special\n";
+			return true;
+		}
+	}
+	
+	return false;
+}
+
 void ClientManager::generateClient(SofaManager& sofaManager)
 {
 	const float spawnTime = 3.0f;
@@ -85,7 +99,6 @@ void ClientManager::removeClient(SofaManager& sofaManager)
 				std::cout << "Client removed. Sofa " << sofaIndex << " is now free!\n";
 			}
 			m_clients.erase(m_clients.begin() + i);
-			
 		}
 	}
 
