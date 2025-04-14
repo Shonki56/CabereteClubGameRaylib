@@ -16,6 +16,7 @@ Situation::Situation(Client* client, Hostess* hostess)
 
 Situation::~Situation()
 {
+	UnloadTexture(m_hostessNeddTexture);
 	TraceLog(LOG_DEBUG, "SITUATION DELETED");
 }
 
