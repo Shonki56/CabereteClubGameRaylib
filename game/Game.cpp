@@ -23,11 +23,18 @@ void Game::Draw()
 	case SITUATION:
 		drawCurrentSituation();
 		break;
+	case ENDING_SITUATION:
+		m_currentEndingSituation->drawEndingSituation();
+		break;
 	}
 }
 
 void Game::Update()
 {
+	if (IsKeyPressed(KEY_A))
+	{
+		createEndingSituation();
+	}
 	m_sofaManager.freeEmptySofas();
 	HandleInputs();
 	if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT))
@@ -137,6 +144,12 @@ void Game::clientGiveMoneyAndAddToFeverTime(Hostess* hostess, Client* client)
 	std::cout << "This is in Game::clientGiveMoney \t Client total time remaining: " << client->m_spendMoneyTimer.getTotalTime() << std::endl;
 	std::cout << "This is in Game::clientGiveMoney \t Client happiness level: " << client->m_happiness << std::endl;
 	std::cout << howMuchToAdd / 1000.0 << "Has been added to fever time meter\n";
+}
+
+void Game::createEndingSituation()
+{
+	m_currentGameState = ENDING_SITUATION;
+	m_currentEndingSituation = new EndingSituation(m_sofaManager.m_sofas[0].m_currentClient, m_sofaManager.m_sofas[0].m_currentHostess);
 }
 
 void Game::drawMainGame()

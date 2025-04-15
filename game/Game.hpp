@@ -11,13 +11,14 @@
 #include "ClientManager.hpp"
 #include "Timer.hpp";
 #include "Situation.hpp"
+#include "EndingSituation.h"
 
 
 
 class Game
 {
 public:
-	enum GameState {MAIN_GAME, SITUATION, FEVER_TIME};
+	enum GameState {MAIN_GAME, SITUATION, FEVER_TIME, ENDING_SITUATION};
 	Game();
 	void Draw();
 	void Update();
@@ -36,7 +37,8 @@ private:
 	SofaManager m_sofaManager;
 	ClientManager m_clientManager;
 	Situation* m_currentSituation = nullptr;
-	void createSituation();
+	EndingSituation* m_currentEndingSituation = nullptr;
+	void createEndingSituation();
 	void drawMainGame();
 	void drawCurrentSituation();
 	void pauseAllTimers();
@@ -47,7 +49,6 @@ private:
 	void drawFeverTimeProgressBar();
 	std::string currentFeverTimeLevel = "LEVEL 1";
 	void activateFeverTime();
-	void setFeverTimeLevelText();
 	bool isFeverTimeActive = false;
 	bool isFeverTimeUpdatesFinished = false;
 };
