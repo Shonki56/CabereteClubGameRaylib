@@ -44,12 +44,6 @@ void Situation::Draw()
 	}
 }
 
-void Situation::setClientAndHostess(Client* client, Hostess* hostess)
-{
-	m_pClient = client;
-	m_pHostess = hostess;
-}
-
 void Situation::showChoicesAndSetPlayerChoice()
 {
 	Rectangle test{ 100, 200, 300, 430 };

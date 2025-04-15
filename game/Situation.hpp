@@ -11,6 +11,13 @@ public:
 	enum SituationType {DEFAULT, SMALL_GLASS, BIG_GLASS, TOWEL, MENU};
 	Client* m_pClient;
 	Hostess* m_pHostess;
+	bool m_isSituationOver = false;
+	void showChoicesAndSetPlayerChoice();
+	Situation();
+	Situation(Client* client, Hostess* hostess);
+	~Situation();
+	void Draw();
+private:
 	Texture2D m_sofaTexture = LoadTexture("resources/Images/sofa.png");
 	SituationType m_sitType;
 	std::string situationNames[5] = {"", "Small Glass", "Big Glass", "Towel", "Menu" };
@@ -21,14 +28,6 @@ public:
 	SituationType m_playerChoice = DEFAULT;
 	Rectangle m_hostessNeed{843, 400, 100, 100};
 	Texture2D m_hostessNeddTexture;
-	bool m_isSituationOver = false;
-	void showChoicesAndSetPlayerChoice();
-	void setClientAndHostess(Client* client, Hostess* hostess);
-	Situation();
-	Situation(Client* client, Hostess* hostess);
-	~Situation();
-	void Draw();
-private:
 	void assignSituationType();
 	void answerChecker();
 	void setHostessNeedTexture();
