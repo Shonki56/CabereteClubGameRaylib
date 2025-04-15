@@ -98,6 +98,8 @@ void Game::HandleInputs()
 			sofa.m_currentClient->m_hasHadSituation = true;
 			pauseAllTimers();
 		}
+
+		//TODO PUT ENDING SITUATION LOGIC HERE
 	}
 }
 
@@ -215,10 +217,6 @@ void Game::continueAllTimers()
 	m_gameTimer.continueTimer();
 }
 
-void Game::endSituation()
-{
-
-}
 
 void Game::addToFeverTimeMeter(float amountToAdd)
 {

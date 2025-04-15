@@ -8,8 +8,7 @@ Client::Client(clientType clientType) : m_type(clientType)
 
 Client::~Client()
 {
-	//if (m_type == POOR)
-	//	UnloadTexture(m_clientImage);
+	UnloadTexture(m_clientImage);
 }
 
 void Client::DrawAndUpdate()

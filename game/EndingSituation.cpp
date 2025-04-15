@@ -13,6 +13,22 @@ void EndingSituation::drawEndingSituation()
 void EndingSituation::playerChoosesExtendSession()
 {
 	std::cout << "Player chose to extend session\n";
+	int oddsForExtendingSession; 
+	switch (m_client->m_happiness)
+	{
+	case LOW:
+		oddsForExtendingSession = 50;
+		break;
+	case MEDIUM:
+		oddsForExtendingSession = 25;
+		break;
+	case HIGH:
+		oddsForExtendingSession = 10;
+		break;
+	default:
+		std::cout << "Something has gone wrong!\n";
+
+	}
 }
 
 void EndingSituation::playerChoosesGiveGift()
